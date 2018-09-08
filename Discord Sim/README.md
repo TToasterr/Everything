@@ -3,6 +3,11 @@
 
 ---
 
+## char-rnn.py
+The program itself.
+
+---
+
 ## general.txt
 A .txt file of the entire history of the #general in my Discord server.
 
