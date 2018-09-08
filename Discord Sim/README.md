@@ -3,15 +3,15 @@
 
 ---
 
-## General.txt
+## general.txt
 A .txt file of the entire history of the #general in my Discord server.
 
 ---
 
-## Jonkkkk.txt
+## jonkkkk.txt
 A .txt file of the entire history of me and Jonathan's DM's.
 
 ---
 
-## text.txt 
+## test.txt 
 A .txt file for testing regex searches in Atom (text editor).
