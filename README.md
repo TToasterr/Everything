@@ -14,3 +14,10 @@ Jonkkkk.txt - A .txt file of the entire history of me and Jonathan's DM's.
 
 
 text.txt - A .txt file for testing regex searches in Atom (text editor).
+
+---
+
+## Random testing
+### A folder full of random tests I've done. Not really worth checking out.
+
+browse.py - Me trying to open browser windows with python.
