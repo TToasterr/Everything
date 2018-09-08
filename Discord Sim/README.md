@@ -13,5 +13,5 @@ A .txt file of the entire history of me and Jonathan's DM's.
 
 ---
 
-## text.txt 
+## text.txt
 A .txt file for testing regex searches in Atom (text editor).

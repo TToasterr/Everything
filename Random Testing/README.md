@@ -8,7 +8,7 @@ Just me messing around with opening tabs with python scripts. Opens reddit.
 
 ---
 
-##Jonathan
+## Jonathan
 A monstrocity of a program. Don't run this.
 
 Opens 100 tabs of jonathan's old youtube channel. That's it.
