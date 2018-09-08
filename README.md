@@ -17,7 +17,7 @@ text.txt - A .txt file for testing regex searches in Atom (text editor).
 
 ---
 
-## Random testing
+## Random Testing
 ### A folder full of random tests I've done. Not really worth checking out.
 
 browse.py - Me trying to open browser windows with python.
