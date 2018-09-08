@@ -21,3 +21,9 @@ text.txt - A .txt file for testing regex searches in Atom (text editor).
 ### A folder full of random tests I've done. Not really worth checking out.
 
 browse.py - Me trying to open browser windows with python.
+
+Jonathan - A monstrocity of a program. Opens 100 tabs of jonathan's old youtube channel.
+  jonathan.bat - runs the program
+  jonathan.py - the program
+
+  Why would you ever want to run this?
