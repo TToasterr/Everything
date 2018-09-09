@@ -7,10 +7,7 @@ def ohNo(amount):
     global url
     global new
 
-    amm = amount
-
-    while amm > 0:
-        amm -= 1
+    for i in range(ammount):
         webbrowser.open(url, new=new)
 
 ohNo(100)
