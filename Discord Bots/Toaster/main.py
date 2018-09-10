@@ -26,15 +26,15 @@ async def on_message(message):
     if message.content.startswith("-whoami"):
         await client.send_message(message.channel, content = "You're **%s**! \nYou've been on discord since `%s`" % (message.author, message.author.created_at))
 
-    if message.content.startswith("-annoyJonathan"):
-        howmany = int(message.content[14:])
+    if message.content.startswith("-jonathan"):
+        howmany = int(message.content[10:])
         
         jonathan = "<@136664437431074816>"
         
         if howmany < 10 and howmany > 0:
-            msg = message.content[16:]
+            msg = message.content[12:]
         elif howmany < 99:
-            msg = message.content[17:]
+            msg = message.content[13:]
         elif howmany > 99:
             await client.send_message(message.channel, content = "That amount is too high! Please try again you ***LARGE HOMOSEXUAL***.")
             return
