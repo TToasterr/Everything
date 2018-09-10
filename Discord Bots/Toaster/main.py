@@ -2,7 +2,7 @@ import discord
 import random
 
 client = discord.Client()
-help = "-help - shows this \n-ping - pings the bot \n-whoami - gives users name and account creation date \n-annoyJonathan [amount of times] - pings jonathan the amount of times specified. Because of Discord spam limits, sends messages in bursts of 5."
+help = "-help - shows this \n-ping - pings the bot \n-whoami - gives users name and account creation date \n-annoyJonathan [amount of times] - pings jonathan the amount of times specified. Because of Discord spam limits, sends messages in bursts of 5. \n-poll [message] - creates a poll."
 
 
 
@@ -33,6 +33,10 @@ async def on_message(message):
         for i in range(howmany):
             await client.send_message(message.channel, content = "%s: %s" % (msgNum, jonathan))
             msgNum += 1
+
+    if message.content.startswith("-poll"):
+        await client.add_reaction(message, "👍")
+        await client.add_reaction(message, "👎")
 
 
 
