@@ -10,3 +10,8 @@ Just a massive place to store all my projects.
 
 ## Random Testing
 ### A folder full of random tests I've done. Not really worth checking out.
+
+---
+
+## Discord Bots
+### A folder of some Discord bots I may or may not continue.
