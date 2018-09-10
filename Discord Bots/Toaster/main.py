@@ -79,6 +79,31 @@ async def on_message(message):
         await client.add_reaction(message, "👍")
         await client.add_reaction(message, "👎")
 
+    if message.content.startswith("-streaming"):
+
+        if "450865638576095232" in [y.id for y in message.author.roles]:
+            args = message.content.split(", ")
+
+            try:
+                game = args[1]
+            except:
+                print("Toaster tried to announce a stream but didnt use enough arguments.")
+                await client.send_message(message.channel, content = "You didn't input enough arguments!")
+                return
+
+            if game == "testing":
+                print("Toaster announced a test stream.")
+                await client.send_message(client.get_channel("451206133810724864"), content = "Toaster would be live, but this is just a test announcement!")
+                return
+
+            print("Toaster announced a stream, with %s as the game." % game)
+
+            await client.send_message("451206133810724864", content = "Toaster is live, playing %s! Check it out: \nhttps://www.twitch.tv/ttoasterrr")
+
+        else:
+            print("Someone tried to start a stream without the 'Toaster' role.")
+            await client.send_message(message.channel, content = "You don't have the correct role to do this!")
+
 
 
 with open('C:/Users/matth/Desktop/Everything/token.txt', 'r') as myfile:
