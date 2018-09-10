@@ -28,10 +28,23 @@ async def on_message(message):
 
     if message.content.startswith("-annoyJonathan"):
         howmany = int(message.content[14:])
+        
         jonathan = "<@136664437431074816>"
+        
+        if howmany < 10 and howmany > 0:
+            msg = message.content[16:]
+        elif howmany < 99:
+            msg = message.content[17:]
+        elif howmany > 99:
+            await client.send_message(message.channel, content = "That amount is too high! Please try again you ***LARGE HOMOSEXUAL***.")
+            return
+        else:
+            await client.send_message(message.channel, content = "That amount is too low! Please try again you ***LARGE HOMOSEXUAL***.")
+            return
+        
         msgNum = 1
         for i in range(howmany):
-            await client.send_message(message.channel, content = "%s: %s" % (msgNum, jonathan))
+            await client.send_message(message.channel, content = "%s: %s %s" % (msgNum, jonathan, msg))
             msgNum += 1
 
     if message.content.startswith("-poll"):
