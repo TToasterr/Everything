@@ -15,5 +15,5 @@ Opens 100 tabs of jonathan's old youtube channel. That's it.
 
 ---
 
-## Time Until Next Class
+## classTime.py
 Just tells you what the time until my next class is.
