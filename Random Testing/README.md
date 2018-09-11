@@ -23,3 +23,6 @@ Just me messing around with opening tabs with python scripts. Opens reddit.
 
 ### classTime.py
 Just tells you what the time until my next class is.
+
+### rockPaperScissors.py
+An inneficient rock paper scissors. Pretty much the first code I ever made in Python.
