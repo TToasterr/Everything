@@ -14,7 +14,11 @@ help = "**-help** - shows this \n**-ping** - pings the bot \n**-invite** - gives
 
 @client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    activeServers = client.servers
+    sum = 0
+    for s in activeServers:
+        sum += len(s.members)
+    print("Bot started in %s server(s), with %s users." % (len(client.servers), sum))
 
 
 
