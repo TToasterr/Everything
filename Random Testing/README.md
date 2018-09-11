@@ -11,6 +11,9 @@ Opens 100 tabs (number is changeable) of Jonathan's old youtube channel.
 ### Bank
 A simple bank program I made, with interest, for computer science.
 
+### 1200% Accurate Human Sim
+Takes the words from words.py and tried to make coherent english with them.
+
 ---
 
 ## Files
