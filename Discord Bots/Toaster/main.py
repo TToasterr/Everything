@@ -19,6 +19,7 @@ async def on_ready():
     for s in activeServers:
         sum += len(s.members)
     print("Bot started in %s server(s), with %s users." % (len(client.servers), sum))
+    await client.change_presence(game=discord.Game(name="Toaster | -help"))
 
 
 
