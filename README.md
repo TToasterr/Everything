@@ -9,7 +9,7 @@ Just a massive place to store all my projects.
 ---
 
 ## Random Testing
-### A folder full of random tests I've done. Some funny stuff but not too interesting.
+### A folder full of random tests and school projects I've done. Some funny stuff but not too interesting.
 
 ---
 
