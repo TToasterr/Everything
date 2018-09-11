@@ -17,6 +17,9 @@ Takes the words from words.py and tried to make coherent english with them.
 ### Battleship
 A simple battleship game, for computer science.
 
+### Discord Sim (Python)
+A bot that takes all the text in general.txt and tries to replicate it.
+
 ---
 
 ## Files
