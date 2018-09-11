@@ -11,4 +11,5 @@
 
 ## Files
 
-### None yet!
+### browse.html
+Opens reddit. I was trying to replicate browse.py.
