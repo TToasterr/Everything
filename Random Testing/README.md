@@ -18,5 +18,5 @@ A simple bank program I made, with interest, for computer science.
 ### browse.py
 Just me messing around with opening tabs with python scripts. Opens reddit.
 
-## #classTime.py
+### classTime.py
 Just tells you what the time until my next class is.
