@@ -14,6 +14,9 @@ A simple bank program I made, with interest, for computer science.
 ### 1200% Accurate Human Sim
 Takes the words from words.py and tried to make coherent english with them.
 
+### Battleship
+A simple battleship game, for computer science.
+
 ---
 
 ## Files
