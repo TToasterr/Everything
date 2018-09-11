@@ -20,5 +20,5 @@ Just tells you what the time until my next class is.
 
 ---
 
-## bank.py
+## Bank
 A simple bank program I made, with interest, for computer science.
