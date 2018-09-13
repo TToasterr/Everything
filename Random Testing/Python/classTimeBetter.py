@@ -1,8 +1,7 @@
 import time
 from datetime import datetime
 
-currentTime = int(datetime.now().strftime("%H%M"))
-time = 0
+timee = 0
 
 start = 1350
 p1 = 1525
@@ -12,73 +11,92 @@ p3 = 1935
 p4 = 2035
 
 def setTime():
-    global time
-    if time > 59 and time < 100:
-        time -= 100
-        time += 60
-    elif time > 159 and time < 200:
-        time -= 100
-        time += 60
+    global timee
+    if timee > 59 and timee < 100:
+        timee -= 100
+        timee += 60
+    elif timee > 159 and timee < 200:
+        timee -= 100
+        timee += 60
 
 def doThing():
-    global time
+    global timee
     global hours
     global minutes
 
-    if time < 100:
+    if timee < 10:
         hours = "00"
-        minutes = time
-    elif time < 1000:
-        hours = time[:1]
-        minutes = time[1:]
+        minutes = "0" + str(timee)
+    elif timee < 100:
+        hours = "00"
+        minutes = timee
+    elif timee < 1000:
+        hours = timee[:1]
+        minutes = timee[1:]
     else:
-        hours = time[:2]
-        minutes = time[2:]
-        
-if currentTime < start:
-    print("School hasn't started yet!")
+        hours = timee[:2]
+        minutes = timee[2:]
 
-elif currentTime < p1:
-    time = p1 - currentTime
+def exist():
+    global timee
+    global hours
+    global minutes
+    global currentTime
+    global start
+    global p1
+    global p2
+    global lunch
+    global p3
+    global p4
 
-    setTime()
-    doThing()
+    currentTime = int(datetime.now().strftime("%H%M"))
 
-    print("There is %s:%s left in period 1!" % (hours,minutes))
+    if currentTime < start:
+        print("School hasn't started yet!")
 
-elif currentTime < p2:
-    time = p2 - currentTime
+    elif currentTime < p1:
+        timee = p1 - currentTime
 
-    setTime()
-    doThing()
+        setTime()
+        doThing()
 
-    print("There is %s:%s left in period 2!" % (hours,minutes))
+        print("There is %s:%s left in period 1!" %(hours,   minutes))
 
-elif currentTime < lunch:
-    time = lunch - currentTime
+    elif currentTime < p2:
+        timee = p2 - currentTime
 
-    setTime()
-    doThing()
+        setTime()
+        doThing()
 
-    print("There is %s:%s left in lunch!" % (hours,minutes))
+        print("There is %s:%s left in period 2!" %(hours,   minutes))
 
-elif currentTime < p3:
-    time = p3 - currentTime
+    elif currentTime < lunch:
+        timee = lunch - currentTime
 
-    setTime()
-    doThing()
+        setTime()
+        doThing()
 
-    print("There is %s:%s left in period 3!" % (hours,minutes))
+        print("There is %s:%s left in lunch!" % (hours, minutes))
 
-elif currentTime < p4:
-    time = p4 - currentTime
+    elif currentTime < p3:
+        timee = p3 - currentTime
 
-    setTime()
-    doThing()
+        setTime()
+        doThing()
 
-    print("There is %s:%s left in period 4!" % (hours,minutes))
+        print("There is %s:%s left in period 3!" %(hours,   minutes))
 
-else:
-    print("School is over!")
+    elif currentTime < p4:
+        timee = p4 - currentTime
 
-    
+        setTime()
+        doThing()
+
+        print("There is %s:%s left in period 4!" %(hours,   minutes))
+
+    else:
+        print("School is over!")
+
+while 1:
+    exist()
+    time.sleep(0.5)
