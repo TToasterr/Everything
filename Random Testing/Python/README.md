@@ -30,5 +30,8 @@ Just me messing around with opening tabs with python scripts. Opens reddit.
 ### classTime.py
 Just tells you what the time until my next class is.
 
+### classTimeBetter.py
+A better version of classTime.py (Automatically finds the time, (which may not work everywhere, I had some issues with it) and displays the time with a colon)
+
 ### rockPaperScissors.py
 An inneficient rock paper scissors. Pretty much the first code I ever made in Python.
