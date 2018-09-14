@@ -1,0 +1,2 @@
+py game.py
+pause
