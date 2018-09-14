@@ -40,6 +40,79 @@ async def on_message(message):
         await client.send_message(message.channel, content = "Invite me with this link! \nhttps://discordapp.com/oauth2/authorize?client_id=488570938581975041&scope=bot")
         print("%s is possibly inviting the bot to a new server!" % message.author)
 
+    if message.content.startswith("-timeLeft"):
+        import time
+        from datetime import datetime
+
+        currentTime = int(datetime.now().strftime("%H%M"))
+        time = 0
+
+        start = 1350
+        p1 = 1525
+        p2 = 1715
+        lunch = 1800
+        p3 = 1935
+        p4 = 2035
+
+        def setTime():
+            global time
+            if time > 59 and time < 100:
+                time -= 100
+                time += 60
+            elif time > 159 and time < 200:
+                time -= 100
+                time += 60
+
+        if currentTime < start:
+            await client.send_message(message.channel, content="%s got the time left in this period, but school hasn't started yet!" % message.author)
+            print("%s got the time left." % message.author)
+
+        elif currentTime < p1:
+            time = p1 - currentTime
+
+            setTime()
+
+            await client.send_message(message.channel, content="%s got the time left in this period, and there was %s left in period 1!" % (message.author, time))
+            print("%s got the time left." % message.author)
+
+        elif currentTime < p2:
+            time = p2 - currentTime
+
+            setTime()
+
+            await client.send_message(message.channel, content="%s got the time left in this period, and there was %s left in period 2!" % (message.author, time))
+            print("%s got the time left." % message.author)
+
+        elif currentTime < lunch:
+            time = lunch - currentTime
+
+            setTime()
+
+            await client.send_message(message.channel, content="%s got the time left in this period, and there was %s left in lunch!" % (message.author, time))
+            print("%s got the time left." % message.author)
+
+        elif currentTime < p3:
+            time = p3 - currentTime
+
+            setTime()
+
+            await client.send_message(message.channel, content="There are %s left in period 3!" % time)
+            print("%s got the time left." % message.author)
+
+        elif currentTime < p4:
+            time = p4 - currentTime
+
+            setTime()
+
+            await client.send_message(message.channel, content="There are %s left in period 4!" % time)
+            print("%s got the time left." % message.author)
+
+        else:
+            await client.send_message(message.channel, content="School is over!")
+            print("%s got the time left." % message.author)
+
+
+
     if message.content.startswith("-jonathan"):
         args = message.content.split(", ")
         jonathan = "<@136664437431074816>"
