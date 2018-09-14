@@ -8,7 +8,13 @@ sys.path.append("C:/Users/matth/Desktop/Everything")
 import redditStuff as rs
 
 client = discord.Client()
-help = "**-help** - shows this \n**-ping** - pings the bot \n**-invite** - gives an invite link so you can add the bot to more servers. \n**-jonathan, [time interval], [amount of times], [message]** - pings jonathan the amount of times specified. Because of Discord spam limits, sends messages in bursts of 5. \n**-poll [message]** - creates a poll. \n**-meme** - pulls a random image from r/dankMemes or r/memes. There is some delay. \n**-susquote** - pulls a random image from r/suspiciousquotes. There is some delay."
+help = """**-help** - shows this \n**-ping** - pings the bot
+**-invite** - gives an invite link so you can add the bot to more servers.
+**-jonathan, [time interval], [amount of times], [message]** - pings jonathan the amount of times specified. Because of Discord spam limits, sends messages in bursts of 5. 
+**-poll [message]** - creates a poll.
+**-timeLeft** - gives you the time left until the school period ends.
+**-meme** - pulls a random image from r/dankMemes or r/memes. There is some delay.
+**-susquote** - pulls a random image from r/suspiciousquotes. There is some delay."""
 
 
 
