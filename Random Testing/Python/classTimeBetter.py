@@ -3,12 +3,12 @@ from datetime import datetime
 
 timee = 0
 
-start = 1350
-p1 = 1525
-p2 = 1715
-lunch = 1800
-p3 = 1935
-p4 = 2035
+start = 750
+p1 = 925
+p2 = 1115
+lunch = 1200
+p3 = 1335
+p4 = 1435
 
 def setTime():
     global timee
@@ -31,11 +31,11 @@ def doThing():
         hours = "00"
         minutes = timee
     elif timee < 1000:
-        hours = timee[:1]
-        minutes = timee[1:]
+        hours = str(timee)[:1]
+        minutes = str(timee)[1:]
     else:
-        hours = timee[:2]
-        minutes = timee[2:]
+        hours = str(timee)[:2]
+        minutes = str(timee)[2:]
 
 def exist():
     global timee
@@ -52,7 +52,12 @@ def exist():
     currentTime = int(datetime.now().strftime("%H%M"))
 
     if currentTime < start:
-        print("School hasn't started yet!")
+        timee = start - currentTime
+
+        setTime()
+        doThing()
+
+        print("School hasn't started yet! It starts in %s:%s" % (hours, minutes))
 
     elif currentTime < p1:
         timee = p1 - currentTime
