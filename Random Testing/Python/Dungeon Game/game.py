@@ -38,9 +38,35 @@ boards = [
         ["█","█","█","░","░","░","█","█","█","█"],
         ["█","□","░","░","░","█","█","█","█","█"],
         ["█","█","█","█","█","█","█","█","█","█"]
+    ],
+    [
+        ["█","█","█","█","█","█","█","█","█","█"],
+        ["█","█","█","█","░","░","□","█","█","█"],
+        ["█","□","█","░","░","█","░","░","░","█"],
+        ["█","░","█","░","░","█","░","░","░","█"],
+        ["█","░","░","░","█","█","░","░","░","█"],
+        ["█","█","░","░","░","░","░","░","█","█"],
+        ["█","░","░","░","░","░","█","░","█","█"],
+        ["█","░","░","░","█","█","█","□","█","█"],
+        ["█","□","░","█","█","█","█","█","█","█"],
+        ["█","█","█","█","█","█","█","█","█","█"]
+    ],
+    [
+        ["█","█","█","█","█","█","█","█","█","█"],
+        ["█","█","█","█","█","█","░","░","□","█"],
+        ["█","█","□","█","░","░","░","░","█","█"],
+        ["█","█","░","░","░","░","░","█","█","█"],
+        ["█","░","░","░","░","░","█","█","█","█"],
+        ["█","░","░","█","░","░","░","█","█","█"],
+        ["█","░","░","█","█","░","░","█","█","█"],
+        ["█","█","░","░","█","░","░","█","█","█"],
+        ["█","█","█","░","□","░","█","█","█","█"],
+        ["█","█","█","█","█","█","█","█","█","█"]
     ]
+
+
 ]
-monsterCount = [4,4,3]
+monsterCount = [4,4,3,4,3]
 tile = 0
 playerPos = [2,4]
 boards[tile][playerPos[0]][playerPos[1]] = "■"
@@ -51,13 +77,14 @@ monster = "□"
 hpUpItem = "▲"
 attUpItem = "●"
 key = "%s: wall \n%s: floor \n%s: player \n%s: monster \n%s: health up \n%s: attack up \n" % (wall,floor,player,monster,hpUpItem,attUpItem)
+keyOn = True
 types = ["Gremlin","Orc","Skeleton","Toaster","Zombie","Crazed Miner"]
 healthMax = [200, 250, 300, 350, 400, 450]
-attMax = [200, 250, 300, 400, 600, 900]
+attMax = [100, 150, 200, 300, 500, 700]
 attUp = 0
 hpUpp = 0
-enHpMax = [500, 600, 750]
-enAttMax = [75, 100, 150]
+enHpMax = [500, 600, 750, 900, 1250]
+enAttMax = [75, 100, 200, 350, 500]
 health = healthMax[hpUpp]
 
 
@@ -70,7 +97,10 @@ def printBoard():
     global boards
     global key
     global stats
-    print(key)
+    global keyOn
+
+    if keyOn:
+        print(key)
     print(stats)
     for i in boards[tile]:
         print(*i, sep="  ")
@@ -95,6 +125,10 @@ def checkMCount():
             playerPos = [7,5]
         if tile == 2:
             playerPos = [2,4]
+        if tile == 3:
+            playerPos = [5,3]
+        if tile == 4:
+            playerPos = [3,4]
 
 
 
@@ -106,19 +140,23 @@ def powerUpf():
     global coordsY
     global powerUp
     global powerUpType
+    global powerUpCount
 
-    powerUp = random.randint(0,1)
-    if powerUp == 0:
+    powerUpCount = random.randint(0,3)
+
+    if powerUpCount == 0:
         powerUp = False
-        print("You don't get a power up! \n")
+        print("You didn't get a power up. \n")
     else:
-        print("You got a power up! \n")
-        powerUpType = random.randint(0,1)
-        if powerUpType == 0:
-            powerUpType = hpUpItem
-        else:
-            powerUpType = attUpItem
-        powerUpPlace()
+        print("You got a power up. \n")
+        powerUp = True
+        for i in range(powerUpCount):
+            powerUpType = random.randint(0,1)
+            if powerUpType == 0:
+                powerUpType = hpUpItem
+            else:
+                powerUpType = attUpItem
+            powerUpPlace()
 
 def powerUpPlace():
     global powerUp
@@ -279,6 +317,7 @@ def yoinks():
     global hpUpItem
     global attUpItem
     global stats
+    global keyOn
 
     stats = "HEALTH MAX: %s \nATTACK MAX: %s" % (healthMax[hpUpp],attMax[attUp])
     checkMCount()
@@ -288,13 +327,22 @@ def yoinks():
 
     if inp == "help":
         print(a)
-        print("Input 'w', 'a', 's', and 'd' and press enter to move.")
+        print("Input 'w', 'a', 's', and 'd' and press enter to move. \n")
+        yoinks()
+
+    if inp == "toggleKey" or inp == "tk":
+        if keyOn:
+            keyOn = False
+        else:
+            keyOn = True
+        print(a)
+        print("Key toggled! \n")
         yoinks()
 
     if inp == "w":
         if boards[tile][playerPos[0]-1][playerPos[1]] == wall:
             print(a)
-            print("You can't walk into a wall.")
+            print("You can't walk into a wall. \n")
             yoinks()
             return
 
