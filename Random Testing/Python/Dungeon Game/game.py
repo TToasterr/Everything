@@ -158,6 +158,8 @@ def powerUpf():
                 powerUpType = attUpItem
             powerUpPlace()
 
+
+
 def powerUpPlace():
     global powerUp
     global coordsX
