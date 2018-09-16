@@ -84,7 +84,7 @@ attMax = [100, 150, 200, 300, 500, 700]
 attUp = 0
 hpUpp = 0
 enHpMax = [500, 600, 750, 900, 1250]
-enAttMax = [75, 100, 200, 350, 500]
+enAttMax = [75, 100, 200, 300, 400, 450]
 health = healthMax[hpUpp]
 
 
