@@ -79,7 +79,7 @@ boards = [
 
 
 ]
-monsterCount = [4,4,3,4,3]
+monsterCount = [4,4,3,4,3,4]
 tile = 0
 playerPos = [2,4]
 boards[tile][playerPos[0]][playerPos[1]] = "■"
@@ -92,13 +92,15 @@ attUpItem = "●"
 key = "%s: wall \n%s: floor \n%s: player \n%s: monster \n%s: health up \n%s: attack up \n" % (wall,floor,player,monster,hpUpItem,attUpItem)
 keyOn = True
 types = ["Gremlin","Orc","Skeleton","Toaster","Zombie","Crazed Miner"]
-healthMax = [200, 250, 300, 350, 400, 450]
-attMax = [100, 150, 200, 300, 500, 700]
+healthMax = [200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000]
+attMax = [150, 200, 300, 500, 700, 1000, 1400, 1800, 2000, 2500]
 attUp = 0
 hpUpp = 0
 enHpMax = [500, 600, 750, 900, 1250, 1500]
-enAttMax = [75, 100, 200, 300, 400, 450]
+enAttMax = [75, 100, 150, 200, 250, 350]
 health = healthMax[hpUpp]
+healMax = [150, 200, 250, 300, 400, 500]
+mHealMax = [100,150,200,250,300,400]
 
 
 
@@ -229,10 +231,12 @@ def getStats():
     global enHealth
     global enHpMax
     global tile
+    global localHpMax
 
     enType = random.randint(0,len(types)-1)
     enType = types[enType]
     enHealth = random.randint(50,enHpMax[tile])
+    localHpMax = enHealth
 
 
 
@@ -277,6 +281,8 @@ def fight():
     global tile
     global attUp
     global hpUpp
+    global healMax
+    global mHealMax
 
     printFight()
     checkHealths()
@@ -284,31 +290,64 @@ def fight():
 
     if finp == "help":
         print(a)
-        print("Input 'attack' or 'heal' to attack or heal. \n")
+        print("Input 'attack' or 'heal' to attack or heal. \n\n")
+        fight()
+
+    if finp == "fullHeal" or finp == "fh":
+        health = healthMax[hpUpp]
+        print(a)
+        print("You fully healed. \n\n")
         fight()
 
     if finp == "attack" or finp == "a":
-        dmgd = random.randint(1,attMax[attUp])
+        dmgd = random.randint(0,attMax[attUp])
         enHealth -= dmgd
-        dmgt = random.randint(1,enAttMax[attUp])
-        health -= dmgt
-        print(a)
-        print("You dealt %s damage. \n\nThe monster hit back, and dealt %s damage. \n" % (dmgd, dmgt))
+        enMove = random.randint(0,1)
+        if enMove == 0:
+            mHealAmm = random.randint(0,mHealMax[tile])
+            enHealth += mHealAmm
+            if enHealth >= localHpMax:
+                enHealth = localHpMax
+                print(a)
+                print("The enemy healed to full health! \n")
+            else:
+                print(a)
+                print("The enemy healed for %s \n" % mHealAmm)
+        else:
+            dmgt = random.randint(0,enAttMax[tile])
+            health -= dmgt
+            print(a)
+            print("The enemy hit you for %s \n" % dmgt)
+
+        print("You dealt %s damage. \n\n" % (dmgd))
         fight()
 
     if finp == "heal" or finp == "h":
-        dmgt = random.randint(1,enAttMax[attUp])
-        health -= dmgt
-        healAmm = random.randint(0,100)
+        enMove = random.randint(0,1)
+        if enMove == 0:
+            mHealAmm = random.randint(0,mHealMax[tile])
+            enHealth += mHealAmm
+            if enHealth >= localHpMax:
+                enHealth = localHpMax
+                print(a)
+                print("The enemy healed to full health! \n")
+            else:
+                print(a)
+                print("The enemy healed for %s \n" % mHealAmm)
+        else:
+            dmgt = random.randint(0,enAttMax[tile])
+            health -= dmgt
+            print(a)
+            print("The enemy hit you for %s \n" % dmgt)
+
+        healAmm = random.randint(0,healMax[tile])
         health += healAmm
 
         if health >= healthMax[hpUpp]:
             health = healthMax[hpUpp]
-            print(a)
-            print("You were already at, or healed to, full health! \n\nThe monster hit you while you were healing, and dealt %s damage. \n" % dmgt)
+            print("You were already at, or healed to, full health! \n\n")
         else:
-            print(a)
-            print("You healed for %s health. \n\nThe monster hit you while you were healing, and dealt %s damage. \n" % (healAmm, dmgt))
+            print("You healed for %s health. \n\n" % (healAmm))
         fight()
 
     else:
@@ -405,7 +444,7 @@ def yoinks():
     if inp == "s":
         if boards[tile][playerPos[0]+1][playerPos[1]] == wall:
             print(a)
-            print("You can't walk into a wall.")
+            print("You can't walk into a wall. \n")
             yoinks()
             return
 
@@ -450,7 +489,7 @@ def yoinks():
     if inp == "a":
         if boards[tile][playerPos[0]][playerPos[1]-1] == wall:
             print(a)
-            print("You can't walk into a wall.")
+            print("You can't walk into a wall. \n")
             yoinks()
             return
 
@@ -495,7 +534,7 @@ def yoinks():
     if inp == "d":
         if boards[tile][playerPos[0]][playerPos[1]+1] == wall:
             print(a)
-            print("You can't walk into a wall.")
+            print("You can't walk into a wall. \n")
             yoinks()
             return
 
