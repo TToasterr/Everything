@@ -10,11 +10,10 @@ import redditStuff as rs
 client = discord.Client()
 help = """**-help** - shows this \n**-ping** - pings the bot
 **-invite** - gives an invite link so you can add the bot to more servers.
-**-jonathan, [time interval], [amount of times], [message]** - pings jonathan the amount of times specified. Because of Discord spam limits, sends messages in bursts of 5. 
 **-poll [message]** - creates a poll.
-**-timeLeft** - gives you the time left until the school period ends.
 **-meme** - pulls a random image from r/dankMemes or r/memes. There is some delay.
-**-susquote** - pulls a random image from r/suspiciousquotes. There is some delay."""
+**-susquote** - pulls a random image from r/suspiciousquotes. There is some delay.
+**-vw [message]** - vaporwave-ifies your message."""
 
 
 
@@ -46,108 +45,19 @@ async def on_message(message):
         await client.send_message(message.channel, content = "Invite me with this link! \nhttps://discordapp.com/oauth2/authorize?client_id=488570938581975041&scope=bot")
         print("%s is possibly inviting the bot to a new server!" % message.author)
 
-    if message.content.startswith("-timeLeft"):
-        import time
-        from datetime import datetime
+    if message.content.startswith("-vw") or message.content.startswith("-vw"):
+        if not message.channel.is_private:
+            await client.delete_message(message)
+        msg = [message.content[4:]]
+        vMessage = message.content[4:]
+        vMessage = vMessage.replace(" ", "")
+        a = []
+        sepe = "  "
+        for i in vMessage:
+            a.append(i)
 
-        start = 750
-        p1 = 925
-        p2 = 1115
-        lunch = 1200
-        p3 = 1335
-        p4 = 1435
-
-        timee = 100
-
-        def setTime(timee):
-            if timee > 59 and timee < 100:
-                timee -= 100
-                timee += 60
-            elif timee > 159 and timee < 200:
-                timee -= 100
-                timee += 60
-            elif timee > 259 and timee < 300:
-                timee -= 100
-                timee += 60
-
-        def doThing(timee):
-            global hours
-            global minutes
-
-            if timee < 10:
-                hours = "00"
-                minutes = "0" + str(timee)
-            elif timee < 100:
-                hours = "00"
-                minutes = timee
-            elif timee < 1000:
-                hours = str(timee)[:1]
-                minutes = str(timee)[1:]
-            else:
-                hours = str(timee)[:2]
-                minutes = str(timee)[2:]
-
-        currentTime = int(datetime.now().strftime("%H%M"))
-
-        if currentTime < start:
-            timee = start - currentTime
-
-            setTime(timee)
-            doThing(timee)
-
-            await client.send_message(message.channel, content = "School hasn't started yet! It starts in %s:%s" % (hours, minutes))
-            print("%s got the time left." % message.author)
-
-        elif currentTime < p1:
-            timee = p1 - currentTime
-
-            setTime(timee)
-            doThing(timee)
-
-            await client.send_message(message.channel, content = "There is %s:%s left in period 1!" %(hours,   minutes))
-            print("%s got the time left." % message.author)
-
-        elif currentTime < p2:
-            timee = p2 - currentTime
-
-            setTime(timee)
-            doThing(timee)
-
-            await client.send_message(message.channel, content = "There is %s:%s left in period 2!" %(hours,   minutes))
-            print("%s got the time left." % message.author)
-
-        elif currentTime < lunch:
-            timee = lunch - currentTime
-
-            setTime(timee)
-            doThing(timee)
-
-            await client.send_message(message.channel, content = "There is %s:%s left in lunch!" % (hours, minutes))
-            print("%s got the time left." % message.author)
-
-        elif currentTime < p3:
-            timee = p3 - currentTime
-
-            setTime(timee)
-            doThing(timee)
-
-            await client.send_message(message.channel, content = "There is %s:%s left in period 3!" %(hours,   minutes))
-            print("%s got the time left." % message.author)
-
-        elif currentTime < p4:
-            timee = p4 - currentTime
-
-            setTime(timee)
-            doThing(timee)
-
-            await client.send_message(message.channel, content = "There is %s:%s left in period 4!" %(hours,   minutes))
-            print("%s got the time left." % message.author)
-
-        else:
-            await client.send_message(message.channel, content = "School is over!")
-            print("%s got the time left." % message.author)
-
-
+        await client.send_message(message.channel, sepe.join(a))
+        print("%s just vaporwaved \"%s\"" % (message.author, *msg))
 
     if message.content.startswith("-jonathan"):
         args = message.content.split(", ")
