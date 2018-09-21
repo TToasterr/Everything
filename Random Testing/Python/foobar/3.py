@@ -73,7 +73,7 @@ def answer(xs):
 
     output2 = 1
     for i in nums:
-        output2 *= i
+        output2 *= nums
 
     print output2
 
