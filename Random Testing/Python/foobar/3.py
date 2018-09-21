@@ -1,4 +1,5 @@
-xs = [2,-3,1,0,-5]
+# xs = [2,-3,1,0,-5]
+xs = [-2, -3, 4, -5]
 
 def answer(xs):
     output = 1
@@ -69,6 +70,13 @@ def answer(xs):
 
     print ""
     print output
+
+    output2 = 1
+    for i in nums:
+        output2 *= i
+
+    print output2
+
     return output
 
 answer(xs)
