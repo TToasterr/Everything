@@ -13,7 +13,9 @@ help = """**-help** - shows this \n**-ping** - pings the bot
 **-poll [message]** - creates a poll.
 **-meme** - pulls a random image from r/dankMemes or r/memes. There is some delay.
 **-susquote** - pulls a random image from r/suspiciousquotes. There is some delay.
-**-vw [message]** - vaporwave-ifies your message."""
+**-vw [message]** - vaporwave-ifies your message.
+**-encode [message]** - encodes the message and DMs you the message and decode key.
+**-decode, [message], [decode key]** - decodes the message and DMs you the decoded message."""
 
 
 
@@ -37,13 +39,101 @@ async def on_message(message):
         await client.send_message(message.channel, content = help)
         print("%s asked for help." % message.author)
 
+
+
     if message.content.startswith("-ping"):
         await client.send_message(message.channel, content = "Pong!")
         print("%s pinged the bot." % message.author)
 
+
+
     if message.content.startswith("-invite"):
         await client.send_message(message.channel, content = "Invite me with this link! \nhttps://discordapp.com/oauth2/authorize?client_id=488570938581975041&scope=bot")
         print("%s is possibly inviting the bot to a new server!" % message.author)
+
+
+
+    if message.content.startswith("-decode"):
+        args = message.content.split(", ")
+        args.pop(0)
+        startingMsg = args[0]
+        verystartmsg = startingMsg
+        decodeKey = args[1].split("|")
+        output = startingMsg
+        alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+        if not message.channel.is_private:
+            await client.delete_message(message)
+
+        for a in decodeKey:
+            startingMsg = output
+            output = []
+
+            for pos in range(len(startingMsg)):
+                if startingMsg[pos] == " ":
+                    output.append(" ")
+
+                for letter in range(len(alphabet) - 26):
+                    if startingMsg[pos] == alphabet[letter]:
+                        output.append(alphabet[int(letter) - int(a)])
+
+        sepe = ""
+        a = []
+        for i in output:
+            a.append(i)
+
+        await client.send_message(message.author, sepe.join(a))
+        print("%s just encoded '%s' to get '%s'!" % (message.author, verystartmsg, sepe.join(a)))
+
+
+
+    if message.content.startswith("-encode"):
+        alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+        startingMsg = message.content
+        startingMsg = startingMsg[8:]
+        verystartmsg = startingMsg
+        print(startingMsg)
+        timesToReencode = random.randint(3,10)
+        doneOnce = False
+        decodeKey = []
+        if not message.channel.is_private:
+            await client.delete_message(message)
+
+        for a in range(timesToReencode):
+            if doneOnce:
+                startingMsg = output
+            output = []
+
+            numForward = random.randint(1,25)
+
+            decodeKey.append(numForward)
+
+            for pos in range(len(startingMsg)):
+                if startingMsg[pos] == " ":
+                    output.append(" ")
+
+                for letter in range(len(alphabet) - 26):
+                    if startingMsg[pos] == alphabet[letter]:
+                        output.append(alphabet[letter + numForward])
+
+            doneOnce = True
+
+        a = []
+        sepe = ""
+        for i in output:
+            a.append(i)
+        a2 = []
+        sepe2 = "|"
+        for i in decodeKey:
+            a2.append(str(i))
+
+        await client.send_message(message.author, sepe.join(a))
+        await client.send_message(message.author, sepe2.join(a2))
+
+        print("%s just encoded '%s' to get '%s'!" % (message.author, verystartmsg, sepe.join(a)))
+        print("The decode key is:")
+        print(*decodeKey, sep="|")
+
+
 
     if message.content.startswith("-vw") or message.content.startswith("-vw"):
         if not message.channel.is_private:
@@ -58,6 +148,8 @@ async def on_message(message):
 
         await client.send_message(message.channel, sepe.join(a))
         print("%s just vaporwaved \"%s\"" % (message.author, *msg))
+
+
 
     if message.content.startswith("-jonathan"):
         args = message.content.split(", ")
@@ -107,11 +199,15 @@ async def on_message(message):
             await client.send_message(message.channel, content = "%s: %s %s" % (i+1, jonathan, msg))
             time.sleep(interval)
 
+
+
     if message.content.startswith("-poll"):
         await client.add_reaction(message, "👍")
         await client.add_reaction(message, "👎")
 
         print("%s called a poll." % message.author)
+
+
 
     if message.content.startswith("-streaming"):
 
@@ -138,6 +234,8 @@ async def on_message(message):
             print("%s tried to start a stream without the 'Toaster' role." % message.author)
             await client.send_message(message.channel, content = "You don't have the correct role to do this!")
 
+
+
     if message.content.startswith("-meme"):
         rand1 = random.randint(0,1)
         if rand1 == 0:
@@ -156,6 +254,8 @@ async def on_message(message):
 
         await client.send_message(message.channel, content = randpost)
         print("%s called a meme." % message.author)
+
+
 
     if message.content.startswith("-susquote"):
         subreddit = rs.reddit.subreddit('suspiciousquotes')
