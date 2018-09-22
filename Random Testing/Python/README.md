@@ -38,3 +38,6 @@ A better version of classTime.py (Automatically finds the time, (which may not w
 
 ### rockPaperScissors.py
 An inneficient rock paper scissors. Pretty much the first code I ever made in Python.
+
+### encoder.py
+A simplified version of the WW2 enigma machine.
