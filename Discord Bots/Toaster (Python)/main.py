@@ -82,7 +82,7 @@ async def on_message(message):
             a.append(i)
 
         await client.send_message(message.author, sepe.join(a))
-        print("%s just encoded '%s' to get '%s'!" % (message.author, verystartmsg, sepe.join(a)))
+        print("%s just decoded '%s' to get '%s'!" % (message.author, verystartmsg, sepe.join(a)))
 
 
 
@@ -91,7 +91,6 @@ async def on_message(message):
         startingMsg = message.content
         startingMsg = startingMsg[8:]
         verystartmsg = startingMsg
-        print(startingMsg)
         timesToReencode = random.randint(3,10)
         doneOnce = False
         decodeKey = []
