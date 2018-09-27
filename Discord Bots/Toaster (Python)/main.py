@@ -4,7 +4,7 @@ import pandas as pd
 import random
 import time
 import sys
-sys.path.append("C:/Users/matth/Desktop/Everything/Misc")
+sys.path.append("H:/Misc")
 import redditStuff as rs
 
 client = discord.Client()
@@ -33,6 +33,13 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+
+    if message.channel.id == "494640468152549376":
+        await client.add_reaction(message, "👍")
+        await client.add_reaction(message, "👎")
+        await client.add_reaction(message, "🤷")
+
+
 
     if message.content.startswith("-help"):
         await client.send_message(message.channel, content = help)
@@ -298,6 +305,6 @@ async def on_message(message):
 
 
 
-with open('C:/Users/matth/Desktop/Everything/token.txt', 'r') as myfile:
+with open('H:/Misc/token.txt', 'r') as myfile:
     token = myfile.read()
 client.run(token)
