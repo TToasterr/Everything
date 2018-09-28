@@ -60,3 +60,23 @@
 	background-color: #edd;
 	font-size: 75px;
 }
+
+/* ----------------------------------- */
+
+.monday {
+	border: 3px solid #666;
+	background-color: rgba(115, 255, 115, 0.600);
+	color: black;
+	width: var(--width);
+	height: var(--height);
+	font-family: monospace;
+	font-size: var(--size);
+	transition: 0.5s;
+	float: left;
+}
+
+.monday:hover {
+	border: 7px solid #666;
+	background-color: #edd;
+	font-size: 75px;
+}
