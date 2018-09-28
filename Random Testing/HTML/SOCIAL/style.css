@@ -1,5 +1,5 @@
 :root {
-	--width: 50%;
+	--width: 33.333%;
 	--height: 150px;
 	--size: 50px;
 }
@@ -65,7 +65,7 @@
 
 .monday {
 	border: 3px solid #666;
-	background-color: rgba(115, 255, 115, 0.600);
+	background-color: rgb(115, 255, 115);
 	color: black;
 	width: var(--width);
 	height: var(--height);
@@ -77,6 +77,6 @@
 
 .monday:hover {
 	border: 7px solid #666;
-	background-color: #edd;
+	background-color: #ddd;
 	font-size: 75px;
 }
