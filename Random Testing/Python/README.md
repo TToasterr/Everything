@@ -23,6 +23,9 @@ A bot that takes all the text in general.txt and tries to replicate it.
 ### Dunegon Game
 A small dungeon-like game I made that I might keep expanding.
 
+### Puzzle Game
+A puzzle game that I may or may not even complete.
+
 ---
 
 ## Files
