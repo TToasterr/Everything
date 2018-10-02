@@ -1,9 +1,7 @@
 from time import sleep as slp
 import discord
-import praw
-import pandas as pd
 import sys
-sys.path.append("H:/Misc")
+# sys.path.append("H:/Misc")
 
 
 
@@ -52,9 +50,9 @@ async def on_message(message):
     elif message.content.startswith('//listideas'):
         msg = []
 
-        with open('ideas.txt', 'r') as ideas:
+        with open('ideas.txt', 'r+') as ideas:
 
-            with open('votes.txt', 'r') as votes:
+            with open('votes.txt', 'r+') as votes:
 
                 ideas = ideas.read().split('---')
                 votes = votes.read().split('---')
@@ -85,19 +83,19 @@ async def on_message(message):
 
 
     elif message.content.startswith('//vote'):
-        message = message.content.split(' ')
-        message.pop(0)
+        msg = message.content.split(' ')
+        msg.pop(0)
         try:
-            ideanumber = message[0]
-            votenumber = message[1]
-            vote = messate[2]
+            ideanumber = msg[0]
+            votenumber = msg[1]
+            vote = msg[2]
         except:
             await client.send_message(message.channel, content = 'You didnt use enough arguments!')
             return
 
-        if not ("489996858865745932" in [y.id for y in message.author.roles]):
-            await client.send_message(message.channel, content = 'You dont have the correct permission to vote!')
-            return
+        # if not ("489996858865745932" in [y.id for y in message.author.roles]):
+        #     await client.send_message(message.channel, content = 'You dont have the correct permission to vote!')
+        #     return
 
         if not (vote == 'yes' or vote == 'no' or vote == 'maybe'):
             await client.send_message(message.channel, content = 'You didnt use a correct voting type! Make sure to do "yes", "no", or "maybe".')
@@ -110,11 +108,13 @@ async def on_message(message):
         elif vote == 'no':
             vote = 0
 
-        with open('votes.txt', 'r') as votess:
+        with open('votes.txt', 'r+') as votess:
             votes = votess.read().split('---')
-            votes[ideanumber][votenumber] = vote
+            a = list(votes[int(ideanumber)])
+            a[int(votenumber)] = vote
+            votes[int(ideanumber)] = a
             with open('tempvotes.txt', 'w+') as tempvotes:
-                tempvotes.write(votes)
+                tempvotes.write(str(votes))
                 
         with open('votes.txt', 'w') as votess:
             with open('tempvotes.txt', 'r') as tempvotes:
@@ -125,6 +125,6 @@ async def on_message(message):
 
 
 
-with open('H:/Misc/token2.txt', 'r') as myfile:
-    token = myfile.read()
-client.run(token)
+# with open('H:/Misc/token2.txt', 'r') as myfile:
+    # token = myfile.read()
+client.run('NDk2NTI5NDU2MTc4MDAzOTg3.DpU8iw.nDF1AvaGHN9mATWUws8x5VTK-R8')
