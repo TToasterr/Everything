@@ -15,8 +15,7 @@ help = """**-help** - shows this \n**-ping** - pings the bot
 **-susquote** - pulls a random image from r/suspiciousquotes. There is some delay.
 **-vw [message]** - vaporwave-ifies your message.
 **-encode [message]** - encodes the message and DMs you the message and decode key.
-**-decode, [message], [decode key]** - decodes the message and DMs you the decoded message.
-**-addIdea [video type]\ [idea]** - adds an idea to the ideas list."""
+**-decode, [message], [decode key]** - decodes the message and DMs you the decoded message."""
 
 
 
@@ -211,23 +210,6 @@ async def on_message(message):
         await client.add_reaction(message, "👎")
 
         print("%s called a poll." % message.author)
-
-
-
-    if message.content.startswith("-addIdea"):
-        if "489996858865745932" in [y.id for y in message.author.roles]:
-            args = message.content[9:].split("\ ")
-
-            videoType = args[0]
-
-            idea = args[1]
-
-            messagee = "%s\n%s" % (videoType, idea)
-
-            await client.send_message(message.channel, content = "Your idea has been added!")
-            await client.send_message(discord.Object(id='494640468152549376'), content = messagee)
-            print("%s just had the idea '%s.'" % (message.author, idea))
-            print(message.channel)
 
 
 
