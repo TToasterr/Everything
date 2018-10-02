@@ -11,7 +11,7 @@ client = discord.Client()
 help = """**//help** - shows this.
 **//idea [idea]** - add an idea to the idea list.
 **//listideas** - lists all ideas, with numbers.
-**//vote [number] [yes/no/maybe]** - lets you vote on an idea."""
+**//vote [idea number] [vote number] [yes/no/maybe]** - lets you vote on an idea."""
 
 
 
@@ -87,8 +87,13 @@ async def on_message(message):
     elif message.content.startswith('//vote'):
         message = message.content.split(' ')
         message.pop(0)
-        number = message[0]
-        vote = message[1]
+        try:
+            ideanumber = message[0]
+            votenumber = message[1]
+            vote = messate[2]
+        except:
+            await client.send_message(message.channel, content = 'You didnt use enough arguments!')
+            return
 
         if not ("489996858865745932" in [y.id for y in message.author.roles]):
             await client.send_message(message.channel, content = 'You dont have the correct permission to vote!')
@@ -98,8 +103,16 @@ async def on_message(message):
             await client.send_message(message.channel, content = 'You didnt use a correct voting type! Make sure to do "yes", "no", or "maybe".')
             return
 
-        with open('ideas.txt', 'r') as ideas:
-            ideas = ideas.read().split('---')
+        if vote == 'yes':
+            vote = 2
+        elif vote == 'maybe':
+            vote = 1
+        elif vote == 'no':
+            vote = 0
+
+        with open('ideas.txt', 'r') as votess:
+            votes = votess.read().split('---')
+            votes[ideanumber][votenumber] = vote
 
 
 
