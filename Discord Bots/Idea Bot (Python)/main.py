@@ -91,6 +91,8 @@ async def on_message(message):
         vote = message[1]
 
         if not ("489996858865745932" in [y.id for y in message.author.roles]):
+            await client.send_message(message.channel, content = 'You dont have the correct permission to vote!')
+            return
 
         if not (vote == 'yes' or vote == 'no' or vote == 'maybe'):
             await client.send_message(message.channel, content = 'You didnt use a correct voting type! Make sure to do "yes", "no", or "maybe".')
