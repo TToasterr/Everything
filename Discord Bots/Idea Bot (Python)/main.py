@@ -110,9 +110,18 @@ async def on_message(message):
         elif vote == 'no':
             vote = 0
 
-        with open('ideas.txt', 'r') as votess:
+        with open('votes.txt', 'r') as votess:
             votes = votess.read().split('---')
             votes[ideanumber][votenumber] = vote
+            with open('tempvotes.txt', 'w+') as tempvotes:
+                tempvotes.write(votes)
+                
+        with open('votes.txt', 'w') as votess:
+            with open('tempvotes.txt', 'r') as tempvotes:
+                tempvotes = tempvotes.read()
+                votess.write(tempvotes)
+                
+        await client.send_message(message.channel, content = 'Your vote has been added.')
 
 
 
