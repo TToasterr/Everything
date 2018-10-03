@@ -20,7 +20,7 @@ async def on_ready():
     for s in activeServers:
         sum += len(s.members)
     print("Bot started in %s server(s), with %s users." % (len(client.servers), sum))
-    await client.change_presence(game=discord.Game(name="Idea Bot | //help"))
+    await client.change_presence(game=discord.Game(name="Idea Bot ||  //help"))
 
 
 
@@ -37,11 +37,9 @@ async def on_message(message):
         idea = message.content[7:]
         with open('ideas.txt', 'a+') as ideas:
             ideas.write(idea)
-            ideas.write('\n---\n')
-
-        with open('votes.txt', 'a+') as votes:
-            votes.write('4444')
-            votes.write('\n---\n')
+            ideas.write('\n--\n')
+            ideas.write('4444')
+            ideas.write('\n-----\n')
 
         await client.send_message(message.channel, content = 'Your idea has been added!')
 
@@ -49,36 +47,36 @@ async def on_message(message):
 
     elif message.content.startswith('//listideas'):
         msg = []
+        final = []
 
         with open('ideas.txt', 'r+') as ideas:
 
-            with open('votes.txt', 'r+') as votes:
+            ideas = ideas.read().split('---')
+            votes = ''.join(ideas)
+            votes = votes.split('--')
+            del votes[::2]
 
-                ideas = ideas.read().split('---')
-                votes = votes.read().split('---')
+            for i in range(len(ideas) - 1):
+                final.append(str(i))
+                final.append('\n')
+                final.append(ideas[i])
 
-                for i in range(len(ideas) - 1):
-                    await client.send_message(message.channel, content = i)
+                for number in range(5):
+                    if votes[i][number] == '0':
+                        msg.append('👎')
+                    elif votes[i][number] == '1':
+                        msg.append('🤷')
+                    elif votes[i][number] == '2':
+                        msg.append('👍')
+                    elif votes[i][number] == '4':
+                        msg.append('no vote')
 
-                    await client.send_message(message.channel, content = ideas[i])
+                final.append(', '.join(msg))
+                msg = []
 
-                    for number in range(len(votes[i]) - 1):
-                        if votes[i][number] == '0':
-                            msg.append('👎')
-                        elif votes[i][number] == '1':
-                            msg.append('🤷')
-                        elif votes[i][number] == '2':
-                            msg.append('👍')
-                        elif votes[i][number] == '4':
-                            msg.append('no vote')
+                final.append('\n**--------------------------**\n')
 
-
-                    sepe = ', '
-                    await client.send_message(message.channel, content = sepe.join(msg))
-                    msg = []
-
-                    await client.send_message(message.channel, content = '--------------')
-                    slp(3)
+            await client.send_message(message.channel, content = ''.join(final))
 
 
 
@@ -86,8 +84,8 @@ async def on_message(message):
         msg = message.content.split(' ')
         msg.pop(0)
         try:
-            ideanumber = msg[0]
-            votenumber = msg[1]
+            ideanumber = int(msg[0])
+            votenumber = int(msg[1])
             vote = msg[2]
         except:
             await client.send_message(message.channel, content = 'You didnt use enough arguments!')
@@ -97,7 +95,7 @@ async def on_message(message):
         #     await client.send_message(message.channel, content = 'You dont have the correct permission to vote!')
         #     return
 
-        if not (vote == 'yes' or vote == 'no' or vote == 'maybe'):
+        if not (vote == 'yes' or vote == 'no' or vote == 'maybe' or vote == 'none'):
             await client.send_message(message.channel, content = 'You didnt use a correct voting type! Make sure to do "yes", "no", or "maybe".')
             return
 
@@ -107,20 +105,24 @@ async def on_message(message):
             vote = 1
         elif vote == 'no':
             vote = 0
+        elif vote == 'none':
+            vote = 4
 
-        with open('votes.txt', 'r+') as votess:
-            votes = votess.read().split('---')
-            a = list(votes[int(ideanumber)])
-            a[int(votenumber)] = vote
-            votes[int(ideanumber)] = a
-            with open('tempvotes.txt', 'w+') as tempvotes:
-                tempvotes.write(str(votes))
-                
-        with open('votes.txt', 'w') as votess:
-            with open('tempvotes.txt', 'r') as tempvotes:
-                tempvotes = tempvotes.read()
-                votess.write(tempvotes)
-                
+        with open('ideas.txt', 'r+') as ideas:
+
+            ideas = ideas.read().split('---')
+            votes = ''.join(ideas)
+            votes = votes.split('--')
+            del votes[::2]
+
+            for x in range(len(list(votes[ideanumber]))):
+                for i in list(votes[ideanumber]):
+                    if i == '\n':
+                        xd = 'xd'
+                    else:
+                        if i == votenumber:
+                            votes[ideanumber][x] = vote
+
         await client.send_message(message.channel, content = 'Your vote has been added.')
 
 

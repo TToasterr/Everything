@@ -40,6 +40,11 @@ async def on_message(message):
 
 
 
+    if message.channel.id == '496010149840814082':
+        await client.add_reaction(message, "🐵")
+
+
+
     if message.content.startswith("-help"):
         await client.send_message(message.channel, content = help)
         print("%s asked for help." % message.author)
@@ -141,7 +146,10 @@ async def on_message(message):
 
     if message.content.startswith("-vw") or message.content.startswith("-vw"):
         if not message.channel.is_private:
-            await client.delete_message(message)
+            try:
+                await client.delete_message(message)
+            except:
+                await client.send_message(message.channel, content = 'I dont have permission to delete messages here. You should give me them so I can make things look nice!')
         msg = [message.content[4:]]
         vMessage = message.content[4:]
         vMessage = vMessage.replace(" ", "")
