@@ -34,5 +34,5 @@ async def on_message(message):
 
 
 with open('H:/Misc/token3.txt', 'r') as myfile:
-    token = myfile.read()
+    token = myfile.read() #NDk5OTI4OTcxNzExMDg2NjAx.DqDaxg.jvEocVyz37io4QjCtufvxslpQWY
 client.run(token)
