@@ -1,0 +1,7 @@
+
+toaster -> cool
+---
+toaster -> neat
+---
+toaster -> wahoo
+---
