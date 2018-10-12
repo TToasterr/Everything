@@ -5,7 +5,8 @@ sys.path.append("H:/Misc")
 client = discord.Client()
 help = """**.help** - Shows this.
 **.invite** - Gives you an easy invite link for the bot.
-**.stalk** - Turns on stalking for this server.""" #The commands (what shows up when you do .help)
+**.stalk** - Turns on stalking for this server.
+**.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.""" #The commands (what shows up when you do .help)
 
 
 
@@ -69,6 +70,23 @@ async def on_message(message): #when a message is sent
                     content[1] = "1"
                     await client.send_message(message.channel, content = "Stalking turned on for **%s**." % message.server.name)
                 serverFile.write(", ".join(content))
+
+    #vaporwave command
+    if msg[:3] == ".vw":
+        if not message.channel.is_private:
+            await client.delete_message(message)
+        args = msg[4:].split(", ")
+        mesg = args[0]
+        spaceamount = args[1]
+        final = []
+        print("%s vaporwaved \"%s\" with %s space(s)." % (message.author, mesg, spaceamount))
+
+        for char in mesg:
+            final.append(char)
+
+        spaces = " " * int(spaceamount)
+        final = spaces.join(final)
+        await client.send_message(message.channel, content = final)
 
 
 
