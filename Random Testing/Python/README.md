@@ -51,5 +51,7 @@ An email autoresponder which isnt very efficient.
 ### autoemail2.py
 An email autoresponder which is slightly more efficient.
 
+### Quick side note: To use either of the autoemail files, when you run them, you have to do 'py autoemail2.py [email] [password]'
+
 ### datetimetest.py
 Just me messing with datetime modules.

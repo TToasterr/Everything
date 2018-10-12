@@ -18,7 +18,7 @@ print("logged in in %s seconds." % timel)
 
 time = datetime.now()
 imapper = easyimap.connect('imap.gmail.com', login, password)
-for mail_id in imapper.listids(limit=5):
+for mail_id in imapper.listids(limit=1):
     mail = imapper.mail(mail_id)
     emails.append(mail.message_id)
 
@@ -33,7 +33,7 @@ while 1:
 
     pmails = [""]
 
-    for mail_id in imapper.listids(limit=5):
+    for mail_id in imapper.listids(limit=1):
         mail = imapper.mail(mail_id)
         pmails.append(mail.message_id)
         # emails.append(mail)
@@ -42,9 +42,6 @@ while 1:
         # print(mail.title)
         # print(mail.body)
         # print(mail.attachments)
-
-    masd = pmails[0]
-    easd = emails[0]
 
     if not (pmails[1] == emails[1]):
         for mail_id in imapper.listids(limit=1):
