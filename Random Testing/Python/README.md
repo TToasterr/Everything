@@ -44,3 +44,9 @@ An inneficient rock paper scissors. Pretty much the first code I ever made in Py
 
 ### encoder.py
 A simplified version of the WW2 enigma machine.
+
+### autoemail.py
+An email autoresponder which isnt very efficient.
+
+### autoemail2.py
+An email autoresponder which is slightly more efficient.
