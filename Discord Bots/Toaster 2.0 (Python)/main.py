@@ -140,6 +140,15 @@ async def on_message(message): #when a message is sent
         trigger = msg[0]
         response = msg[1]
 
+        with open(("%s-autoresponder.txt" % message.server.name), "r") as arFile:
+            ar = arFile.read().split("---")
+
+        for num in range(len(ar) - 1):
+            i = ar[num].split(" -> ")
+            if str(i[0])[1:] == trigger:
+                await client.send_message(message.channel, content = "You cant have two responses to the same word!")
+                return()
+
         with open(("%s-autoresponder.txt" % message.server.name), "a+") as arFile:
             arFile.write("\n%s -> %s\n---" % (trigger, response))
 
@@ -163,15 +172,13 @@ async def on_message(message): #when a message is sent
 
         trigger = msg[13:]
         removed = 0
-        popnum = []
+        popnum = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]
         numb = 0
 
         with open(("%s-autoresponder.txt" % message.server.name), "r") as arFile:
             ar = arFile.read().split("---")
-            print(ar)
 
         for num in range(len(ar) - 1):
-            print(num)
             i = ar[num].split(" -> ")
             if str(i[0])[1:] == trigger:
                 popnum[numb] = num
@@ -179,13 +186,16 @@ async def on_message(message): #when a message is sent
                 removed += 1
 
         for num in popnum:
-            ar.pop(num)
+            try:
+                ar.pop(num)
+            except:
+                urmom = "gay"
 
         with open(("%s-autoresponder.txt" % message.server.name), "w+") as arFile:
             arFile.write("---".join(ar))
 
         if removed > 0:
-            await client.send_message(message.channel, content = "%s triggers have been removed." % removed)
+            await client.send_message(message.channel, content = "%s trigger(s) have been removed." % removed)
             print("%s removed %s triggers from %s.\n" % (message.author, removed, message.server.name))
         else:
             await client.send_message(message.channel, content = "There werent any triggers with that name.")
