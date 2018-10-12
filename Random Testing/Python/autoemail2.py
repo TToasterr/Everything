@@ -49,7 +49,7 @@ while 1:
     if not (pmails[1] == emails[1]):
         for mail_id in imapper.listids(limit=1):
             mail = imapper.mail(mail_id)
-        print()
+        print("---------------------------------------------")
         print("NEW MESSAGE FROM")
         print(mail.from_addr)
         print()
@@ -58,6 +58,7 @@ while 1:
         print()
         print("BODY:")
         print(mail.body)
+        print("---------------------------------------------")
 
         if "jonathan" in mail.from_addr:
             smtpObj.sendmail(login, "jonathan.triplett@studentlaschools.net", ('Subject: %s\ndont email me or my son ever again.' % mail.title))
