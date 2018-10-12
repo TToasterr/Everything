@@ -3,12 +3,8 @@ import sys
 sys.path.append("H:/Misc")
 
 client = discord.Client()
-help = """**.help** - shows this"""
-
-
-
-def msg(msg):
-    return msg
+help = """**.help** - Shows this.
+**.invite** - Gives you an easy invite link for the bot."""
 
 
 
@@ -25,14 +21,18 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    msg = msg()
+    msg = message.content
 
-    if msg == "-help":
+    if msg == ".help":
         await client.send_message(message.channel, content = help)
         print("%s asked for help." % message.author)
+
+    if msg == ".invite":
+        await client.send_message(message.channel, content = "https://discordapp.com/oauth2/authorize?client_id=499928971711086601&scope=bot")
+        print("%s got an invite link." % message.author)
 
 
 
 with open('H:/Misc/token3.txt', 'r') as myfile:
-    token = myfile.read() #NDk5OTI4OTcxNzExMDg2NjAx.DqDaxg.jvEocVyz37io4QjCtufvxslpQWY
+    token = myfile.read()
 client.run(token)

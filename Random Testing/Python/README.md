@@ -50,3 +50,6 @@ An email autoresponder which isnt very efficient.
 
 ### autoemail2.py
 An email autoresponder which is slightly more efficient.
+
+### datetimetest.py
+Just me messing with datetime modules.
