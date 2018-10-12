@@ -30,7 +30,7 @@ async def on_message(message): #when a message is sent
 
     #Try to open the servers file (stores data about whether its stalking or not and such)
     try:
-        with open(("%s\stalking.txt" % message.server.name), "r") as sFile:
+        with open(("%s-stalking.txt" % message.server.name), "r+") as sFile:
             if message.author.bot: #stop doin this gay shit if its a bot
                 return()
             a = sFile.read()
@@ -38,8 +38,8 @@ async def on_message(message): #when a message is sent
                 print("%s | #%s | %s: %s" % (message.server.name, message.channel, message.author, message.content))
     #If it cant find the file, create one
     except:
-        with open(("%s\stalking.txt" % message.server.name), "w+") as serverFile:
-            asdfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = "i want to die please kthx" #dont I just have the best code
+        with open(("%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
+            stalkingFile.write("0" % message.server.name) #dont I just have the best code
 
     #If the message is the help command, send help
     if msg == ".help":
@@ -55,12 +55,12 @@ async def on_message(message): #when a message is sent
     if msg == ".stalk":
         print("%s toggled stalking for %s." % (message.author, message.server.name))
 
-        with open(("%s\stalking.txt" % message.server.name), "r") as sFile:
+        with open(("%s-stalking.txt" % message.server.name), "r") as sFile:
             content = sFile.read()
 
-        with open(("%s\stalking.txt" % message.server.name), "w+") as serverFile:
+        with open(("%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
             if content == "":
-                serverFile.write("0" % message.server.name)
+                stalkingFile.write("0" % message.server.name)
             else:
 
                 if content == "1":
@@ -69,7 +69,7 @@ async def on_message(message): #when a message is sent
                 else:
                     content = "1"
                     await client.send_message(message.channel, content = "Stalking turned on for **%s**." % message.server.name)
-                serverFile.write(content)
+                stalkingFile.write(content)
 
     #vaporwave command
     if msg[:3] == ".vw":
