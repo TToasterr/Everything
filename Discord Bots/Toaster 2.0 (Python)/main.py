@@ -9,7 +9,8 @@ help = """**.help** - Shows this.
 **.stalk** - Turns on stalking for this server.
 **.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
 **.addresponse [trigger], [response]** - Adds an autoresponder response.
-**.delresponse [name] - Removes the responses with said name.""" #The commands (what shows up when you do .help)
+**.delresponse [name]** - Removes the responses with said name.
+**.listresponses** - Lists all autoresponder responses for this server.""" #The commands (what shows up when you do .help)
 
 
 
@@ -57,6 +58,20 @@ async def on_message(message): #when a message is sent
 
 
 
+    try:
+        with open(("%s-autoresponder.txt" % message.server.name), "r") as arFile:
+            ar = arFile.read().split("---")
+            for num in range(len(ar) - 1):
+                i = ar[num].split(" -> ")
+                if str(i[0])[1:] in message.content:
+                    await client.send_message(message.channel, content = i[1])
+
+    except:
+        with open(("%s-autoresponder.txt" % message.server.name), "w+") as arFile:
+            asdf = "asdf"
+
+
+
     #Help command
     if msg == ".help":
         await client.send_message(message.channel, content = help)
@@ -66,7 +81,7 @@ async def on_message(message): #when a message is sent
 
     #Invite command (gives invite link)
     if msg == ".invite":
-        await client.send_message(message.channel, content = "https://discordapp.com/oauth2/authorize?client_id=[SPOOKY ID HERE]&scope=bot")
+        await client.send_message(message.channel, content = "https://discordapp.com/oauth2/authorize?client_id=499928971711086601&scope=bot")
         print("%s got an invite link.\n" % message.author)
 
 
@@ -202,6 +217,24 @@ async def on_message(message): #when a message is sent
 
 
 
+    #List autoresponder responses
+    if msg == ".listresponses":
+        try:
+            with open(("%s-autoresponder.txt" % message.server.name), "r") as arFile:
+                ar = arFile.read().split("---")
+
+            if ar == [""]:
+                await client.send_message(message.channel, content = "This server doesnt have any autoresponses.")
+                return()
+
+            ar = "".join(ar)
+            await client.send_message(message.channel, content = ar)
+
+        except:
+            await client.send_message(message.channel, content = "This server doesnt have any autoresponses.")
+
+
+
     #Add a moderator role
     if msg[:8] == ".addrole":
         role = msg[9:]
@@ -209,7 +242,7 @@ async def on_message(message): #when a message is sent
         with open(("%s-modRoles.txt" % message.server.name), "a+") as modFile:
             modFile.write("%s\n" % role)
 
-        await client.send_message(message.channel, content = "Successfully added @%s to the mod roles." % role)
+        await client.send_message(message.channel, content = "Successfully added %s to the mod roles." % role)
         print("%s just added %s to the mod roles for %s.\n" % (message.author, role, message.server.name))
 
 
