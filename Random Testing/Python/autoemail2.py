@@ -32,6 +32,7 @@ while 1:
     time = datetime.now()
 
     pmails = [""]
+    num = 0
 
     for mail_id in imapper.listids(limit=1):
         mail = imapper.mail(mail_id)

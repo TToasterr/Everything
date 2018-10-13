@@ -8,6 +8,8 @@ help = """**.help** - Shows this.
 **.addrole [id]** - Adds a moderator role by ID. To get a role id, ping it and add a backslash before the @ sign.
 **.stalk** - Turns on stalking for this server.
 **.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
+
+__**AutoResponder**__
 **.addresponse [trigger], [response]** - Adds an autoresponder response.
 **.delresponse [name]** - Removes the responses with said name.
 **.listresponses** - Lists all autoresponder responses for this server.""" #The commands (what shows up when you do .help)
