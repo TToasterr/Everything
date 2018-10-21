@@ -3,7 +3,9 @@ import sys
 sys.path.append("H:/Misc")
 
 client = discord.Client()
-help = """**.help** - Shows this.
+help = """
+__**General**__
+**.help** - Shows this.
 **.invite** - Gives you an easy invite link for the bot.
 **.stalk** - Turns on stalking for this server.
 **.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
@@ -16,8 +18,20 @@ __**Moderator Roles**__
 
 __**AutoResponder**__
 **.addresponse [trigger], [response]** - Adds an autoresponder response.
-**.delresponse [trigger]** - Removes the responses with said name.
-**.listresponses** - Lists all autoresponder responses for this server.""" #The commands (what shows up when you do .help)
+**.delresponse [trigger]** - Removes the responses with said trigger.
+**.listresponses** - Lists all autoresponder responses for this server.
+
+------------------------------------------------------------
+
+__**Planned**__
+**.addchannelreaction [channel], [reaction]** - Adds a reaction to every message sent in the channel you say.
+**.delchannelreaction [channel], [reaction]** - Deletes the reaction from the channel.
+**.listchannelreactions [channel]** - Lists reactions of a channel
+
+**.addreaction [trigger], [reaction]** - Adds an autoreaction reaction.
+**.delreaction [trigger], [reaction]** - Removes the reaction with said trigger.
+**.listreactions** - Lists reactions and triggers.
+""" #The commands (what shows up when you do .help)
 
 
 
