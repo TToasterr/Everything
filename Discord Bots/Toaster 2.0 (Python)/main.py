@@ -17,7 +17,7 @@ __**General**__
 These can only be done with people who have the moderator roles (added with .addrole) or who have the 'admin' permission.
 
 __**Moderator Roles**__
-**.addrole [id]** - Adds a moderator role by ID. To get a role id, ping it and add a backslash before the @ sign.
+**.addrole [id]** - Adds a moderator role by ID. To get a role id, ping it and add a backslash before the @ sign. You should get <@ID>. Copy the id.
 **.delrole [id]** - Removes a moderator role by ID.
 **.listroles** - Lists all moderator roles.
 
