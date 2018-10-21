@@ -344,6 +344,7 @@ async def on_message(message): #when a message is sent
                     modFile.write(modRoles)
 
                 await client.send_message(message.channel, content = "Successfully deleted %s moderator role(s)" % delCount)
+                print("%s deleted the moderator role %s from %s" % (message.author, role, message.server.name))
 
         except:
             await client.send_message(message.channel, content = "This server either has no moderator roles, or you formatted it wrong.")
