@@ -1,6 +1,7 @@
 import discord
 import sys
 sys.path.append("H:/Misc")
+sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files")
 
 client = discord.Client()
 help = """
@@ -64,7 +65,7 @@ async def on_message(message): #when a message is sent
 
     #Try to open the servers file (stores data about whether its stalking or not and such)
     try:
-        with open(("%s-stalking.txt" % message.server.name), "r") as sFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "r") as sFile:
             if message.author.bot: #stop doin this gay shit if its a bot
                 return()
             a = sFile.read()
@@ -72,23 +73,23 @@ async def on_message(message): #when a message is sent
                 print("%s | #%s | %s: %s\n" % (message.server.name, message.channel, message.author, message.content))
     #If it cant find the file, create one
     except:
-        with open(("%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
-            stalkingFile.write("0" % message.server.name)
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
+            stalkingFile.write("0")
 
 
 
     try:
-        with open(("%s-modRoles.txt" % message.server.name), "r") as modFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "r") as modFile:
             modRoles = modFile.read().split("\n")
 
     except:
-        with open(("%s-modRoles.txt" % message.server.name), "w+") as stalkingFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "w+") as stalkingFile:
             stalkingFile.write("")
 
 
 
     try:
-        with open(("%s-autoresponder.txt" % message.server.name), "r") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
             ar = arFile.read().split("---")
             for num in range(len(ar) - 1):
                 i = ar[num].split(" -> ")
@@ -96,7 +97,7 @@ async def on_message(message): #when a message is sent
                     await client.send_message(message.channel, content = i[1])
 
     except:
-        with open(("%s-autoresponder.txt" % message.server.name), "w+") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "w+") as arFile:
             asdf = "asdf"
 
 
@@ -130,10 +131,10 @@ async def on_message(message): #when a message is sent
 
         print("%s toggled stalking for %s.\n" % (message.author, message.server.name))
 
-        with open(("%s-stalking.txt" % message.server.name), "r") as sFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "r") as sFile:
             content = sFile.read()
 
-        with open(("%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
             if content == "":
                 stalkingFile.write("0")
             else:
@@ -182,7 +183,7 @@ async def on_message(message): #when a message is sent
         trigger = msg[0]
         response = msg[1]
 
-        with open(("%s-autoresponder.txt" % message.server.name), "r") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
             ar = arFile.read().split("---")
 
         for num in range(len(ar) - 1):
@@ -191,7 +192,7 @@ async def on_message(message): #when a message is sent
                 await client.send_message(message.channel, content = "You cant have two responses to the same word!")
                 return()
 
-        with open(("%s-autoresponder.txt" % message.server.name), "a+") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "a+") as arFile:
             arFile.write("\n%s -> %s\n---" % (trigger, response))
 
         await client.send_message(message.channel, content = "Your autoresponder has been added!")
@@ -217,7 +218,7 @@ async def on_message(message): #when a message is sent
         popnum = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]
         numb = 0
 
-        with open(("%s-autoresponder.txt" % message.server.name), "r") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
             ar = arFile.read().split("---")
 
         for num in range(len(ar) - 1):
@@ -233,7 +234,7 @@ async def on_message(message): #when a message is sent
             except:
                 urmom = "gay"
 
-        with open(("%s-autoresponder.txt" % message.server.name), "w+") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "w+") as arFile:
             arFile.write("---".join(ar))
 
         if removed > 0:
@@ -247,7 +248,7 @@ async def on_message(message): #when a message is sent
     #List autoresponder responses
     if msg == ".listresponses":
         try:
-            with open(("%s-autoresponder.txt" % message.server.name), "r") as arFile:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
                 ar = arFile.read().split("---")
 
             if ar == [""]:
@@ -266,7 +267,7 @@ async def on_message(message): #when a message is sent
     if msg[:8] == ".addrole":
         role = msg[9:]
 
-        with open(("%s-modRoles.txt" % message.server.name), "a+") as modFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "a+") as modFile:
             modFile.write("%s\n" % role)
 
         await client.send_message(message.channel, content = "Successfully added %s to the mod roles." % role)
@@ -280,7 +281,7 @@ async def on_message(message): #when a message is sent
         delCount = 0
 
         try:
-            with open(("%s-modRoles.txt" % message.server.name), "r") as modFile:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "r") as modFile:
                 modRoles = modFile.read().split("\n")
 
             for i in range(len(modRoles)):
@@ -293,7 +294,7 @@ async def on_message(message): #when a message is sent
             else:
                 modRoles = "\n".join(modRoles)
 
-                with open(("%s-modRoles.txt" % message.server.name), "w") as modFile:
+                with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "w") as modFile:
                     modFile.write(modRoles)
 
                 await client.send_message(message.channel, content = "Successfully deleted %s moderator role(s)" % delCount)
@@ -306,7 +307,7 @@ async def on_message(message): #when a message is sent
     #List moderator roles
     if msg[:10] == ".listroles":
         try:
-            with open(("%s-modRoles.txt" % message.server.name), "r") as modFile:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "r") as modFile:
                 modRoles = modFile.read()
 
             await client.send_message(message.channel, content = modRoles)
