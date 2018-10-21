@@ -391,7 +391,7 @@ async def on_message(message): #when a message is sent
         for s in activeServers: #for each server in active Servers
             sum += len(s.members) #get the member count and add it to the sum.
         await client.send_message(message.channel, content = "This bot is in %s server(s), with %s users." % (len(client.servers), sum))
-        print("%s just got the bot stats.")
+        print("%s just got the bot stats.\n" % message.author)
 
 
 
