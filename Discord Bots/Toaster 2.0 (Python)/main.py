@@ -8,9 +8,12 @@ help = """
 __**General**__
 **.help** - Shows this.
 **.invite** - Gives you an easy invite link for the bot.
-**.stalk** - Turns on stalking for this server.
+**.stalk** - Turns on stalking for this server. Sends every message sent in the server into the bot's console. Dont know why you'd want this, it was just me testing server-specific settings.
 **.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
 **.suggest [suggestion]** - Will suggest the suggestion to the bot owner. Please keep it (roughly) to commands or fixes.
+
+----------------------------__**Moderator Commands**__----------------------------
+These can only be done with people who have the moderator roles (added with .addrole) or who have the 'admin' permission.
 
 __**Moderator Roles**__
 **.addrole [id]** - Adds a moderator role by ID. To get a role id, ping it and add a backslash before the @ sign.
@@ -22,9 +25,8 @@ __**AutoResponder**__
 **.delresponse [trigger]** - Removes the responses with said trigger.
 **.listresponses** - Lists all autoresponder responses for this server.
 
-------------------------------------------------------------
+----------------------------__**Planned**__----------------------------
 
-__**Planned**__
 **.botstats** - Returns the bots stats.
 
 **.addchannelreaction [channel], [reaction]** - Adds a reaction to every message sent in the channel you say.
@@ -124,7 +126,7 @@ async def on_message(message): #when a message is sent
             if i in [y.id for y in message.author.roles]:
                 mod = True
 
-        if message.author == "Toaster#2600":
+        if message.author.server_permissions.administrator:
             mod = True
 
         if not mod:
@@ -153,8 +155,12 @@ async def on_message(message): #when a message is sent
 
     #vaporwave command
     if msg[:3] == ".vw":
-        args = msg[4:].split(", ")
-        mesg = args[0]
+        try:
+            args = msg[4:].split(", ")
+            mesg = args[0]
+        except:
+            client.send_message(message.channel, content = "You didn't supply enough arguments.")
+            return()
         spaceamount = args[1]
         final = []
         print("%s vaporwaved \"%s\" with %s space(s).\n" % (message.author, mesg, spaceamount))
@@ -174,16 +180,20 @@ async def on_message(message): #when a message is sent
             if i in [y.id for y in message.author.roles]:
                 mod = True
 
-        if message.author == "Toaster#2600":
+        if message.author.server_permissions.administrator:
             mod = True
 
         if not mod:
             await client.send_message(message.channel, content = "You dont have the right role to do this.")
             return()
 
-        msg = msg[13:].split(", ")
-        trigger = msg[0]
-        response = msg[1]
+        try:
+            msg = msg[13:].split(", ")
+            trigger = msg[0]
+            response = msg[1]
+        except:
+            client.send_message(message.channel, content = "You didn't supply enough arguments.")
+            return()
 
         with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
             ar = arFile.read().split("---")
@@ -208,14 +218,18 @@ async def on_message(message): #when a message is sent
             if i in [y.id for y in message.author.roles]:
                 mod = True
 
-        if message.author == "Toaster#2600":
+        if message.author.server_permissions.administrator:
             mod = True
 
         if not mod:
             await client.send_message(message.channel, content = "You dont have the right role to do this.")
             return()
 
-        trigger = msg[13:]
+        try:
+            trigger = msg[13:]
+        except:
+            client.send_message(message.channel, content = "You didn't supply enough arguments.")
+            return()
         removed = 0
         popnum = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]
         numb = 0
@@ -267,7 +281,22 @@ async def on_message(message): #when a message is sent
 
     #Add a moderator role
     if msg[:8] == ".addrole":
-        role = msg[9:]
+        try:
+            role = msg[9:]
+        except:
+            client.send_message(message.channel, content = "You didn't supply enough arguments.")
+            return()
+
+        for i in modRoles:
+            if i in [y.id for y in message.author.roles]:
+                mod = True
+
+        if message.author.server_permissions.administrator:
+            mod = True
+
+        if not mod:
+            await client.send_message(message.channel, content = "You dont have the right role to do this.")
+            return()
 
         with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "a+") as modFile:
             modFile.write("%s\n" % role)
@@ -279,14 +308,29 @@ async def on_message(message): #when a message is sent
 
     #Delete a moderator role
     if msg[:8] == ".delrole":
-        role = msg[9:]
-        delCount = 0
+        try:
+            role = msg[9:]
+            delCount = 0
+        except:
+            client.send_message(message.channel, content = "You didn't supply enough arguments.")
+            return()
+
+        for i in modRoles:
+            if i in [y.id for y in message.author.roles]:
+                mod = True
+
+        if message.author.server_permissions.administrator:
+            mod = True
+
+        if not mod:
+            await client.send_message(message.channel, content = "You dont have the right role to do this.")
+            return()
 
         try:
             with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "r") as modFile:
                 modRoles = modFile.read().split("\n")
 
-            for i in range(len(modRoles)):
+            for i in range(len(modRoles)-1):
                 if modRoles[i] == role:
                     modRoles.pop(i)
                     delCount += 1
