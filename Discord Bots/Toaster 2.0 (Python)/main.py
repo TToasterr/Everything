@@ -16,7 +16,7 @@ __**Moderator Roles**__
 
 __**AutoResponder**__
 **.addresponse [trigger], [response]** - Adds an autoresponder response.
-**.delresponse [name]** - Removes the responses with said name.
+**.delresponse [trigger]** - Removes the responses with said name.
 **.listresponses** - Lists all autoresponder responses for this server.""" #The commands (what shows up when you do .help)
 
 
