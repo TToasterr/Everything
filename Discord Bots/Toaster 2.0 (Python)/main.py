@@ -25,6 +25,8 @@ __**AutoResponder**__
 ------------------------------------------------------------
 
 __**Planned**__
+**.botstats** - Returns the bots stats.
+
 **.addchannelreaction [channel], [reaction]** - Adds a reaction to every message sent in the channel you say.
 **.delchannelreaction [channel], [reaction]** - Deletes the reaction from the channel.
 **.listchannelreactions [channel]** - Lists reactions of a channel
