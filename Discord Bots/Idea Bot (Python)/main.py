@@ -127,6 +127,6 @@ async def on_message(message):
 
 
 
-# with open('H:/Misc/token2.txt', 'r') as myfile:
-    # token = myfile.read()
-client.run('NDk2NTI5NDU2MTc4MDAzOTg3.DpU8iw.nDF1AvaGHN9mATWUws8x5VTK-R8')
+with open('H:/Misc/token2.txt', 'r') as myfile:
+    token = myfile.read()
+client.run(token)
