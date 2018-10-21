@@ -5,9 +5,13 @@ sys.path.append("H:/Misc")
 client = discord.Client()
 help = """**.help** - Shows this.
 **.invite** - Gives you an easy invite link for the bot.
-**.addrole [id]** - Adds a moderator role by ID. To get a role id, ping it and add a backslash before the @ sign.
 **.stalk** - Turns on stalking for this server.
 **.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
+
+__**Moderator Roles**__
+**.addrole [id]** - Adds a moderator role by ID. To get a role id, ping it and add a backslash before the @ sign.
+**.delrole [id]** - Removes a moderator role by ID.
+**.listroles** - Lists all moderator roles.
 
 __**AutoResponder**__
 **.addresponse [trigger], [response]** - Adds an autoresponder response.
@@ -22,7 +26,7 @@ async def on_ready(): #when the bot starts up
     sum = 0 #sum = 0
     for s in activeServers: #for each server in active Servers
         sum += len(s.members) #get the member count and add it to the sum.
-    print("Bot started in %s server(s), with %s users." % (len(client.servers), sum)) #print the server count and member count
+    print("Bot started in %s server(s), with %s users.\n" % (len(client.servers), sum)) #print the server count and member count
     await client.change_presence(game=discord.Game(name="Toaster 2.0 | .help")) #change presence to show the help command
 
 
@@ -246,6 +250,48 @@ async def on_message(message): #when a message is sent
 
         await client.send_message(message.channel, content = "Successfully added %s to the mod roles." % role)
         print("%s just added %s to the mod roles for %s.\n" % (message.author, role, message.server.name))
+
+
+
+    #Delete a moderator role
+    if msg[:8] == ".delrole":
+        role = msg[9:]
+        delCount = 0
+
+        try:
+            with open(("%s-modRoles.txt" % message.server.name), "r") as modFile:
+                modRoles = modFile.read().split("\n")
+
+            for i in range(len(modRoles)):
+                if modRoles[i] == role:
+                    modRoles.pop(i)
+                    delCount += 1
+
+            if delCount == 0:
+                await client.send_message(message.channel, content = "That role isnt a moderator role!")
+            else:
+                modRoles = "\n".join(modRoles)
+
+                with open(("%s-modRoles.txt" % message.server.name), "w") as modFile:
+                    modFile.write(modRoles)
+
+                await client.send_message(message.channel, content = "Successfully deleted %s moderator role(s)" % delCount)
+
+        except:
+            await client.send_message(message.channel, content = "This server either has no moderator roles, or you formatted it wrong.")
+
+
+
+    #List moderator roles
+    if msg[:10] == ".listroles":
+        try:
+            with open(("%s-modRoles.txt" % message.server.name), "r") as modFile:
+                modRoles = modFile.read()
+
+            await client.send_message(message.channel, content = modRoles)
+
+        except:
+            await client.send_message(message.channel, content = "This server either has no moderator roles, or you formatted it wrong.")
 
 
 
