@@ -52,7 +52,7 @@ async def on_ready(): #when the bot starts up
 
 @client.event
 async def on_server_join(server):
-    print("The bot just joined the server '%s'" % server.name)
+    print("The bot just joined the server '%s'\n" % server.name)
 
 
 
