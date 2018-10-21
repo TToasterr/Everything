@@ -12,6 +12,7 @@ __**General**__
 **.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
 **.suggest [suggestion]** - Will suggest the suggestion to the bot owner. Please keep it (roughly) to commands or fixes.
 **.botstats** - Returns the bots stats.
+**.github** - Gives you the link to the bot's github.
 
 ----------------------------__**Moderator Commands**__----------------------------
 These can only be done with people who have the moderator roles (added with .addrole) or who have the 'admin' permission.
@@ -392,6 +393,13 @@ async def on_message(message): #when a message is sent
             sum += len(s.members) #get the member count and add it to the sum.
         await client.send_message(message.channel, content = "This bot is in %s server(s), with %s users." % (len(client.servers), sum))
         print("%s just got the bot stats.\n" % message.author)
+
+
+
+    #github
+    if msg[:7] == ".github":
+        await client.send_message(message.channel, content = "https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Toaster%202.0%20(Python)")
+        print("%s got the github link to the bot.\n" % message.author)
 
 
 
