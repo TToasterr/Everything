@@ -11,6 +11,7 @@ __**General**__
 **.stalk** - Turns on stalking for this server. Sends every message sent in the server into the bot's console. Dont know why you'd want this, it was just me testing server-specific settings.
 **.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
 **.suggest [suggestion]** - Will suggest the suggestion to the bot owner. Please keep it (roughly) to commands or fixes.
+**.botstats** - Returns the bots stats.
 
 ----------------------------__**Moderator Commands**__----------------------------
 These can only be done with people who have the moderator roles (added with .addrole) or who have the 'admin' permission.
@@ -26,8 +27,6 @@ __**AutoResponder**__
 **.listresponses** - Lists all autoresponder responses for this server.
 
 ----------------------------__**Planned**__----------------------------
-
-**.botstats** - Returns the bots stats.
 
 **.addchannelreaction [channel], [reaction]** - Adds a reaction to every message sent in the channel you say.
 **.delchannelreaction [channel], [reaction]** - Deletes the reaction from the channel.
@@ -382,6 +381,16 @@ async def on_message(message): #when a message is sent
         await client.send_message(me, content = "%s suggests: \n%s" % (message.author, suggestion))
         await client.send_message(message.channel, content = "Your suggestion has been sent.")
         print("%s suggested '%s'\n" % (message.author, suggestion))
+
+
+
+    #botstats
+    if msg[:9] == ".botstats":
+        activeServers = client.servers #activeServers is the servers the bot is in
+        sum = 0 #sum = 0
+        for s in activeServers: #for each server in active Servers
+            sum += len(s.members) #get the member count and add it to the sum.
+        await client.send_message(message.channel, content = "This bot is in %s server(s), with %s users." % (len(client.servers), sum))
 
 
 
