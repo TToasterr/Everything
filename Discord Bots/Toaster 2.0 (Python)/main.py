@@ -7,6 +7,7 @@ help = """**.help** - Shows this.
 **.invite** - Gives you an easy invite link for the bot.
 **.stalk** - Turns on stalking for this server.
 **.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
+**.suggest [suggestion]** - Will suggest the suggestion to the bot owner. Please keep it (roughly) to commands or fixes.
 
 __**Moderator Roles**__
 **.addrole [id]** - Adds a moderator role by ID. To get a role id, ping it and add a backslash before the @ sign.
@@ -38,6 +39,9 @@ async def on_message(message): #when a message is sent
     if message.channel.is_private and not (message.author.bot):
         await client.send_message(message.channel, content = "This bot doesnt work with DMs (sorry!). Invite me to a server and use me there!\nhttps://discordapp.com/oauth2/authorize?client_id=499928971711086601&scope=bot")
         print("%s tried to DM the bot." % message.author)
+        return()
+
+    if message.author.bot:
         return()
 
     activeServers = client.servers
@@ -295,6 +299,21 @@ async def on_message(message): #when a message is sent
 
         except:
             await client.send_message(message.channel, content = "This server either has no moderator roles, or you formatted it wrong.")
+
+
+
+    #suggestions
+    if msg[:8] == ".suggest":
+        suggestion = msg[9:]
+
+        if suggestion == "":
+            await client.send_message(message.channel, content = "You didnt supply a suggestion!")
+            return()
+
+        me = await client.get_user_info("184474965859368960")
+        await client.send_message(me, content = "%s suggests: \n%s" % (message.author, suggestion))
+        await client.send_message(message.channel, content = "Your suggestion has been sent.")
+        print("%s suggested '%s'\n" % (message.author, suggestion))
 
 
 
