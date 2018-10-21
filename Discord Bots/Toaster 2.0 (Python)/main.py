@@ -35,6 +35,11 @@ async def on_ready(): #when the bot starts up
 async def on_message(message): #when a message is sent
     global content
 
+    if message.channel.is_private and not (message.author.bot):
+        await client.send_message(message.channel, content = "This bot doesnt work with DMs (sorry!). Invite me to a server and use me there!\nhttps://discordapp.com/oauth2/authorize?client_id=499928971711086601&scope=bot")
+        print("%s tried to DM the bot." % message.author)
+        return()
+
     activeServers = client.servers
     msg = message.content #msg is the message the user sent
     mod = False
@@ -46,7 +51,7 @@ async def on_message(message): #when a message is sent
                 return()
             a = sFile.read()
             if a == "1":
-                print("%s | #%s | %s: %s" % (message.server.name, message.channel, message.author, message.content))
+                print("%s | #%s | %s: %s\n" % (message.server.name, message.channel, message.author, message.content))
     #If it cant find the file, create one
     except:
         with open(("%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
@@ -112,7 +117,7 @@ async def on_message(message): #when a message is sent
 
         with open(("%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
             if content == "":
-                stalkingFile.write("0" % message.server.name)
+                stalkingFile.write("0")
             else:
 
                 if content == "1":
@@ -127,8 +132,6 @@ async def on_message(message): #when a message is sent
 
     #vaporwave command
     if msg[:3] == ".vw":
-        if not message.channel.is_private:
-            await client.delete_message(message)
         args = msg[4:].split(", ")
         mesg = args[0]
         spaceamount = args[1]
