@@ -52,6 +52,12 @@ async def on_ready(): #when the bot starts up
 
 
 @client.event
+async def on_server_join(server):
+    print("The bot just joined the server '%s'" % server.name)
+
+
+
+@client.event
 async def on_message(message): #when a message is sent
     global content
 
