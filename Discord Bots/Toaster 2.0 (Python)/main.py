@@ -499,7 +499,7 @@ async def on_message(message): #when a message is sent
     #list channel reactions
     if msg[:21] == ".listchannelreactions":
         try:
-            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "r") as reactfile:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "r", encoding="UTF-8") as reactfile:
                 reactions = reactfile.read().split("\n")
         except:
             await client.send_message(message.channel, content = "This server doesnt have any reactions yet!")
