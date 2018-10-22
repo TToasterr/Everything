@@ -178,10 +178,10 @@ async def on_message(message): #when a message is sent
         try:
             args = msg[4:].split(", ")
             mesg = args[0]
+            spaceamount = args[1]
         except:
-            client.send_message(message.channel, content = "You didn't supply enough arguments.")
+            await client.send_message(message.channel, content = "You didn't supply enough arguments.")
             return()
-        spaceamount = args[1]
         final = []
         print("%s vaporwaved \"%s\" with %s space(s).\n" % (message.author, mesg, spaceamount))
 
@@ -212,7 +212,7 @@ async def on_message(message): #when a message is sent
             trigger = msg[0]
             response = msg[1]
         except:
-            client.send_message(message.channel, content = "You didn't supply enough arguments.")
+            await client.send_message(message.channel, content = "You didn't supply enough arguments.")
             return()
 
         with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
@@ -248,7 +248,7 @@ async def on_message(message): #when a message is sent
         try:
             trigger = msg[13:]
         except:
-            client.send_message(message.channel, content = "You didn't supply enough arguments.")
+            await client.send_message(message.channel, content = "You didn't supply enough arguments.")
             return()
         removed = 0
         popnum = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]
@@ -304,7 +304,7 @@ async def on_message(message): #when a message is sent
         try:
             role = msg[9:]
         except:
-            client.send_message(message.channel, content = "You didn't supply enough arguments.")
+            await client.send_message(message.channel, content = "You didn't supply enough arguments.")
             return()
 
         for i in modRoles:
@@ -332,7 +332,7 @@ async def on_message(message): #when a message is sent
             role = msg[9:]
             delCount = 0
         except:
-            client.send_message(message.channel, content = "You didn't supply enough arguments.")
+            await client.send_message(message.channel, content = "You didn't supply enough arguments.")
             return()
 
         for i in modRoles:
