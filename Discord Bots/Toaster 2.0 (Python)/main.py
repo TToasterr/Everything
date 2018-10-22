@@ -1,5 +1,6 @@
 import discord
 import sys
+import json
 from discord.utils import get
 sys.path.append("H:/Misc")
 sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files")
@@ -121,12 +122,14 @@ async def on_message(message): #when a message is sent
             for i in range(len(reactions) - 1):
                 a = reactions[i].split(", ")
                 if a[0] == message.channel.id:
-                    a[1] = a[1].split(":")
-                    a[1].pop(0)
-                    a[1].pop(1)
-                    a[1] = str(a[1])[2:-2]
-                    emoji = get(client.get_all_emojis(), name=a[1])
-                    await client.add_reaction(message, emoji)
+                    if a[1][0] == "<":
+                        a[1] = a[1].split(":")
+                        a[1].pop(0)
+                        a[1].pop(1)
+                        a[1] = str(a[1])[2:-2]
+                        emoji = get(client.get_all_emojis(), name=a[1])
+                        a[1] = emoji
+                    await client.add_reaction(message, a[1])
 
     except FileNotFoundError:
         with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "w+") as reactfile:
