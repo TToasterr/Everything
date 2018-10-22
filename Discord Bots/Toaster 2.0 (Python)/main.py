@@ -1,7 +1,9 @@
 import discord
 import sys
+from discord.utils import get
 sys.path.append("H:/Misc")
 sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files")
+serverfiles = "C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/"
 
 client = discord.Client()
 help = """
@@ -27,11 +29,12 @@ __**AutoResponder**__
 **.delresponse [trigger]** - Removes the responses with said trigger.
 **.listresponses** - Lists all autoresponder responses for this server.
 
-----------------------------__**Planned**__----------------------------
-
+__**Channel Reactions**__
 **.addchannelreaction [channel], [reaction]** - Adds a reaction to every message sent in the channel you say.
 **.delchannelreaction [channel], [reaction]** - Deletes the reaction from the channel.
-**.listchannelreactions [channel]** - Lists reactions of a channel
+**.listchannelreactions** - Lists all server channel reactions.
+
+----------------------------__**Planned**__----------------------------
 
 **.addreaction [trigger], [reaction]** - Adds an autoreaction reaction.
 **.delreaction [trigger], [reaction]** - Removes the reaction with said trigger.
@@ -63,7 +66,7 @@ async def on_message(message): #when a message is sent
 
     if message.channel.is_private and not (message.author.bot):
         await client.send_message(message.channel, content = "This bot doesnt work with DMs (sorry!). Invite me to a server and use me there!\nhttps://discordapp.com/oauth2/authorize?client_id=499928971711086601&scope=bot")
-        print("%s tried to DM the bot." % message.author)
+        print("%s tried to DM the bot.\n" % message.author)
         return()
 
     if message.author.bot:
@@ -112,6 +115,25 @@ async def on_message(message): #when a message is sent
 
 
 
+    try:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "r", encoding="UTF-8") as reactfile:
+            reactions = reactfile.read().split("\n")
+            for i in range(len(reactions) - 1):
+                a = reactions[i].split(", ")
+                if a[0] == message.channel.id:
+                    a[1] = a[1].split(":")
+                    a[1].pop(0)
+                    a[1].pop(1)
+                    a[1] = str(a[1])[2:-2]
+                    emoji = get(client.get_all_emojis(), name=a[1])
+                    await client.add_reaction(message, emoji)
+
+    except FileNotFoundError:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "w+") as reactfile:
+            reactfile.write("")
+
+
+
     #Help command
     if msg == ".help":
         await client.send_message(message.channel, content = help)
@@ -128,17 +150,6 @@ async def on_message(message): #when a message is sent
 
     #Stalk command (prints every message sent into a server into console if on)
     if msg == ".stalk":
-        for i in modRoles:
-            if i in [y.id for y in message.author.roles]:
-                mod = True
-
-        if message.author.server_permissions.administrator:
-            mod = True
-
-        if not mod:
-            await client.send_message(message.channel, content = "You dont have the right role to do this.")
-            return()
-
         print("%s toggled stalking for %s.\n" % (message.author, message.server.name))
 
         with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "r") as sFile:
@@ -401,6 +412,106 @@ async def on_message(message): #when a message is sent
         await client.send_message(message.channel, content = "https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Toaster%202.0%20(Python)")
         print("%s got the github link to the bot.\n" % message.author)
 
+
+
+    #add channel reaction
+    if msg[:19] == ".addchannelreaction":
+        for i in modRoles:
+            if i in [y.id for y in message.author.roles]:
+                mod = True
+
+        if message.author.server_permissions.administrator:
+            mod = True
+
+        if not mod:
+            await client.send_message(message.channel, content = "You dont have the right role to do this.")
+            return()
+
+        args = msg[20:].split(", ")
+        try:
+            channel = args[0]
+            channel = channel[2:20]
+            reaction = args[1]
+        except:
+            await client.send_message(message.channel, content = "You didnt supply enough arguments!")
+            return()
+
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "a+", encoding="UTF-8") as reactfile:
+            reactfile.write("%s, %s\n" % (channel, reaction))
+
+        await client.send_message(message.channel, content = "Your channel reaction has been added!")
+        print("%s just added the channel reaction %s to channel %s.\n" % (message.author, reaction, channel))
+
+
+
+    #delete channel reaction
+    if msg[:19] == ".delchannelreaction":
+        for i in modRoles:
+            if i in [y.id for y in message.author.roles]:
+                mod = True
+
+        if message.author.server_permissions.administrator:
+            mod = True
+
+        if not mod:
+            await client.send_message(message.channel, content = "You dont have the right role to do this.")
+            return()
+
+        args = msg[20:].split(", ")
+        delcount = 0
+        try:
+            channel = args[0]
+            channel = channel[2:20]
+            reaction = args[1]
+        except:
+            await client.send_message(message.channel, content = "You didnt supply enough arguments!")
+            return()
+
+        try:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "r") as reactfile:
+                reactions = reactfile.read().split("\n")
+        except:
+            await client.send_message(message.channel, content = "This server doesnt have any reactions yet!")
+            return()
+
+        for i in range(len(reactions)-1):
+            reactions[i] = reactions[i].split(", ")
+            if reactions[i][0] == channel:
+                if reactions[i][1] == reaction:
+                    reactions.pop(i)
+                    delcount += 1
+            reactions[i] = ", ".join(reactions[i])
+
+        if delcount == 0:
+            await client.send_message(message.channel, content = "That channel didn't have that reaction!")
+            return()
+        else:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "w") as reactfile:
+                reactfile.write("\n".join(reactions))
+            await client.send_message(message.channel, content = "Deleted reaction from channel!")
+            print("%s just deleted a reaction from a channel.\n" % message.author)
+
+
+
+    #list channel reactions
+    if msg[:21] == ".listchannelreactions":
+        try:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "r") as reactfile:
+                reactions = reactfile.read().split("\n")
+        except:
+            await client.send_message(message.channel, content = "This server doesnt have any reactions yet!")
+            return()
+
+        for i in range(len(reactions)-1):
+            reactions[i] = reactions[i].split(", ")
+            reactions[i][0] = "<#%s>" % reactions[i][0]
+            reactions[i] = " -> ".join(reactions[i])
+
+        try:
+            await client.send_message(message.channel, content = "\n".join(reactions))
+            print("%s just got the reactions for %s.\n" % (message.author, message.server.name))
+        except:
+            await client.send_message(message.channel, content = "This server doesnt have any reactions yet!")
 
 
 
