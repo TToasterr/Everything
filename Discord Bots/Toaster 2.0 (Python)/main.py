@@ -7,19 +7,27 @@ sys.path.append("H:/Misc")
 sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files")
 
 client = discord.Client()
-help = """
-__**General**__
-**.help** - Shows this.
+help1 = """
+----------------------------__**General Commands**__----------------------------
+These commands can be done by anyone.
+
+**.help 1** - Shows this.
+**.help 2** - Showed Mod help.
+**.planning** - Lists the commands or ideas that I'm currently planning or thinking about. Suggest something and it might appear here!
 **.invite** - Gives you an easy invite link for the bot.
-**.stalk** - Turns on stalking for this server. Sends every message sent in the server into the bot's console. Dont know why you'd want this, it was just me testing server-specific settings.
-**.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
+
 **.suggest [suggestion]** - Will suggest the suggestion to the bot owner. Please keep it (roughly) to commands or fixes.
 **.botstats** - Returns the bots stats.
 **.github** - Gives you the link to the bot's github.
-**.genrandominvite [number]** - Generates the number of random discord invite links. The number cant go above 20. Will it be a real server? Almost definetely not.
 
+**.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
+**.genrandominvite [number]** - Generates the number of random discord invite links. The number cant go above 20. Will it be a real server? Almost definetely not.
+"""
+help2 = """
 ----------------------------__**Moderator Commands**__----------------------------
 These can only be done with people who have the moderator roles (added with .addrole) or who have the 'admin' permission.
+
+**.stalk** - Turns on stalking for this server. Sends every message sent in the server into the bot's console. Dont know why you'd want this, it was just me testing server-specific settings.
 
 __**Moderator Roles**__
 **.addrole [id]** - Adds a moderator role by ID. To get a role id, ping it and add a backslash before the @ sign. You should get <@ID>. Copy the id.
@@ -35,7 +43,17 @@ __**Channel Reactions**__
 **.addchannelreaction [channel], [reaction]** - Adds a reaction to every message sent in the channel you say.
 **.delchannelreaction [channel], [reaction]** - Deletes the reaction from the channel.
 **.listchannelreactions** - Lists all server channel reactions.
-""" #The commands (what shows up when you do .help)
+"""
+planning = """
+----------------------------__**Planning**__----------------------------
+These are the commands and such that I'm planning on adding!
+
+**.addreaction [trigger], [reaction]** - Essentially an Autoresponder except with reactions.
+**.delreaction [trigger]** - Deletes an autoreaction
+**.listreactions** - Lists reactions for this server.
+
+**Some Hangman Game** - Havent put too much thought into this, but .suggest it if you like it!
+"""
 
 
 
@@ -133,9 +151,15 @@ async def on_message(message): #when a message is sent
 
 
     #Help command
-    if msg == ".help":
-        await client.send_message(message.channel, content = help)
+    if msg == ".help 1" or msg == ".help":
+        await client.send_message(message.channel, content = help1)
         print("%s asked for help.\n" % message.author)
+    if msg == ".help 2":
+        await client.send_message(message.channel, content = help2)
+        print("%s asked for the Mod help.\n" % message.author)
+    if msg == ".planning":
+        await client.send_message(message.channel, content = planning)
+        print("%s got the planned commands.\n" % message.author)
 
 
 
@@ -541,7 +565,7 @@ async def on_message(message): #when a message is sent
         if owo == 1:
             for i in range(int(num)):
                 inv = []
-                for i in range(7):
+                for i in range(ri(5,7)):
                     which = ri(0,2)
                     if which == 0:
                         which2 = ri(0,25)
@@ -554,7 +578,7 @@ async def on_message(message): #when a message is sent
                         inv.append(str(which2))
                 final.append("https://discord.gg/%s" % "".join(inv))
         else:
-            for i in range(7):
+            for i in range(ri(5,7)):
                 which = ri(0,2)
                 if which == 0:
                     which2 = ri(0,25)
