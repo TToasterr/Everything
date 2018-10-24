@@ -172,6 +172,17 @@ async def on_message(message): #when a message is sent
 
     #Stalk command (prints every message sent into a server into console if on)
     if msg == ".stalk":
+        for i in modRoles:
+            if i in [y.id for y in message.author.roles]:
+                mod = True
+
+        if message.author.server_permissions.administrator:
+            mod = True
+
+        if not mod:
+            await client.send_message(message.channel, content = "You dont have the right role to do this.")
+            return()
+            
         print("%s toggled stalking for %s.\n" % (message.author, message.server.name))
 
         with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "r") as sFile:
