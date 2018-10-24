@@ -591,11 +591,6 @@ async def on_message(message): #when a message is sent
                     inv.append(str(which2))
             final.append("https://discord.gg/%s" % "".join(inv))
         await client.send_message(message.channel, content = "\n".join(final))
-        # try:
-        # await client.accept_invite('https://discord.gg/\%s' % "".join(inv))
-        #     await client.send_message(message.channel, content = "The invite link is valid!")
-        # except:
-        #     await client.send_message(message.channel, content = "Ths invite link isnt valid.")
         print("%s just got a random invite.\n" % message.author)
 
 
