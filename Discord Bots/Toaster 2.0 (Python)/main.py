@@ -1,10 +1,10 @@
 import discord
 import sys
-import json
+from random import randint as ri
+from random import choice as ch
 from discord.utils import get
 sys.path.append("H:/Misc")
 sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files")
-serverfiles = "C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/"
 
 client = discord.Client()
 help = """
@@ -16,6 +16,7 @@ __**General**__
 **.suggest [suggestion]** - Will suggest the suggestion to the bot owner. Please keep it (roughly) to commands or fixes.
 **.botstats** - Returns the bots stats.
 **.github** - Gives you the link to the bot's github.
+**.genrandominvite [number]** - Generates the number of random discord invite links. The number cant go above 20. Will it be a real server? Almost definetely not.
 
 ----------------------------__**Moderator Commands**__----------------------------
 These can only be done with people who have the moderator roles (added with .addrole) or who have the 'admin' permission.
@@ -34,12 +35,6 @@ __**Channel Reactions**__
 **.addchannelreaction [channel], [reaction]** - Adds a reaction to every message sent in the channel you say.
 **.delchannelreaction [channel], [reaction]** - Deletes the reaction from the channel.
 **.listchannelreactions** - Lists all server channel reactions.
-
-----------------------------__**Planned**__----------------------------
-
-**.addreaction [trigger], [reaction]** - Adds an autoreaction reaction.
-**.delreaction [trigger], [reaction]** - Removes the reaction with said trigger.
-**.listreactions** - Lists reactions and triggers.
 """ #The commands (what shows up when you do .help)
 
 
@@ -418,7 +413,7 @@ async def on_message(message): #when a message is sent
 
 
     #add channel reaction
-    if msg[:19] == ".addchannelreaction":
+    if msg[:19] == ".addchannelreaction" or msg == ".acr":
         for i in modRoles:
             if i in [y.id for y in message.author.roles]:
                 mod = True
@@ -448,7 +443,7 @@ async def on_message(message): #when a message is sent
 
 
     #delete channel reaction
-    if msg[:19] == ".delchannelreaction":
+    if msg[:19] == ".delchannelreaction" or msg == ".dcr":
         for i in modRoles:
             if i in [y.id for y in message.author.roles]:
                 mod = True
@@ -497,7 +492,7 @@ async def on_message(message): #when a message is sent
 
 
     #list channel reactions
-    if msg[:21] == ".listchannelreactions":
+    if msg[:21] == ".listchannelreactions" or msg == ".lcr":
         try:
             with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "r", encoding="UTF-8") as reactfile:
                 reactions = reactfile.read().split("\n")
@@ -515,6 +510,70 @@ async def on_message(message): #when a message is sent
             print("%s just got the reactions for %s.\n" % (message.author, message.server.name))
         except:
             await client.send_message(message.channel, content = "This server doesnt have any reactions yet!")
+
+
+
+    #list servers (not in help message)
+    if msg[:12] == ".listservers" or msg == ".ls":
+        activeServers = client.servers
+        servers = []
+        for i in activeServers:
+            servers.append(i.name)
+        await client.send_message(message.channel, content = "\n".join(servers))
+        print("%s just got the client servers.\n" % message.author)
+
+
+
+    #generate random invite
+    if msg[:16] == ".genrandominvite" or msg[:4] == ".gri":
+        try:
+            args = msg.split(" ")
+            args.pop(0)
+            num = args[0]
+            owo = 1
+        except:
+            nothing = "nothing"
+            owo = 0
+        lalphabet = "abcdefghijklmnopqrstuvwxyz"
+        ualphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        inv = []
+        final = []
+        if owo == 1:
+            for i in range(int(num)):
+                inv = []
+                for i in range(7):
+                    which = ri(0,2)
+                    if which == 0:
+                        which2 = ri(0,25)
+                        inv.append(str(lalphabet[which2]))
+                    elif which == 1:
+                        which2 = ri(0,25)
+                        inv.append(str(ualphabet[which2]))
+                    elif which == 2:
+                        which2 = ri(0,9)
+                        inv.append(str(which2))
+                final.append("https://discord.gg/%s" % "".join(inv))
+        else:
+            for i in range(7):
+                which = ri(0,2)
+                if which == 0:
+                    which2 = ri(0,25)
+                    inv.append(str(lalphabet[which2]))
+                elif which == 1:
+                    which2 = ri(0,25)
+                    inv.append(str(ualphabet[which2]))
+                elif which == 2:
+                    which2 = ri(0,9)
+                    inv.append(str(which2))
+            final.append("https://discord.gg/%s" % "".join(inv))
+        await client.send_message(message.channel, content = "\n".join(final))
+        # try:
+        # await client.accept_invite('https://discord.gg/\%s' % "".join(inv))
+        #     await client.send_message(message.channel, content = "The invite link is valid!")
+        # except:
+        #     await client.send_message(message.channel, content = "Ths invite link isnt valid.")
+        print("%s just got a random invite.\n" % message.author)
+
 
 
 
