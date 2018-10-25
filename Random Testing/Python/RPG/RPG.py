@@ -10,7 +10,7 @@ def newline():
 def newlines(amount):
     print(""*amount)
 def bigboi():
-    for i in range(50):
+    for i in range(100):
         print("")
 
 
@@ -109,4 +109,7 @@ while True:
         print("look around")
         print("inventory")
         print("help")
+        newline()
+    else:
+        print("That's not a command!")
         newline()
