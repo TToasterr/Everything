@@ -1,5 +1,6 @@
 from random import randint as ri
 from random import choice as ch
+import allitems
 
 
 weapons = ["Melee","Ranged","Magic"]
@@ -41,46 +42,21 @@ class Player:
     def printInv(self):
         print("Inventory: ")
         for item in self.inv:
-            print(item)
+            item.printItem()
         newline()
 
-class Item:
-    def __init__(self, name, power, type, rarity, bufftype, buffamount):
-        self.name = name
-        self.power = power
-        self.type = type
-        self.rarity = rarity
-        self.bufftype = bufftype
-        self.buffammount = buffammount
 
-    def printItem(self):
-        print(self.name)
-        print(self.type)
-
-        if self.type in weapons:
-            print("%s damage" % self.power)
-        elif self.type == "armor":
-            print("%s defense" % self.power)
-        else:
-            print("%s health regen" % self.power)
-
-        print(self.rarity)
-
-        if bufftype != "None":
-            print("%s")
-
-
-testEquipped = {
-    "main":"gay sword",
-    "side":"gay bow",
-    "armor":"gay armor"
+equipped = {
+    "main":allitems.rusty_sword,
+    "side":"",
+    "armor":allitems.rusty_chestplate
 }
-testInv = ["gay health pot", "slightly less gay sword"]
-testQuest = {
+inv = [allitems.minor_heal_pot]
+quest = {
     "goal":"be gay",
     "item":"the gay totem"
 }
-player = Player("gay boi", testEquipped, testInv, True, testQuest, 0, 0)
+player = Player(input("What would you like your players name to be?\n"), equipped, inv, True, quest, 0, 0)
 
 
 bigboi()
@@ -100,7 +76,7 @@ while True:
         print("wow the void looks nice today")
         newline()
     elif selection == "inventory":
-        print("i couldnt come up with anything funny for this one :/")
+        player.printInv()
         newline()
     elif selection == "help":
         print("List of Commands:")
