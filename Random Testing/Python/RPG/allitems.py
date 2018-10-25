@@ -26,7 +26,7 @@ class Item:
         print(self.rarity)
 
         if self.bufftype != "None":
-            print("%s")
+            print("+%s to %s" % (self.buffammount, self.bufftype))
 
 
 minor_heal_pot = Item("Minor Healing Potion", 10, "Potion", "Very Common", "None", 0)
@@ -36,7 +36,13 @@ greater_heal_pot = Item("Greater Healing Potion", 100, "Potion", "Rare", "None",
 massive_heal_pot = Item("Massive Healing Potion", 200, "Potion", "Legendary", "None", 0)
 
 rusty_sword = Item("Rusty Sword", 2, "Melee", "Starter", "None", 0)
-rusty_chestplate = Item("Rusty Chestplate", 3, "Armor", "Starter", "None", 0)
+rusty_armor = Item("Rusty Armor", 3, "Armor", "Starter", "None", 0)
+
+dagger = Item("Dagger", 4, "Melee", "Very Common", "None", 0)
+leather_armor = Item("Leather Armor", 4, "Armor", "Very Common", "None", 0)
+
+shortbow = Item("Short Bow", 3, "Ranged", "Common", "None", 0)
+shortsword = Item("Shortsword", 5, "Melee", "Common", "None", 0)
 
 item_array = [
     minor_heal_pot,
@@ -45,7 +51,11 @@ item_array = [
     greater_heal_pot,
     massive_heal_pot,
     rusty_sword,
-    rusty_chestplate
+    rusty_armor,
+    dagger,
+    leather_armor,
+    shortbow,
+    shortsword
 ]
 item_name_array = [
     "minor_heal_pot",
@@ -54,5 +64,9 @@ item_name_array = [
     "greater_heal_pot",
     "massive_heal_pot",
     "rusty_sword",
-    "rusty_chestplate"
+    "rusty_armor",
+    "dagger",
+    "leather_armor",
+    "shortbow",
+    "shortsword"
 ]
