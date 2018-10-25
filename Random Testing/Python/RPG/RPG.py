@@ -154,21 +154,41 @@ while True:
         print("help")
         newline()
 
-    elif selection == "giveItem":
-        name = input("Whats the item name?\n")
-        newline()
-        power = input("Whats the item power?\n")
-        newline()
-        type = input("Whats the item type?\n")
-        newline()
-        rarity = input("Whats the item rarity?\n")
-        newline()
-        bufftype = input("Whats the item bufftype?\n")
-        newline()
-        buffammount = input("Whats the buff amount?\n")
+    elif selection == "give":
+        found = 0
+        corno = input("Do you want to make a custom item?\n")
         bigboi()
-        item = allitems.Item(name, power, type, rarity, bufftype, buffammount)
-        player.inv.append(item)
+        if corno == "yes":
+            name = input("Whats the item name?\n")
+            newline()
+            power = input("Whats the item power?\n")
+            newline()
+            type = input("Whats the item type?\n")
+            newline()
+            rarity = input("Whats the item rarity?\n")
+            newline()
+            bufftype = input("Whats the item bufftype?\n")
+            newline()
+            buffammount = input("Whats the buff amount?\n")
+            bigboi()
+            item = allitems.Item(name, power, type, rarity, bufftype, buffammount)
+            player.inv.append(item)
+        else:
+            item = input("Enter the ID of the item:\n")
+            if item in allitems.item_name_array:
+                for i in range(len(allitems.item_name_array) - 1):
+                    if found == 1:
+                        do = 'nothing'
+                    elif item == allitems.item_name_array[i]:
+                        item = allitems.item_array[i]
+                        player.inv.append(item)
+                        found = 1
+                bigboi()
+                print("Added item to your inventory.")
+                newline()
+            else:
+                print("That item doesnt exist.")
+                newline()
     else:
 
         print("That's not a command!")
