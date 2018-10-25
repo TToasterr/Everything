@@ -1,11 +1,16 @@
+weapons = ["Melee","Ranged","Magic"]
+
 class Item:
-    def __init__(self, name, power, type, rarity, bufftype, buffamount):
+    def __init__(self, name, power, type, rarity, bufftype, buffammount):
         self.name = name
         self.power = power
         self.type = type
         self.rarity = rarity
         self.bufftype = bufftype
-        self.buffammount = buffamount
+        self.buffammount = buffammount
+
+    def printName(self):
+        print(self.name)
 
     def printItem(self):
         print(self.name)
@@ -20,7 +25,7 @@ class Item:
 
         print(self.rarity)
 
-        if bufftype != "None":
+        if self.bufftype != "None":
             print("%s")
 
 
