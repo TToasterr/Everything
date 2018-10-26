@@ -11,4 +11,6 @@ A folder full of random tests and school projects I've done. Some funny stuff bu
 ## Discord Bots
 A folder of some Discord bots I may or may not continue.
 
+---
+
 xd
