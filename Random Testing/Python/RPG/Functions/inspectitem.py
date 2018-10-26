@@ -1,6 +1,6 @@
 from newlines import *
 
-def inspectItem():
+def inspectItem(player):
     found = 0
     player.printEquipped()
     newline()
