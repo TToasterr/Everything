@@ -1,10 +1,11 @@
 from newlines import *
 
 class Player:
-    def __init__(self, name, equipped, inv, questing, quest, x, y):
+    def __init__(self, name, equipped, inv, health, questing, quest, x, y):
         self.name = name
         self.equipped = equipped
         self.inv = inv
+        self.health = health
         self.questing = questing
         self.quest = quest
         self.x = x
@@ -26,6 +27,8 @@ class Player:
 
     def printBasics(self):
         print("Name: %s" % self.name)
+        newline()
+        print("Health: %s" % self.health)
         newline()
         try:
             print("Main: %s" % self.equipped["main"].name)
