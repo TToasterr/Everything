@@ -10,6 +10,7 @@ from playerclass import Player
 import inspectitem
 from inspectitem import inspectItem
 from giveitem import giveItem
+from equipping import equipItem
 
 #-----------------------------------------------------------------------
 #Making the player
@@ -26,7 +27,7 @@ quest = {
 }
 bigboi()
 name = input("What would you like your players name to be? \n")
-player = Player(name, equipped, inv, False, quest, 0, 0)
+player = Player(name, equipped, inv, 10, False, quest, 0, 0)
 
 #-----------------------------------------------------------------------
 #The main loop
@@ -47,12 +48,12 @@ while True:
     elif selection == "help":
         print("List of Commands:")
         print("stats")
+        print("inv")
+        print("equip")
+        print("inspect item")
         print("move")
         print("toggle minimap")
         print("look around")
-        print("inspect item")
-        print("inventory")
-        print("help")
         newlines(2)
 
 
@@ -91,6 +92,11 @@ while True:
 
 
 
+    elif selection == "equip":
+        equipItem(player)
+    
+    
+    
     else:
         print("That's not a command!")
         newline()
