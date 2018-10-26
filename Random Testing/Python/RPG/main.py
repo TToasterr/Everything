@@ -11,6 +11,7 @@ import inspectitem
 from inspectitem import inspectItem
 from giveitem import giveItem
 from equipping import equipItem
+from printmap import printMap
 
 #-----------------------------------------------------------------------
 #Making the player
