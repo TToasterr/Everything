@@ -20,6 +20,7 @@ def giveItem(player):
         bigboi()
         item = itemlist.Item(name, power, type, rarity, bufftype, buffammount)
         player.inv.append(item)
+        itemlist.item_array.append(item)
     else:
         item = input("Enter the ID of the item:\n")
         if item in itemlist.item_name_array:
