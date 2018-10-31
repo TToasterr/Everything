@@ -182,7 +182,7 @@ async def on_message(message): #when a message is sent
         if not mod:
             await client.send_message(message.channel, content = "You dont have the right role to do this.")
             return()
-            
+
         print("%s toggled stalking for %s.\n" % (message.author, message.server.name))
 
         with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "r") as sFile:
