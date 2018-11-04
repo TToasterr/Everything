@@ -3,8 +3,13 @@
 
 ---
 
-## Random Testing
-A folder full of random tests and school projects I've done. Some funny stuff but not too interesting.
+## Folder Projects
+Projects that are more than one file.
+
+---
+
+## Single File Projects
+Projects that are one file only.
 
 ---
 
