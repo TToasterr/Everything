@@ -23,9 +23,9 @@ key = curses.KEY_RIGHT
 score = 0
 
 while True:
-    print("")
     next_key = w.getch()
     key = key if next_key == -1 else next_key
+    print("")
 
     if snake[0][0] in [0, sh] or snake[0][1]  in [0, sw] or snake[0] in snake[1:]:
         curses.endwin()
