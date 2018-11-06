@@ -53,6 +53,11 @@ These are the commands and such that I'm planning on adding!
 **.listreactions** - Lists reactions for this server.
 
 **Some Hangman Game** - Havent put too much thought into this, but .suggest it if you like it!
+Tally for hangman - ||
+
+**search, word, msg, split** - Options for autoresponder, do .ex respondertags
+
+**.weeb** - Weebifies the message. (turns every 'r' into a 'w', turns every 'o' into 'owo')
 """
 
 
@@ -120,7 +125,7 @@ async def on_message(message): #when a message is sent
             ar = arFile.read().split("---")
             for num in range(len(ar) - 1):
                 i = ar[num].split(" -> ")
-                if str(i[0])[1:] in message.content:
+                if str(i[0])[1:].lower() in message.content.lower():
                     await client.send_message(message.channel, content = i[1])
 
     except:
@@ -167,6 +172,36 @@ async def on_message(message): #when a message is sent
     if msg == ".invite":
         await client.send_message(message.channel, content = "https://discordapp.com/oauth2/authorize?client_id=499928971711086601&scope=bot")
         print("%s got an invite link.\n" % message.author)
+
+
+
+    if msg == ".ex respondertags":
+        await client.send_message(message.channel, content = """For all examples, the trigger is 'xd'.
+y means it would respond, n means it wouldnt.
+
+**search:**
+xd--------------------------y
+i want to xd----------------y
+i wantxd--------------------y
+i want to x then d----------n
+
+**word:**
+xd--------------------------y
+i want to xd----------------y
+i wantxd--------------------n
+i want to x then d----------n
+
+**msg:**
+xd--------------------------y
+i want to xd----------------n
+i wantxd--------------------n
+i want to x then d----------n
+
+**split:**
+xd--------------------------y
+i want to xd----------------y
+i wantxd--------------------y
+i want to x then d----------y""")
 
 
 
@@ -418,7 +453,7 @@ async def on_message(message): #when a message is sent
     if msg[:8] == ".suggest":
         suggestion = msg[9:]
 
-        if suggestion == "":
+        if suggestion == "" or msg[8] != " ":
             await client.send_message(message.channel, content = "You didnt supply a suggestion!")
             return()
 

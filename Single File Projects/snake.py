@@ -20,10 +20,12 @@ food = [sh/2, sw/2]
 w.addch(int(round(food[0])), int(round(food[1])), "░")
 
 key = curses.KEY_RIGHT
+last_key = key
 score = 0
 
 while True:
     next_key = w.getch()
+    last_key = key if next_key != -1 else last_key
     key = key if next_key == -1 else next_key
     print("")
 
@@ -34,13 +36,13 @@ while True:
 
     new_head = [snake[0][0], snake[0][1]]
 
-    if key == curses.KEY_DOWN:
+    if key == curses.KEY_DOWN and last_key != curses.KEY_UP:
         new_head[0] += 1
-    if key == curses.KEY_UP:
+    if key == curses.KEY_UP and last_key != curses.KEY_DOWN:
         new_head[0] -= 1
-    if key == curses.KEY_LEFT:
+    if key == curses.KEY_LEFT and last_key != curses.KEY_RIGHT:
         new_head[1] -= 1
-    if key == curses.KEY_RIGHT:
+    if key == curses.KEY_RIGHT and last_key != curses.KEY_LEFT:
         new_head[1] += 1
 
     snake.insert(0, new_head)
