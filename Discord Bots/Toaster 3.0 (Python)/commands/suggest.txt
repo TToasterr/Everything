@@ -1,0 +1,21 @@
+def cmd(message, msg):
+  global doMsgOut, msgOut, consoleOut, channel, msgAmm, invitelink, me
+  failed = 0
+
+  try:
+    suggestion = msg[10:]
+  except:
+    failed = 1
+
+  doMsgOut = True
+  if not failed:
+    msgOut = ["Your suggestion was sent!", ("**%s** suggests: \n%s\n\n%s" % (message.author, suggestion, invitelink))]
+    consoleOut = "%s suggested '%s'." % (message.author, suggestion)
+    channel = [message.channel, me]
+    msgAmm = 2
+
+  else:
+    msgOut = ["You didn't give a suggestion!"]
+    consoleOut = "%s tried to suggest but didnt give a suggestion." % (message.author)
+    channel = [message.channel]
+    msgAmm = 1

@@ -1,0 +1,8 @@
+def cmd(message, msg):
+  global doMsgOut, msgOut, consoleOut, channel, msgAmm
+
+  doMsgOut = True
+  msgOut = ["https://discordapp.com/oauth2/authorize?client_id=507155028948287490&scope=bot"]
+  consoleOut = "%s got an invite link" % message.author
+  channel = [message.channel]
+  msgAmm = 1

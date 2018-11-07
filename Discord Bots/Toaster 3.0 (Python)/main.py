@@ -3,6 +3,7 @@ import sys
 from random import randint as ri
 from random import choice as ch
 from discord.utils import get
+import subprocess
 sys.path.append("H:/Misc")
 sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/commands")
 
@@ -53,18 +54,19 @@ async def on_message(message):
         print("%s got help. \n" % message.author)
         return()
 
-    # msgOut = True
-    # cmdMsgOut = ""
-    # cmdConsoleOut = "Default output message"
-
     for command in commands:
         if msg[:(len(command) + len(prefix))] == (prefix + command):
             with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/commands/%s.txt" % command), "r") as cmdfile:
-                cmd = cmdfile.read()
+                comd = cmdfile.read()
 
-            exec(cmd)
+            invitelink = await client.create_invite(destination = message.channel, xkcd = True, max_uses = 100)
+            me = await client.get_user_info("184474965859368960")
+            
+            exec(comd, globals())
+            cmd(message, msg)
             if doMsgOut:
-                await client.send_message(message.channel, content = msgOut)
+                for i in range(msgAmm):
+                    await client.send_message(channel[i], content = msgOut[i])
             print(consoleOut + "\n")
 
 

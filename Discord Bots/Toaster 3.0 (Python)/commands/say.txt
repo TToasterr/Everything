@@ -1,18 +1,8 @@
-print("\n\n\n\n\n\n\n\n\n\n")
+def cmd(message, msg):
+  global doMsgOut, msgOut, consoleOut, channel, msgAmm
 
-doMsgOut = True
-print("doMsgOut")
-print(doMsgOut)
-
-msgOut = message.content[6:]
-print("msgOut")
-print(msgOut)
-
-consoleOut = "%s made the bot say '%s'" % (message.author, message.content)
-print("consoleOut")
-print(consoleOut)
-
-xd = 5 * 5
-print(xd)
-
-print("\n\n\n\n")
+  doMsgOut = True
+  msgOut = [msg[6:]]
+  consoleOut = "%s made the bot say '%s'" % (message.author, msg[6:])
+  channel = [message.channel]
+  msgAmm = 1
