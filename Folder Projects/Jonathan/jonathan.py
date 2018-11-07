@@ -9,5 +9,6 @@ def ohNo(amount):
 
     for i in range(amount):
         webbrowser.open(url, new=new)
+        print("Opened a tab of %s" % url)
 
 ohNo(100)

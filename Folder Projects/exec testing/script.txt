@@ -1,0 +1,7 @@
+print("owo")
+output = "uwu"
+
+if cool:
+  print("owu")
+  
+OWO = True
