@@ -617,7 +617,7 @@ i want to x then d----------y""")
             final.append(templetter)
 
         await client.send_message(message.channel, content = "".join(final))
-        print("%s just weebified '%s'" % (message.author, input))
+        print("%s just weebified '%s'\n" % (message.author, input))
 
 
 
