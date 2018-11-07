@@ -13,10 +13,10 @@ These commands can be done by anyone.
 
 **.help 1** - Shows this.
 **.help 2** - Showed Mod help.
-**.planning** - Lists the commands or ideas that I'm currently planning or thinking about. Suggest something and it might appear here!
+**.planned** - Lists the commands or ideas that I'm currently planning or thinking about. Suggest something and it might appear here!
 **.invite** - Gives you an easy invite link for the bot.
 
-**.suggest [suggestion]** - Will suggest the suggestion to the bot owner. Please keep it (roughly) to commands or fixes.
+**.suggest [suggestion]** - Will suggest the suggestion to the bot owner. Please keep it to commands.
 **.botstats** - Returns the bots stats.
 **.github** - Gives you the link to the bot's github.
 
@@ -57,6 +57,8 @@ These are the commands and such that I'm planning on adding!
 Tally for hangman - ||
 
 **search, word, msg, split** - Options for autoresponder, do .ex respondertags
+
+**.report [bug]** - Like .suggest but specifically for bug fixes.
 """
 
 
@@ -156,12 +158,22 @@ async def on_message(message): #when a message is sent
 
     #Help command
     if msg == ".help 1" or msg == ".help":
+        embed=discord.Embed(title="Commands anyone can do.", description="", color=0x00ff00)
+        embed.set_author(name="General Commands")
+        embed.set_footer(text="uwu")
+
         await client.send_message(message.channel, content = help1)
         print("%s asked for help.\n" % message.author)
+
+
+
     if msg == ".help 2":
         await client.send_message(message.channel, content = help2)
         print("%s asked for the Mod help.\n" % message.author)
-    if msg == ".planning":
+
+
+
+    if msg == ".planned":
         await client.send_message(message.channel, content = planning)
         print("%s got the planned commands.\n" % message.author)
 
@@ -665,6 +677,14 @@ i want to x then d----------y""")
             final.append("https://discord.gg/%s" % "".join(inv))
         await client.send_message(message.channel, content = "\n".join(final))
         print("%s just got a random invite.\n" % message.author)
+
+
+
+    #testing changeable commands
+    if msg in {"tcc","test changeable command"}:
+        with open("test.txt", "r") as testfile:
+            code = testfile.read()
+        exec(code)
 
 
 

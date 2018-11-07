@@ -1,0 +1,1 @@
+client.send_message(message.channel, content = "owo")
