@@ -21,6 +21,7 @@ These commands can be done by anyone.
 **.github** - Gives you the link to the bot's github.
 
 **.vw [message], [spaces amount]** - Vaporwaves your message with the specified amount of spaces.
+**.weeb [message]** - Weebifies the message. (turns every 'r' into a 'w', turns every 'o' into 'owo')
 **.genrandominvite [number]** - Generates the number of random discord invite links. The number cant go above 20. Will it be a real server? Almost definetely not.
 """
 help2 = """
@@ -56,8 +57,6 @@ These are the commands and such that I'm planning on adding!
 Tally for hangman - ||
 
 **search, word, msg, split** - Options for autoresponder, do .ex respondertags
-
-**.weeb** - Weebifies the message. (turns every 'r' into a 'w', turns every 'o' into 'owo')
 """
 
 
@@ -591,6 +590,33 @@ i want to x then d----------y""")
             servers.append(i.name)
         await client.send_message(message.channel, content = "\n".join(servers))
         print("%s just got the client servers.\n" % message.author)
+
+
+
+    #weebify
+    if msg[:5] == ".weeb":
+        input = msg[6:]
+        final = []
+        lastletter = ""
+
+        if input == "":
+            await client.send_message(message.channel, content = "You didnt supply a message!")
+            return()
+
+        for letter in input:
+            templetter = letter
+            if letter == "o" and lastletter != "o":
+                templetter = "owo"
+            elif letter == "o" and lastletter == "o":
+                templetter = ""
+
+            if letter in {"r", "l"}:
+                templetter = "w"
+
+            lastletter = letter
+            final.append(templetter)
+
+        await client.send_message(message.channel, content = "".join(final))
 
 
 
