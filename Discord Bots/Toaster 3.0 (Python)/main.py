@@ -3,7 +3,6 @@ import sys
 from random import randint as ri
 from random import choice as ch
 from discord.utils import get
-import subprocess
 sys.path.append("H:/Misc")
 sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/commands")
 
