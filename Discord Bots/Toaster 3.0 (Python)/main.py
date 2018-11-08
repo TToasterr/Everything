@@ -35,8 +35,12 @@ async def on_message(message):
         print("%s tried to DM the bot.\n" % message.author)
         return()
 
+
+
     if message.author.bot:
         return()
+
+
 
     msg = message.content
     with open("cmdlist.txt", "r") as cmdlist:
@@ -48,10 +52,14 @@ async def on_message(message):
     if not msg.startswith(prefix):
         return()
 
+
+
     if msg == (prefix + "help"):
         await client.send_message(message.channel, content = ("Commands: \n\n" + "\n".join(commands)))
         print("%s got help. \n" % message.author)
         return()
+
+
 
     for command in commands:
         if msg[:(len(command) + len(prefix))] == (prefix + command):
@@ -67,9 +75,6 @@ async def on_message(message):
                 for i in range(msgAmm):
                     await client.send_message(channel[i], content = msgOut[i])
             print(consoleOut + "\n")
-
-
-
 
 
 
