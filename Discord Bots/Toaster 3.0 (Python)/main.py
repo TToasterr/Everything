@@ -61,9 +61,9 @@ async def on_message(message):
 
             invitelink = await client.create_invite(destination = message.channel, xkcd = True, max_uses = 100)
             me = await client.get_user_info("184474965859368960")
-            
+
             exec(comd, globals())
-            cmd(message, msg)
+            cmd(message, msg, invitelink, me)
             if doMsgOut:
                 for i in range(msgAmm):
                     await client.send_message(channel[i], content = msgOut[i])

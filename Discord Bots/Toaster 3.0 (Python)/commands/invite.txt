@@ -1,4 +1,4 @@
-def cmd(message, msg):
+def cmd(message, msg, invitelink, me):
   global doMsgOut, msgOut, consoleOut, channel, msgAmm
 
   doMsgOut = True
