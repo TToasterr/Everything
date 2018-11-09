@@ -1,5 +1,6 @@
 class command:
-    def __init__(self, name, rname, alias, desc, type, code):
+    def __init__(self, who, name, rname, alias, desc, type, code):
+        self.who = who
         self.name = name
         self.rname = rname
         self.alias = alias
@@ -10,12 +11,12 @@ class command:
 
 
 #help
-help = command("help","t.help","?","Lists all commands.","general","")
+help = command("anyone","help","t.help","?","Lists all commands.","general","")
 
 
 
 #say
-say = command("say","t.say [message]","say","Makes the bot say whatever you want.","general","""
+say = command("anyone","say","t.say [message]","say","Makes the bot say whatever you want.","general","""
 def cmd(msg, message, me, invitelink, wks):
     global cmdOut
 
@@ -30,7 +31,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 #invite
-invite = command("invite","t.invite","inv","Gives you an invite link for the bot.","general","""
+invite = command("anyone","invite","t.invite","inv","Gives you an invite link for the bot.","general","""
 def cmd(msg, message, me, invitelink, wks):
     global cmdOut
 
@@ -41,7 +42,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 #vaporwave
-vaporwave = command("vaporwave","t.vaporwave [message], [amount of spaces]","vwave","Vaporwaves your message with the given amount of spaces.","general","""
+vaporwave = command("anyone","vaporwave","t.vaporwave [message], [amount of spaces]","vwave","Vaporwaves your message with the given amount of spaces.","general","""
 def cmd(msg, message, me, invitelink, wks):
     global cmdOut
 
@@ -71,7 +72,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 #suggest
-suggest = command("suggest","t.suggest [message]","sug","Suggests something to the author of the bot. \nKeep it to command ideas.","general","""
+suggest = command("anyone","suggest","t.suggest [message]","sug","Suggests something to the author of the bot. \nKeep it to command ideas.","general","""
 def cmd(msg, message, me, invitelink, wks):
     global cmdOut, suggestion
 
@@ -95,7 +96,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 #stalk
-stalk = command("stalk","t.stalk","st","Turns on or off stalking for the server you do it in. \nPrints every message into console.","mod","""
+stalk = command("mods","stalk","t.stalk","st","Turns on or off stalking for the server you do it in. \nPrints every message into console.","mod","""
 def cmd(msg, message, me, invitelink, wks):
     global cmdOut
 
@@ -117,7 +118,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 #botstats
-botstats = command("botstats","t.botstats","bs","Gives you the bot statistics.","general","""
+botstats = command("anyone","botstats","t.botstats","bs","Gives you the bot statistics.","general","""
 def cmd(msg, message, me, invitelink, wks):
     global cmdOut
 
@@ -132,7 +133,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 #addresponse
-addresponse = command("addresponse","t.addresponse [trigger], [response]","addres","Adds an autoresponse to the server.","mod","""
+addresponse = command("mods","addresponse","t.addresponse [trigger], [response]","addres","Adds an autoresponse to the server.","autores","""
 def cmd(msg, message, me, invitelink, wks):
     global cmdOut
 
@@ -167,7 +168,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 #delresponse
-delresponse = command("delresponse","t.delresponse [trigger]","delres","Deletes an autoresponse from the server.","mod","""
+delresponse = command("mods","delresponse","t.delresponse [trigger]","delres","Deletes an autoresponse from the server.","autores","""
 def cmd(msg, message, me, invitelink, wks):
     global cmdOut
 
@@ -206,7 +207,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 #listresponses
-listresponses = command("listresponses","t.listresponses","listresps","Lists all autoresponses for the server.","mod","""
+listresponses = command("anyone","listresponses","t.listresponses","listresps","Lists all autoresponses for the server.","autores","""
 def cmd(msg, message, me, invitelink, wks):
     global cmdOut
 
@@ -233,6 +234,63 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 
+#Toggle message storage
+toggleStorage = command("mods","togglestorage","t.togglestorage","tstore","Toggles on or off the storage of messages for the server. \n\nStoring messages will let you use a command that randomly picks a message and sends it.","strg","""
+def cmd(msg, message, me, invitelink, wks):
+    global cmdOut
+
+    if message.author.server_permissions.administrator or message.author.server_permissions.manage_guild:
+        try:
+            store = int(wks.cell("A2").value)
+            if store == 0:
+                wks.cell("A2").value = 1
+            else:
+                wks.cell("A2").value = 0
+        except:
+            wks.cell("A2").value = 0
+            store = 1
+
+        out = "on" if store == 0 else "off"
+        cmdOut = "Message storing changed to %s." % out
+        print("%s toggled message storage for %s" % (message.author, message.server.name))
+
+    else:
+        cmdOut = "You dont have the right permissions to toggle message storing foe this server."
+        print("%s tried to toggle message storage but didnt have permission." % message.author)
+""")
+
+
+
+getMsg = command("anyone","getmsg","t.getmsg","gmg","If message storage is turned on, it will give a random message in storage.","strg","""
+def cmd(msg, message, me, invitelink, wks):
+    from random import choice as ch
+    global cmdOut
+
+    if wks.cell("A2").value == "0":
+        cmdOut = "Message storage isnt on for this server!"
+        print("%s tried to get a random message, but message storage wasnt turned on." % message.author)
+        return()
+
+    msgAmmt = int(wks.cell("A3").value)
+    msgs = []
+    for i in range(msgAmmt):
+        celll = "C" + str(i) if i != 0 else "C1"
+        msgs.append(wks.cell(celll).value)
+
+    msgs.pop(0)
+    cmdOut = ch(msgs)
+    print("%s got a random message from %s" % (message.author, message.server.name))
+""")
+
+
+
+default = command("anyone","name","rname","alias","desc","type","""
+def cmd(msg, message, me, invitelink, wks):
+    global cmdOut
+""")
+
+
+
 cmdArr = [
 help,
 say,
@@ -243,5 +301,7 @@ botstats,
 stalk,
 addresponse,
 delresponse,
-listresponses
+listresponses,
+toggleStorage,
+getMsg
 ]

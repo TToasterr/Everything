@@ -14,13 +14,6 @@ prefix = "t."
 gc = pygsheets.authorize(service_file='H:/Misc/creds.json')
 df = pd.DataFrame()
 
-#select the first sheet
-# wks = sh[0]
-# sh.worksheets()
-
-#update the first sheet with df, starting at cell B2.
-# wks.set_dataframe(df,(1,1))
-
 
 
 @client.event
@@ -67,7 +60,7 @@ async def on_message(message):
         if sheet.title == message.server.name:
             sheett = True
     if sheett == False:
-        sh.add_worksheet(message.server.name, rows=100, cols=26, src_tuple=None, src_worksheet=None, index=None)
+        sh.add_worksheet(message.server.name, rows=100000, cols=26, src_tuple=None, src_worksheet=None, index=None)
         owo = 0
         for sheet in sh.worksheets():
             owo += 1
@@ -96,9 +89,23 @@ async def on_message(message):
 
 
 
+    try:
+        if int(wks.cell("A2").value) == 1:
+            try:
+                wks.cell("A3").value = (int(wks.cell("A3").value) + 1)
+            except:
+                wks.cell("A3").value = 1
+            celll = "C" + wks.cell("A3").value
+            wks.cell(celll).value = msg
+    except:
+        do = "nothing"
+
+
+
     gcmds = []
     mcmds = []
-    pcmds = []
+    autorescmds = []
+    strgcmds = []
     with open("cmdlist.py", "r") as cmdlist:
         temp = cmdlist.read()
         exec(temp, globals())
@@ -107,8 +114,10 @@ async def on_message(message):
                 gcmds.append(command)
             elif command.type == "mod":
                 mcmds.append(command)
-            else:
-                pcmds.append(command)
+            elif command.type == "autores":
+                autorescmds.append(command)
+            elif command.type == "strg":
+                strgcmds.append(command)
 
 
 
@@ -121,8 +130,9 @@ async def on_message(message):
         embed=discord.Embed(title="t.help [command] for more info", description="-------------------------", color=0x00ff00)
         embed.set_author(name="All Commands")
         embed.add_field(name="General Commands", value=("\n".join([(command.name) for command in gcmds])), inline=False)
-        embed.add_field(name="Mod Commands", value=("\n".join([(command.name) for command in mcmds])) if mcmds != [] else "Nothing yet", inline=False)
-        embed.add_field(name="Planned Commands", value=("\n".join([(command.name) for command in pcmds])) if pcmds != [] else "Nothing yet", inline=False)
+        embed.add_field(name="Mod Commands", value=("\n".join([(command.name) for command in mcmds])), inline=False)
+        embed.add_field(name="Autoresponder Commands", value=("\n".join([(command.name) for command in autorescmds])), inline=False)
+        embed.add_field(name="Message Storage Commands", value=("\n".join([(command.name) for command in strgcmds])), inline=False)
         await client.send_message(message.channel, embed = embed)
         print("%s got help. \n" % message.author)
         return()
@@ -134,7 +144,7 @@ async def on_message(message):
         for command in cmdArr:
             if cmdname in {command.name, command.alias}:
                 embed = discord.Embed(title=(command.name), description=(command.rname), color=0x00ff00)
-                embed.add_field(name="-", value="%s\nAlias: %s" % (command.desc, command.alias))
+                embed.add_field(name="-", value="%s\n\nAlias: %s\nWho can use it: %s" % (command.desc, command.alias, command.who))
                 embed.set_footer(text=command.type)
 
         await client.send_message(message.channel, embed = embed)
@@ -146,7 +156,7 @@ async def on_message(message):
         for command in cmdArr:
             if cmdname in {command.name, command.alias}:
                 embed = discord.Embed(title=(command.name), description=(command.rname), color=0x00ff00)
-                embed.add_field(name="-", value="%s\nAlias: %s" % (command.desc, command.alias))
+                embed.add_field(name="-", value="%s\n\nAlias: %s\nWho can use it: %s" % (command.desc, command.alias, command.who))
                 embed.set_footer(text=command.type)
 
         await client.send_message(message.channel, embed = embed)
