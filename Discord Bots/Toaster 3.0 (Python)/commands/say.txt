@@ -1,8 +1,0 @@
-def cmd(message, msg, invitelink, me):
-  global doMsgOut, msgOut, consoleOut, channel, msgAmm
-
-  doMsgOut = True
-  msgOut = [msg[6:]]
-  consoleOut = "%s made the bot say '%s'" % (message.author, msg[6:])
-  channel = [message.channel]
-  msgAmm = 1

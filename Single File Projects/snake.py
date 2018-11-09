@@ -4,7 +4,7 @@ import curses
 s = curses.initscr()
 curses.curs_set(0)
 sh, sw = s.getmaxyx()
-w = curses.newwin(sh, sw, 0, 0)
+w = curses.newwin(int(sh), int(sw), 0, 0)
 w.keypad(1)
 w.timeout(1)
 
@@ -17,7 +17,7 @@ snake = [
 ]
 
 food = [sh/2, sw/2]
-w.addch(int(round(food[0])), int(round(food[1])), "░")
+w.addch(food[0], food[1], "░")
 
 key = curses.KEY_RIGHT
 last_key = key
@@ -52,8 +52,8 @@ while True:
         food = None
         while food is None:
             nf = [
-                random.randint(1, sh-1),
-                random.randint(1, sw-1)
+                random.randint(1, int(sh)-1),
+                random.randint(1, int(sw)-1)
             ]
             food = nf if nf not in snake else None
         w.addch(int(round(food[0])), int(round(food[1])), "░")

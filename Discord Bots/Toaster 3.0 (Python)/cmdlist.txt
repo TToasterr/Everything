@@ -1,6 +1,0 @@
-help
-say
-invite
-vaporwave
-suggest
-stalk

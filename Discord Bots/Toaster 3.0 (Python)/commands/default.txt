@@ -1,8 +1,0 @@
-def cmd(message, msg, invitelink, me):
-  global doMsgOut, msgOut, consoleOut, channel, msgAmm, invitelink, me
-
-  doMsgOut = False
-  msgOut = [""]
-  consoleOut = "%s got a default output." % (message.author)
-  channel = [message.channel]
-  msgAmm = 1
