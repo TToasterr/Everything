@@ -10,6 +10,10 @@ class command:
 
 
 
+linebreak = "\n"
+
+
+
 #help
 help = command("anyone","help","t.help","?","Lists all commands.","general","")
 
@@ -271,14 +275,10 @@ def cmd(msg, message, me, invitelink, wks):
         print("%s tried to get a random message, but message storage wasnt turned on." % message.author)
         return()
 
-    msgAmmt = int(wks.cell("A3").value)
-    msgs = []
-    for i in range(msgAmmt):
-        celll = "C" + str(i) if i != 0 else "C1"
-        msgs.append(wks.cell(celll).value)
+    with open("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/server message storage/%s.txt" % message.server.name, "r") as serverFile:
+        uwu = serverFile.read().split(linebreak)
 
-    msgs.pop(0)
-    cmdOut = ch(msgs)
+    cmdOut = ch(uwu)
     print("%s got a random message from %s" % (message.author, message.server.name))
 """)
 

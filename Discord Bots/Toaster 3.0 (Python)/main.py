@@ -6,7 +6,7 @@ from discord.utils import get
 import pygsheets
 import pandas as pd
 sys.path.append("H:/Misc")
-sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/commands")
+sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/server message storage")
 
 client = discord.Client()
 prefix = "t."
@@ -76,7 +76,7 @@ async def on_message(message):
 
 
 
-    autoresponses = wks.range("B1:B50")
+    autoresponses = wks.range("B1:B20")
     for x in autoresponses:
         x = str(x[0])
         x = x[6:]
@@ -90,13 +90,9 @@ async def on_message(message):
 
 
     try:
-        if int(wks.cell("A2").value) == 1:
-            try:
-                wks.cell("A3").value = (int(wks.cell("A3").value) + 1)
-            except:
-                wks.cell("A3").value = 1
-            celll = "C" + wks.cell("A3").value
-            wks.cell(celll).value = msg
+        if int(wks.cell("A2").value) == 1 and msg[:2] != "t.":
+            with open("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/server message storage/%s.txt" % message.server.name, "a+") as serverFile:
+                serverFile.write("**%s**: %s\n" % (message.author, msg))
     except:
         do = "nothing"
 
