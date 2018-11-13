@@ -20,8 +20,8 @@ help = command("anyone","help","t.help","?","Lists all commands.","general","")
 
 
 #say
-say = command("anyone","say","t.say [message]","say","Makes the bot say whatever you want.","general","""
-def cmd(msg, message, me, invitelink, wks):
+say = command("anyone","say","t.say [message]","say","Makes the bot say whatever you want.","fun","""
+def cmd(msg, message, me, wks):
     global cmdOut
 
     if msg[:5] == "t.say":
@@ -36,7 +36,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 #invite
 invite = command("anyone","invite","t.invite","inv","Gives you an invite link for the bot.","general","""
-def cmd(msg, message, me, invitelink, wks):
+def cmd(msg, message, me, wks):
     global cmdOut
 
     cmdOut = "https://discordapp.com/oauth2/authorize?client_id=507155028948287490&scope=bot"
@@ -46,8 +46,8 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 #vaporwave
-vaporwave = command("anyone","vaporwave","t.vaporwave [message], [amount of spaces]","vwave","Vaporwaves your message with the given amount of spaces.","general","""
-def cmd(msg, message, me, invitelink, wks):
+vaporwave = command("anyone","vaporwave","t.vaporwave [message], [amount of spaces]","vwave","Vaporwaves your message with the given amount of spaces.","fun","""
+def cmd(msg, message, me, wks):
     global cmdOut
 
     try:
@@ -77,7 +77,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 #suggest
 suggest = command("anyone","suggest","t.suggest [message]","sug","Suggests something to the author of the bot. \nKeep it to command ideas.","general","""
-def cmd(msg, message, me, invitelink, wks):
+def cmd(msg, message, me, wks):
     global cmdOut, suggestion
 
     failed = 0
@@ -100,11 +100,11 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 #stalk
-stalk = command("mods","stalk","t.stalk","st","Turns on or off stalking for the server you do it in. \nPrints every message into console.","mod","""
-def cmd(msg, message, me, invitelink, wks):
+stalk = command("mods","stalk","t.stalk","st","Turns on or off stalking for the server you do it in. \nPrints every message into console.","general","""
+def cmd(msg, message, me, wks):
     global cmdOut
 
-    if message.author.server_permissions.administrator or message.author.server_permissions.manage_guild:
+    if message.author.server_permissions.administrator or message.author.server_permissions.manage_server:
         if int(wks.cell("A1").value) == 0:
             wks.cell("A1").value = 1
             cmdOut = "Stalking has been turned on for this server!"
@@ -123,7 +123,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 #botstats
 botstats = command("anyone","botstats","t.botstats","bs","Gives you the bot statistics.","general","""
-def cmd(msg, message, me, invitelink, wks):
+def cmd(msg, message, me, wks):
     global cmdOut
 
     activeServers = client.servers
@@ -138,10 +138,10 @@ def cmd(msg, message, me, invitelink, wks):
 
 #addresponse
 addresponse = command("mods","addresponse","t.addresponse [trigger], [response]","addres","Adds an autoresponse to the server.","autores","""
-def cmd(msg, message, me, invitelink, wks):
+def cmd(msg, message, me, wks):
     global cmdOut
 
-    if message.author.server_permissions.administrator or message.author.server_permissions.manage_guild:
+    if message.author.server_permissions.administrator or message.author.server_permissions.manage_server:
         args = msg[14:] if msg[:13] == "t.addresponse" else msg[9:]
         args = args.split(", ")
         trigger = args[0]
@@ -173,10 +173,10 @@ def cmd(msg, message, me, invitelink, wks):
 
 #delresponse
 delresponse = command("mods","delresponse","t.delresponse [trigger]","delres","Deletes an autoresponse from the server.","autores","""
-def cmd(msg, message, me, invitelink, wks):
+def cmd(msg, message, me, wks):
     global cmdOut
 
-    if message.author.server_permissions.administrator or message.author.server_permissions.manage_guild:
+    if message.author.server_permissions.administrator or message.author.server_permissions.manage_server:
         trigger = msg[14:] if msg[:13] == "t.delresponse" else msg[9:]
         done = 0
 
@@ -212,7 +212,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 #listresponses
 listresponses = command("anyone","listresponses","t.listresponses","listresps","Lists all autoresponses for the server.","autores","""
-def cmd(msg, message, me, invitelink, wks):
+def cmd(msg, message, me, wks):
     global cmdOut
 
     final = []
@@ -240,10 +240,10 @@ def cmd(msg, message, me, invitelink, wks):
 
 #Toggle message storage
 toggleStorage = command("mods","togglestorage","t.togglestorage","tstore","Toggles on or off the storage of messages for the server. \n\nStoring messages will let you use a command that randomly picks a message and sends it.","strg","""
-def cmd(msg, message, me, invitelink, wks):
+def cmd(msg, message, me, wks):
     global cmdOut
 
-    if message.author.server_permissions.administrator or message.author.server_permissions.manage_guild:
+    if message.author.server_permissions.administrator or message.author.server_permissions.manage_server:
         try:
             store = int(wks.cell("A2").value)
             if store == 0:
@@ -266,7 +266,7 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 getMsg = command("anyone","getmsg","t.getmsg","gmg","If message storage is turned on, it will give a random message in storage.","strg","""
-def cmd(msg, message, me, invitelink, wks):
+def cmd(msg, message, me, wks):
     from random import choice as ch
     global cmdOut
 
@@ -284,10 +284,59 @@ def cmd(msg, message, me, invitelink, wks):
 
 
 
+weeb = command("anyone","weeb","t.weeb [message]","wb","Weebifies your message! Changes all 'r's and 'l's to w, and all 'o's to owo.","fun","""
+def cmd(msg, message, me, wks):
+    global cmdOut
+    input = msg[7:] if msg[:6] == "t.weeb" else msg[5:]
+    final = []
+    lastletter = ""
+
+    if input == "":
+        cmdOut = "You didnt supply a message."
+        return()
+
+    for letter in input:
+        templetter = letter
+        if letter == "o" and lastletter != "o":
+            templetter = "owo"
+        elif letter == "o" and lastletter == "o":
+            templetter = ""
+
+        if letter in {"r", "l"}:
+            templetter = "w"
+
+        lastletter = letter
+        final.append(templetter)
+
+    cmdOut = "".join(final)
+    print("%s just weebified '%s'" % (message.author, input))
+""")
+
+
+
+choose = command("anyone","choose","t.choose [choice 1], [choice 2]...","ch","Chooses between the given choices.","general","""
+def cmd(msg, message, me, wks):
+    global cmdOut
+    from random import choice as ch
+
+    choices = msg[9:].split(", ") if msg[9] != " " else msg[5:].split(", ")
+    cmdOut = ch(choices)
+    print("%s made the bot choose between '%s'" % (message.author, ", ".join(choices)))
+""")
+
+
+
 default = command("anyone","name","rname","alias","desc","type","""
-def cmd(msg, message, me, invitelink, wks):
+def cmd(msg, message, me, wks):
     global cmdOut
 """)
+
+
+
+#afk and statuses
+#suggestions list
+#'approve' suggestions
+#removing suggestions
 
 
 
@@ -303,5 +352,7 @@ addresponse,
 delresponse,
 listresponses,
 toggleStorage,
-getMsg
+getMsg,
+weeb,
+choose
 ]
