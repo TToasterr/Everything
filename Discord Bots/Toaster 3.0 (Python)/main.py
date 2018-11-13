@@ -13,6 +13,7 @@ prefix = "t."
 
 gc = pygsheets.authorize(service_file='H:/Misc/creds.json')
 df = pd.DataFrame()
+thing = "w"
 
 
 
@@ -51,28 +52,43 @@ async def on_message(message):
 
 
 
-    sh = gc.open('Testing')
-    sheett = False
-    sss = 0
-    for sheet in sh.worksheets():
-        if sheett == False:
-            sss += 1
-        if sheet.title == message.server.name:
-            sheett = True
-    if sheett == False:
-        sh.add_worksheet(message.server.name, rows=100000, cols=26, src_tuple=None, src_worksheet=None, index=None)
-        owo = 0
+    try:
+        sh = gc.open('Testing')
+        sheett = False
+        sss = 0
         for sheet in sh.worksheets():
-            owo += 1
-        wks = sh[owo-1]
-        wks.cell('A1').value = 0
-    else:
-        wks = sh[sss-1]
+            if sheett == False:
+                sss += 1
+            if sheet.title == message.server.name:
+                sheett = True
+        if sheett == False:
+            sh.add_worksheet(message.server.name, rows=100000, cols=26, src_tuple=None, src_worksheet=None, index=None)
+            owo = 0
+            for sheet in sh.worksheets():
+                owo += 1
+            wks = sh[owo-1]
+            wks.cell('A1').value = 0
+        else:
+            wks = sh[sss-1]
+        thing = "unbrok"
+    except:
+        if thing == "unbrok":
+            thing = "brok"
+            await client.send_message(message.channel, content = "The sheets API couldn't connect to google (I blame google).\nThis usually fixes itself in about a minute, just w a i t\nThis just means that message storage and stalking wont work.")
+            print("The API couldn't connect to google. \n")
+        return()
 
 
 
-    if int(wks.cell('A1').value) == 1:
-        print("%s | %s | %s: %s\n" % (message.server.name, message.channel, message.author, message.content))
+    try:
+        if int(wks.cell('A1').value) == 1:
+            print("%s | %s | %s: %s\n" % (message.server.name, message.channel, message.author, message.content))
+        thing = "unbrok"
+    except:
+        if thing == "unbrok":
+            await client.send_message(message.channel, content = "You used this command too many times in a short period of time (I blame google).\nThis usually fixes itself after about a minute.\nThis just means that message storage and stalking wont work.")
+            print("The API reached quota or something. \n")
+        return()
 
 
 
@@ -90,7 +106,7 @@ async def on_message(message):
 
 
     try:
-        if int(wks.cell("A2").value) == 1 and msg[:2] != "t.":
+        if int(wks.cell("A2").value) == 1 and msg[:2] != "t." and msg[0] not in {".", "!", "?"}:
             with open("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/server message storage/%s.txt" % message.server.name, "a+") as serverFile:
                 serverFile.write("**%s**: %s\n" % (message.author, msg))
     except:
@@ -102,6 +118,7 @@ async def on_message(message):
     mcmds = []
     autorescmds = []
     strgcmds = []
+    fcmds = []
     with open("cmdlist.py", "r") as cmdlist:
         temp = cmdlist.read()
         exec(temp, globals())
@@ -114,6 +131,8 @@ async def on_message(message):
                 autorescmds.append(command)
             elif command.type == "strg":
                 strgcmds.append(command)
+            elif command.type == "fun":
+                fcmds.append(command)
 
 
 
@@ -126,7 +145,7 @@ async def on_message(message):
         embed=discord.Embed(title="t.help [command] for more info", description="-------------------------", color=0x00ff00)
         embed.set_author(name="All Commands")
         embed.add_field(name="General Commands", value=("\n".join([(command.name) for command in gcmds])), inline=False)
-        embed.add_field(name="Mod Commands", value=("\n".join([(command.name) for command in mcmds])), inline=False)
+        embed.add_field(name="Fun Commands", value=("\n".join([(command.name) for command in fcmds])), inline=False)
         embed.add_field(name="Autoresponder Commands", value=("\n".join([(command.name) for command in autorescmds])), inline=False)
         embed.add_field(name="Message Storage Commands", value=("\n".join([(command.name) for command in strgcmds])), inline=False)
         await client.send_message(message.channel, embed = embed)
@@ -135,20 +154,8 @@ async def on_message(message):
 
 
 
-    if msg[:3] == (prefix + "?"):
-        cmdname = msg[4:]
-        for command in cmdArr:
-            if cmdname in {command.name, command.alias}:
-                embed = discord.Embed(title=(command.name), description=(command.rname), color=0x00ff00)
-                embed.add_field(name="-", value="%s\n\nAlias: %s\nWho can use it: %s" % (command.desc, command.alias, command.who))
-                embed.set_footer(text=command.type)
-
-        await client.send_message(message.channel, embed = embed)
-        print("%s got help for the %s command. \n" % (message.author, cmdname))
-        return()
-
-    if msg[:6] == (prefix + "help"):
-        cmdname = msg[7:]
+    if msg[:6] == "t.help" or msg[:3] == "t.?":
+        cmdname = msg[7:] if msg[:3] != "t.?" else msg[4:]
         for command in cmdArr:
             if cmdname in {command.name, command.alias}:
                 embed = discord.Embed(title=(command.name), description=(command.rname), color=0x00ff00)
@@ -164,11 +171,10 @@ async def on_message(message):
     for command in cmdArr:
         if msg[:(len(command.name) + len(prefix))] == (prefix + command.name) or msg[:(len(command.alias) + len(prefix))] == (prefix + command.alias):
 
-            invitelink = await client.create_invite(destination = message.channel, xkcd = True, max_uses = 100)
             me = await client.get_user_info("184474965859368960")
 
             exec(command.code, globals())
-            cmd(msg, message, me, invitelink, wks)
+            cmd(msg, message, me, wks)
             await client.send_message(message.channel, content = cmdOut)
             if command.name == "suggest":
                 await client.send_message(me, content = "**%s** suggests: \n%s\n\n%s" % (message.author, suggestion, invitelink))
