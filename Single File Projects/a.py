@@ -12,21 +12,29 @@ print("")
 for num in range(10000):
     thingg = []
 
-    for i in range(24):
-        thing = ri(0,2)
-        if thing == 0:
+    for i in range(22):
+        thing = ri(0,15)
+        if thing < 5:
             thingg.append(ch(alphabet))
-        elif thing == 1:
+        elif thing < 10:
             thingg.append(ch(upAlphabet))
-        elif thing == 2:
+        elif thing < 15:
             thingg.append(str(ri(0,9)))
+        elif thing < 16:
+            thingg.append(ch(["_","-"]))
 
     url = "".join(thingg)
-    final = "https://www.youtube.com/channel/%s" % url
+    final = "https://www.youtube.com/channel/UC%s" % url
     new = 2
-    try:
-        page = urlopen(final)
+    page = urlopen(final)
+    soup = BeautifulSoup(page, 'html.parser')
+
+    html = soup.find("a", {"class":"spf-link branded-page-header-title-link yt-uix-sessionlink"})
+    channel_name = html.text
+    print(channel_name)
+
+    if channel_name != "":
         webbrowser.open(final, new=new)
-        print("\n\n--------------------\n%s \nexists.\n--------------------" % final)
-    except:
+        print("\n\n--------------------\n%s \nexists.\nChannel Name: %s\n--------------------" % (final, channel_name))
+    else:
         print("\n\n%s \ndoesnt exist." % final)
