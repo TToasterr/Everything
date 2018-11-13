@@ -15,3 +15,5 @@ coding -> coding makes me want to commit `self.alive = False`
 ---
 owo -> wow what a furry
 ---
+/s -> was that /s *really* necessary?
+---
