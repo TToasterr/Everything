@@ -29,5 +29,5 @@ An email autoresponder which is slightly more efficient.
 ### datetimetest.py
 Just me messing with datetime modules.
 
-### a.py
-Opens 25 tabs of randomly generated youtube channel URLs.
+### youtubegenerator.py
+Generates 10k youtube channel links and if any one of them is a real channel, opens it as a new tab.
