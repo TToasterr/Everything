@@ -13,7 +13,7 @@ prefix = "t."
 
 gc = pygsheets.authorize(service_file='H:/Misc/creds.json')
 df = pd.DataFrame()
-thing = "w"
+thing = ""
 
 
 
@@ -36,6 +36,8 @@ async def on_server_join(server):
 
 @client.event
 async def on_message(message):
+    global thing
+
     if message.channel.is_private and not (message.author.bot):
         await client.send_message(message.channel, content = "This bot doesnt work with DMs (sorry!). Invite me to a server and use me there!\nhttps://discordapp.com/oauth2/authorize?client_id=507155028948287490&scope=bot")
         print("%s tried to DM the bot.\n" % message.author)
@@ -52,31 +54,33 @@ async def on_message(message):
 
 
 
-    try:
-        sh = gc.open('Testing')
-        sheett = False
-        sss = 0
-        for sheet in sh.worksheets():
-            if sheett == False:
-                sss += 1
-            if sheet.title == message.server.name:
-                sheett = True
+    # try:
+    sh = gc.open('Testing')
+    sheett = False
+    sss = 0
+    for sheet in sh.worksheets():
         if sheett == False:
-            sh.add_worksheet(message.server.name, rows=100000, cols=26, src_tuple=None, src_worksheet=None, index=None)
-            owo = 0
-            for sheet in sh.worksheets():
-                owo += 1
-            wks = sh[owo-1]
-            wks.cell('A1').value = 0
-        else:
-            wks = sh[sss-1]
-        thing = "unbrok"
-    except:
-        if thing == "unbrok":
-            thing = "brok"
-            await client.send_message(message.channel, content = "The sheets API couldn't connect to google (I blame google).\nThis usually fixes itself in about a minute, just w a i t\nThis just means that message storage and stalking wont work.")
-            print("The API couldn't connect to google. \n")
-        return()
+            sss += 1
+        if sheet.title == message.server.name:
+            sheett = True
+    if sheett == False:
+        sh.add_worksheet(message.server.name, rows=1000, cols=26, src_tuple=None, src_worksheet=None, index=None)
+        owo = 0
+        for sheet in sh.worksheets():
+            owo += 1
+        wks = sh[owo-1]
+        wks.cell('A1').value = 0
+    else:
+        wks = sh[sss-1]
+    thing = "unbrok"
+    # except:
+    #     if thing == "unbrok":
+    #         thing = "brok"
+    #         await client.send_message(message.channel, content = "The sheets API couldn't connect to google (I blame google).\nThis usually fixes itself in about a minute, just w a i t\nThis just means that message storage and stalking wont work.")
+    #         print("The API couldn't connect to google. \n")
+    #     else:
+    #         print("what")
+    #     return()
 
 
 
@@ -88,6 +92,8 @@ async def on_message(message):
         if thing == "unbrok":
             await client.send_message(message.channel, content = "You used this command too many times in a short period of time (I blame google).\nThis usually fixes itself after about a minute.\nThis just means that message storage and stalking wont work.")
             print("The API reached quota or something. \n")
+        else:
+            print("what 2")
         return()
 
 
