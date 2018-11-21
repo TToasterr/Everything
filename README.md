@@ -1,5 +1,5 @@
-# Everything
-## Just a massive place to store all my projects.
+# TToasterrr/Everything
+## A Place I keep all (or most of) of my projects, for easy access.
 
 ---
 
