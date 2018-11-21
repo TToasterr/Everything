@@ -1,6 +1,8 @@
 # TToasterrr/Everything
 ### A Place I keep all (or most of) of my projects, for easy access.
 
+---
+
 **The projects** are organized by whether they take up multiple files or not. The easy to make programs are all in the *Folder Projects* folder, and the single file projects are all in the *Single File Projects* folder. Pretty obvious.
 
 ---
