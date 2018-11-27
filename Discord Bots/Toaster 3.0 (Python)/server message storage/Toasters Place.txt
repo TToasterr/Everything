@@ -1749,3 +1749,339 @@ Although, it's unusually cloudy here today.  The weather's being autumnal for th
 **Toaster#2600**: t/gmg
 **Toaster#2600**: yeah
 **Toaster#2600**: honestly yeah
+**Toaster#2600**: <@!199887258038304769>
+**Toaster#2600**: wrong channel but u should get on the MC server
+**Zildin#0532**: K
+**Zildin#0532**: Why?
+**Toaster#2600**: i got factions and set up some economy stuff and i thought u might wanna get started before i claim your entire house for my faction
+**Toaster#2600**: jk lol but you should get on and start stuff
+**Zildin#0532**: Ok
+**Zildin#0532**: Also I set up some farms on the survival world
+**Toaster#2600**: I saw
+**Zildin#0532**: What are your thoughts on them?
+**Toaster#2600**: good i guess? lol idk
+**Zildin#0532**: K lol
+**Zildin#0532**: Should we vc or nah?
+**Toaster#2600**: sure
+**Zildin#0532**: K hang on
+**Zildin#0532**: Can’t find my headset
+**Toaster#2600**: we dont have to lol
+**Zildin#0532**: Ok
+**Toaster#2600**: lol
+**Toaster#2600**: ima set up permissions so ill be afk for a sec
+**Toaster#2600**: lol nice
+**Toaster#2600**: [Trade]
+$[amount of money you want from the trade]
+[amount of item in trade] [item name or id you can get this from /itemdb and if you dont have perms ask me]:[amount of item in sign(just set to 1 to start)]
+**Zildin#0532**: Ok
+**5a+ch31.exe#9554**: Why is only part of my name underlined?
+**Toaster#2600**: what
+**5a+ch31.exe#9554**: Never mind
+**5a+ch31.exe#9554**: Probably just my phone being dumb
+**GoldenPot8o#2294**: hey toaster are you willing to buy me half life 1?
+**GoldenPot8o#2294**: its like 2 dollars
+**JONKKKK#4186**: UHHHHHH
+**JONKKKK#4186**: there i made it better
+**5a+ch31.exe#9554**: Small Business Saturday is almost here! Petree Garden Center & Florist is stuffed with goodies for the launch of our Holiday Shop. Santa will be visiting the store, 12-2! Santa!! Come see our amazing selection of poinsettias, Christmas Cactus, & decor and enter our raffle. Refreshments & good cheer all day! See you Saturday!
+**Toaster#2600**: <@!199887258038304769> i set up a coal shop
+**Zildin#0532**: Yay
+**Sintayman707#4085**: No u
+**Zildin#0532**: <@184474965859368960> have you gone to the nether yet?
+**Toaster#2600**: nope
+**Zildin#0532**: Rip
+**Zildin#0532**: How many diamonds do you have
+**Toaster#2600**: 5?
+**Toaster#2600**: i think?
+**Zildin#0532**: You should go.
+**Zildin#0532**: I need a thing from the nether
+**Toaster#2600**: lolk
+**Toaster#2600**: Got bored, made a 3D model of a monitor, then animated it spinning, and realized it looks cool if I do this
+**GoldenPot8o#2294**: Woah cacti?
+**Zildin#0532**: Hey <@184474965859368960> I made a nether portal but cant go to the nether
+**Zildin#0532**: Just @ me when you need me
+**WillCo Gaming#0258**: It isn't spin.
+**Alexr 360#7590**: >TG: Break wall
+**Toaster#2600**: <@!199887258038304769> I fixed it
+**GoldenPot8o#2294**: https://www.youtube.com/watch?v=F7hAptGkt3g
+**5a+ch31.exe#9554**: Ya nerds should come chill w/ us at the garden center
+**GoldenPot8o#2294**: wybattcl
+**GoldenPot8o#2294**: god damnit you did the same to me and i got it, will you be at the teen center later
+**5a+ch31.exe#9554**: Yes
+**5a+ch31.exe#9554**: Don't know when cuts in stuck at the GARDEN center helping w/ sbs
+**GoldenPot8o#2294**: how many people are buying things?
+**5a+ch31.exe#9554**: More than normal
+**GoldenPot8o#2294**: and you want me to come over there
+**5a+ch31.exe#9554**: I'm just bored
+**Toaster#2600**: oof
+**And Now For Something Different#9844**: We back in town bois
+**WillCo Gaming#0258**: https://www.youtube.com/watch?v=vcYsrLd4Tlk
+**Toaster#2600**: ruh roh scooby
+**Toaster#2600**: uh not really lol
+**Toaster#2600**: one sec
+**WillCo Gaming#0258**: Also Tost I still want my mod rank back.
+**Toaster#2600**: I did a fric
+**Toaster#2600**: https://gyazo.com/7150abbcb77bc0a4edba1a69250ac27f?token=63d503119c3688d55b0cb81970def932
+**WillCo Gaming#0258**: OOOF.
+**Toaster#2600**: now its 0.15
+**WillCo Gaming#0258**: What did you do?
+**Toaster#2600**: I made my computer calculate and render cloth dynamics for a torus with like a billion polygons
+**WillCo Gaming#0258**: Ooof.
+**Toaster#2600**: https://gyazo.com/ba68b75de74316a3e96fa0e9c8d6f4ab
+**Toaster#2600**: thats where we are so far
+**WillCo Gaming#0258**: Oh my lord.
+**Toaster#2600**: https://gyazo.com/dc4ec130196c058f57efc9efec67ebb2
+**WillCo Gaming#0258**: Ouf.
+**Toaster#2600**: fun
+**Toaster#2600**: oh were at 0.10 fps now
+**WillCo Gaming#0258**: Make a short vid when it finish the rendering.
+**Toaster#2600**: oh its not fully rendering
+**Toaster#2600**: rendering it with lighting would kill me xd
+**WillCo Gaming#0258**: Commit render donut.
+**Toaster#2600**: we have achieved puddle
+**Toaster#2600**: https://gyazo.com/b8e6f2ae97d7299a111ed2ec2b004b8e
+**WillCo Gaming#0258**: Yay.
+**Toaster#2600**: mk rendering in progress
+**Toaster#2600**: this actually isnt too bad since my cpu is a dank memer
+**WillCo Gaming#0258**: ANd the rendering isn't realtime, last i checked.
+**Toaster#2600**: oh wait what
+**Toaster#2600**: its not rendering the OHHH I KNOW WHY
+**Toaster#2600**: I forgot to apply the cloth dynamics so its just rendering a still frame lol
+**Toaster#2600**: im so good
+**WillCo Gaming#0258**: Oof.
+**Toaster#2600**: still it went fast
+**Toaster#2600**: i assume that the cloth one wont be as fast though lol
+**WillCo Gaming#0258**: Yeah.
+**Toaster#2600**: hol up
+**Toaster#2600**: oh fuck yeah thats a lot slower
+**WillCo Gaming#0258**: Oof.
+**WillCo Gaming#0258**: Not surprised.
+**Toaster#2600**: still decently fast though
+**Toaster#2600**: or at least every part renders at like the same time
+**Toaster#2600**: roughly
+**Toaster#2600**: like u know how when you render some scene itll render it one 'chunk' at a time depending on however many cores ur cpu has
+**Toaster#2600**: since my cpu is a big boi it all renders like simoultaneoualty
+**Toaster#2600**: simoultaneously
+**Toaster#2600**: however you spell it
+**Toaster#2600**: oh fuck bois were getting to the colision part
+**Toaster#2600**: collision
+**Toaster#2600**: idfk
+**Toaster#2600**: im dying
+**Toaster#2600**: almost halfway through
+**Toaster#2600**: https://gyazo.com/43b6f9f1821450273f51fbb3a99a6272
+**WillCo Gaming#0258**: Oh wow.
+**Toaster#2600**: we hit halfway bois
+**Toaster#2600**: aw cmon blender
+**Toaster#2600**: its only using 5% of my cpu
+**Toaster#2600**: you can do better than this
+**WillCo Gaming#0258**: Ouf.
+**Toaster#2600**: it would be like done by now
+**Toaster#2600**: over 3/4 done
+**WillCo Gaming#0258**: neat
+**Toaster#2600**: 2 more frames to go
+**Toaster#2600**: 1 more
+**WillCo Gaming#0258**: Nice.
+**Toaster#2600**: and we be done?
+**Toaster#2600**: i think?
+**Toaster#2600**: https://gyazo.com/78effda83b278134911788d147f01117
+**Toaster#2600**: i did it bois
+**WillCo Gaming#0258**: Oh wow.
+**JONKKKK#4186**: Woa
+**WillCo Gaming#0258**: I'm saving that to my computerr.
+**Toaster#2600**: lolk
+**Toaster#2600**: should i make another one
+**Toaster#2600**: except d i f f e r e n
+**Toaster#2600**: t
+**Toaster#2600**: ima do
+**Toaster#2600**: hes in AZ lol
+**Toaster#2600**: or maybe coming back
+**Toaster#2600**: are you driving back>
+**JONKKKK#4186**: No not yet
+**JONKKKK#4186**: Tomorrow
+**JONKKKK#4186**: Ye
+**Toaster#2600**: blender has a suprisingly good physics engine
+**Toaster#2600**: https://gyazo.com/eabe7544dda22990b2be10ada20d70a8
+**WillCo Gaming#0258**: Well yeah.
+**WillCo Gaming#0258**: ALso nic.
+**WillCo Gaming#0258**: You need smooth shading on the cloth there, IMO.
+**Toaster#2600**: yeah ik but also im lazy
+**Toaster#2600**: oh fuck i done it again
+**Zildin#0532**: My phone case is pretty bad
+**Toaster#2600**: oof
+**Zildin#0532**: I can’t wireless charge with it
+**Philio Io#6139**: Just like you
+**Toaster#2600**: dude
+**Toaster#2600**: epic roast
+**Zildin#0532**: And it’s hard to take off and put on
+**Philio Io#6139**: Why would you take it off
+**Zildin#0532**: If I need to clean it. It’s a waterproof one
+**Philio Io#6139**: Yeah but you only need to clean it like once every 2 weeks
+**Zildin#0532**: Yeah but also if I get a different case
+**Toaster#2600**: doing two really fast leads to good stuff
+**Toaster#2600**: wot
+**Toaster#2600**: uh i cant rly help with that
+**Toaster#2600**: nice
+**WillCo Gaming#0258**: What ever shall I do?
+**Toaster#2600**: hey sentient toasters thats me
+**WillCo Gaming#0258**: Any idea what I should do?
+**Toaster#2600**: uhhh
+**Toaster#2600**: lemme reread
+**Toaster#2600**: hm
+**Toaster#2600**: thats a tough one
+**Toaster#2600**: are you trying to be a cool nation or a safe nation
+**WillCo Gaming#0258**: Safe-ish, but not super capitalist, and very high tech.
+**Toaster#2600**: well if youre going for high tech then let the ai do whatever they want
+**Toaster#2600**: if youre going for super safe do the last one and shut em down
+**WillCo Gaming#0258**: I could always dismiss the issue.
+**Toaster#2600**: and if you just dont wanna mess with stuff then dont do anything
+**Toaster#2600**: well just do the middle one
+**Toaster#2600**: its like the same thing since it doesnt really change anything
+**WillCo Gaming#0258**: Except I don't like to deregulate companies.
+**Toaster#2600**: hell yeah dude
+**Toaster#2600**: i just let people take their pets into restaraunts no restrictions and my pizza delivery went up by 10%
+**WillCo Gaming#0258**: Nice.
+**WillCo Gaming#0258**: Yeah, I'm just going to dismiss the issue.
+**Toaster#2600**: lolk
+**Toaster#2600**: u have mc right
+**WillCo Gaming#0258**: I wish.
+**WillCo Gaming#0258**: I should get it, shouldn't I?
+**Toaster#2600**: oh oof
+**Toaster#2600**: yeah
+**WillCo Gaming#0258**: How much is Java Edition these days?
+**Toaster#2600**: idk
+**Toaster#2600**: 30 bucks?
+**Toaster#2600**: 25?
+**WillCo Gaming#0258**: Ooof.
+And I'd need to use my parents' credit card or something, since it isn't on steam.
+**Toaster#2600**: yeah
+**WillCo Gaming#0258**: I'll look into it.  I do have a little bit of money to burn.
+**WillCo Gaming#0258**: And I already have an MC account.  I made that a while ago.  I just haven't gotten around to buying the actual game.
+**Toaster#2600**: lol nice
+**Toaster#2600**: tell me if you get it and ill play with you on me server
+**WillCo Gaming#0258**: Neat.
+**WillCo Gaming#0258**: The Onion is just news from my NS region.
+**Toaster#2600**: lol
+**Sintayman707#4085**: Oh
+**Toaster#2600**: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+**Toaster#2600**: im dying
+**Zildin#0532**: What
+**Toaster#2600**: i wanna afk fish farm but also if I do i cant click anywhere else on my computer
+**Toaster#2600**: or use any other program
+**Alexr 360#7590**: Rip
+**Alexr 360#7590**: Nice
+**GoldenPot8o#2294**: so ive only seen trailers for ring of elusium but i think it would be really cool if there were no preset team things like when you jump in with friends, but instead you were allowed to team with anybody you find in game.
+**Toaster#2600**: no idea what youre talking about
+**GoldenPot8o#2294**: https://store.steampowered.com/app/755790/Ring_of_Elysium/
+**Toaster#2600**: so you mean like
+**Toaster#2600**: its FFA but in VC or wtv you can talk to ppl and team
+**GoldenPot8o#2294**: yeah
+**GoldenPot8o#2294**: cause like
+**GoldenPot8o#2294**: only 4 people are allowed to win
+**GoldenPot8o#2294**: so it would be cool if you could just team with whoever
+**And Now For Something Different#9844**: I’m disappointed in Smith’s.
+**And Now For Something Different#9844**: Out of everything and every single card they have, they didn’t have a Steam card.
+**WillCo Gaming#0258**: OOof.
+**WillCo Gaming#0258**: That's unusual.
+**Toaster#2600**: ive seen steam cards at smiths
+**Toaster#2600**: prolly just bought out lol
+**WillCo Gaming#0258**: Normally.
+**WillCo Gaming#0258**: Ya.
+**WillCo Gaming#0258**: I actually had a good experience with Smith
+**WillCo Gaming#0258**: s recently.
+**GoldenPot8o#2294**: It’s nearing Christmas so it doesn’t surprise me
+**And Now For Something Different#9844**: *It’s the most greediest time of the year-*
+**WillCo Gaming#0258**: I had to buy a AAAA battery, and I didn't think Smith's would have any but they did!
+**And Now For Something Different#9844**: Oh wow
+**Toaster#2600**: hey nate you wanna call while i set up the dungeon world
+**GoldenPot8o#2294**: No I’m supposed to be doing homework
+**Toaster#2600**: lol ok
+**GoldenPot8o#2294**: I might finish fast
+**Philio Io#6139**: Ah yes, leaving all of your homework to the last second
+**WillCo Gaming#0258**: I did that.
+**Toaster#2600**: hey thats what i do
+**GoldenPot8o#2294**: Might not
+**WillCo Gaming#0258**: This morning I did HW.
+**Toaster#2600**: except i dont have anything due tomorrow
+**Philio Io#6139**: I still haven’t started my he
+**Toaster#2600**: just stuff due tuesday that I SHOULD work on
+**Toaster#2600**: ur what
+**Philio Io#6139**: *hw
+**Toaster#2600**: oh ok lol
+**GoldenPot8o#2294**: Also shut up Philip cause we weren’t supposed to have homework over the break anyways
+**GoldenPot8o#2294**: So I’m
+**GoldenPot8o#2294**: Um
+**Philio Io#6139**: *phillip
+**Toaster#2600**: *pilp
+**GoldenPot8o#2294**: MS MONTOYA VERY BIG GAY
+**Philio Io#6139**: *p
+**Philio Io#6139**: Yeah
+**Toaster#2600**: xd yeah i have that too except its not due until tuesday for me
+**Toaster#2600**: also *we had time in class to do it **reeeeee***
+**Philio Io#6139**: Is tomorrow an a day?
+**WillCo Gaming#0258**: Ree.
+**Toaster#2600**: no
+**Toaster#2600**: B
+**Philio Io#6139**: Aw nice
+**GoldenPot8o#2294**: I complained about it and then the whole class just fucking attacked me
+**Philio Io#6139**: Lmao
+**Toaster#2600**: big oof
+**WillCo Gaming#0258**: My class accepts that the project is bullshit.  I did the essay in like ten minutes and the other part can go die because I'm not touching it.
+**Toaster#2600**: lol i havent done any of it
+**Toaster#2600**: but itll be easy
+**Philio Io#6139**: Same
+**Toaster#2600**: you just gotta not do well except suck up to the teacher and u get an easy a
+**GoldenPot8o#2294**: And she said “what authority do you have to be questioning how I assign work” and I wanted to say cause it’s my damn education
+**WillCo Gaming#0258**: Oof.
+**Philio Io#6139**: Damn you must have been complaining hard
+**GoldenPot8o#2294**: My parents are paying for your puny little paycheck so maybe i should get a little more respect because if I remember correctly one issue I had was teachers thinking that they are above the rules at school one of them being respect your peers and teachers so maybe be a little less “meeh I’m the teacher so I’m always right” and I know that she’s dodging me because she was gone the next day and every time she assigns a project like this she gets by on technicality like the time with the no homework weekend
+**Toaster#2600**: nates gonna shoot up the school
+**Toaster#2600**: 100%
+**Philio Io#6139**: Yeah
+**GoldenPot8o#2294**: TLDR: ms Montoya is a bitch
+**Toaster#2600**: OH ALSO
+**Toaster#2600**: nate
+**GoldenPot8o#2294**: What
+**Toaster#2600**: i found a good song for an i n t e n s e trailer or something if we ever do that for news
+**Toaster#2600**: did u see that? i sent it earlier
+**Toaster#2600**: one sec
+**Toaster#2600**: https://soundcloud.com/magic-sword/kill-them-all-1
+**GoldenPot8o#2294**: Is it the inception music
+**Toaster#2600**: skipt to like 50 seconds in
+**GoldenPot8o#2294**: Close enough
+**Toaster#2600**: lol
+**GoldenPot8o#2294**: Yeah from ~46 seconds in to the end is perfect
+**Zildin#0532**: Hey <@184474965859368960> I can’t use the enchanting table
+**Toaster#2600**: oh because of yeah ok
+**Zildin#0532**: We should move it to a wilderness chunk or something
+**Toaster#2600**: nah then ppl can steal it
+**Zildin#0532**: But I can’t use it
+**Toaster#2600**: im working on it calm down
+**Zildin#0532**: Ok
+**WillCo Gaming#0258**: https://www.youtube.com/watch?v=3FYT04PfRGE
+This came up in my suggested.  I don't know why, but I clicked on it.
+**Toaster#2600**: k i fixed it
+**And Now For Something Different#9844**: Does anyone here still care for Duck Game?
+**Toaster#2600**: its fun
+**And Now For Something Different#9844**: I hab it and I dunno if anyone else here is still interested in it,
+**Toaster#2600**: lol
+**Toaster#2600**: u done <@204049688666701824> ?
+**Toaster#2600**: <@!185532449973862400> you wanna do a wingman
+**GoldenPot8o#2294**: No not yet
+**GoldenPot8o#2294**: Hey toasty do you want to do bloons
+**Toaster#2600**: uh sure i guess
+**GoldenPot8o#2294**: Cool
+**Philio Io#6139**: <@184474965859368960> wanna play cs
+**Philio Io#6139**: <@!185532449973862400> how about you
+**Toaster#2600**: <@204049688666701824>
+**Toaster#2600**: <@204049688666701824>
+**Toaster#2600**: <@204049688666701824>
+**Toaster#2600**: <@204049688666701824>
+**Toaster#2600**: <@204049688666701824>
+**Toaster#2600**: <@204049688666701824>
+**Toaster#2600**: <@204049688666701824>
+**Philio Io#6139**: <@184474965859368960>
+**Toaster#2600**: also maybe phillip
+**JONKKKK#4186**: hey nerds im home
+**JONKKKK#4186**: and i have hw
+**Toaster#2600**: thats unfortunate
+**Toaster#2600**: not the hw the coming home
+**JONKKKK#4186**: :o
