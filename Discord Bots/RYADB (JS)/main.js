@@ -21,6 +21,7 @@ client.once('ready', () => {
 
 
 client.on('message', message => {
+  let toaster = client.fetchUser('184474965859368960');
   try {
     client.commands = new Discord.Collection();
 
@@ -34,8 +35,6 @@ client.on('message', message => {
 
 
     if (!message.content.startsWith(config.prefix) || message.author.bot) return;
-
-    var toaster = client.fetchUser('184474965859368960');
 
     const entire = message.content.slice(config.prefix.length).toLowerCase();
     const commandName = entire.split(' ')[0];
@@ -63,15 +62,21 @@ client.on('message', message => {
       command.execute(message, args);
     }
     catch (error) {
-      console.error(error);
       message.channel.send('There was an error executing that command! The bot owner has been notified.');
-      toaster.send(`A user got an error using the '${command.name}' command!\n\`\`\`${error}\`\`\``);
+      let client = message.channel.client;
+      let user = client.fetchUser('184474965859368960')
+      .then(user => {
+        user.send(`A user got an error using the '${command.name}' command!\n\`\`\`${error}\`\`\``);
+      })
     }
   }
   catch(error) {
-    console.error(error);
     message.channel.send('There was some unknown error! The bot owner has been notified.');
-    toaster.send(`A user got a generic error!\n\`\`\`${error}\`\`\``);
+    let client = message.channel.client;
+    let user = client.fetchUser('184474965859368960')
+    .then(user => {
+      user.send(`A user got a generic error!\n\`\`\`${error}\`\`\``);
+    })
   }
 })
 
