@@ -31,3 +31,6 @@ Just me messing with datetime modules.
 
 ### youtubegenerator.py
 Generates 10k youtube channel links and if any one of them is a real channel, opens it as a new tab.
+
+### randomgen.js
+Lets you input a term, and will randomly generate paragraphs of random characters until it finds it.
