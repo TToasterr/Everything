@@ -16,7 +16,7 @@ module.exports = {
       // data.push(`\`\nYou can send \`${prefix}help <command name> \` to get info on a specific command!`);
       const final = new Discord.RichEmbed()
       .setColor('#00ff00')
-      .setAuthor('YABOT (Yet Another Bot Of Toasters)', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=519640938667048960&permissions=8&scope=bot')
+      .setAuthor('YABOT (Yet Another Bot Of Toaster\'s)', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=519640938667048960&permissions=8&scope=bot')
       .setTitle('Here are all of my commands!')
       .setDescription('```' + message.client.commands.map(command => command.name).join('\n') + '```')
       .addField(`You can send \`${prefix}help <command name>\` to get info on a specific command!`, 'Have fun!');
@@ -40,7 +40,7 @@ module.exports = {
     // data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
     const final = new Discord.RichEmbed()
     .setColor('#ff0000')
-    .setAuthor('YABOT (Yet Another Bot Of Toasters)', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=519640938667048960&permissions=8&scope=bot')
+    .setAuthor('YABOT (Yet Another Bot Of Toaster\'s)', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=519640938667048960&permissions=8&scope=bot')
     .setTitle('**Name**')
     .setDescription(command.name)
     .addField('**Description**', command.description)
