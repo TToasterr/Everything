@@ -80,6 +80,8 @@ client.on('message', message => {
   }
 })
 
+client.on('error', console.error);
+
 
 
 
