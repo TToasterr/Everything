@@ -32,7 +32,7 @@ module.exports = {
         i++;
         if (i >= (amount + noarg) && a == 0) {
           // message.react('✅').catch(console.error);
-          message.channel.send(`${author} agrees with ${message.author}'s message,\n\`${message.content}\``);
+          message.channel.send(`${author} likes ${message.author}'s message,\n\`${message.content}\``);
         }
       })
     });
