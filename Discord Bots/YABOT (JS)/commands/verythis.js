@@ -4,6 +4,7 @@ module.exports = {
   name: 'verythis',
   description: 'VERY Agrees with a message.',
   usage: '<amount of messages up>',
+  category: 'this',
   guildOnly: true,
   args: false,
   execute(message, args) {
@@ -17,7 +18,7 @@ module.exports = {
       noarg = 1;
     }
 
-    const author = message.author.username;
+    const author = message.author;
     message.delete(1000);
 
     message.channel.fetchMessages({
