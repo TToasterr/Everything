@@ -3,7 +3,9 @@ var fs = require('fs');
 var number = fs.readFileSync('number.txt');
 
 if (process.argv[2] == 'read') {
-  var suggestion = fs.readFileSync(process.argv[3]);
+  var suggestion = fs.readFileSync(process.argv[3], (err) => {
+    if (err) throw err;
+  });
   var suggestion = JSON.parse(suggestion);
   console.log(`\n${suggestion.who} suggests '${suggestion.what}'\nStatus: ${suggestion.status}\nNotes: ${suggestion.notes}`);
 }
@@ -18,38 +20,46 @@ else if (process.argv[2] == 'suggest') {
   }
 
   number++;
-  fs.writeFile('number.txt', number);
+  fs.writeFile('number.txt', number, (err) => {
+    if (err) throw err;
+  });
   if (number < 10) {
     number = `0${number}`;
   }
 
   var final = JSON.stringify(object);
 
-  fs.writeFileSync(`${number}.json`, final);
+  fs.writeFileSync(`${number}.json`, final, (err) => {
+    if (err) throw err;
+  });
 }
 
 
 else if (process.argv[2] == 'remove') {
   numberr = parseInt(process.argv[3], 10);
-  console.log(numberr);
   finalnumber = numberr;
-  console.log(finalnumber);
 
   if (numberr < 10) {
     finalnumber = `0${numberr}`;
   }
-  console.log(finalnumber);
 
   for (var i = 0; i <= number; i++) {
     if (i > numberr && i < 10) {
-      fs.rename(`0${i}.json`, `0${i - 1}.json`);
+      fs.rename(`0${i}.json`, `0${i - 1}.json`, (err) => {
+        if (err) throw err;
+      });
     }
     else if (i > numberr) {
-      fs.rename(`${i}.json`, `${i - 1}.json`);
+      fs.rename(`${i}.json`, `${i - 1}.json`, (err) => {
+        if (err) throw err;
+      });
     }
   }
   number--;
-  fs.writeFile('number.txt', number);
-  console.log(finalnumber);
-  fs.unlinkSync(`${finalnumber}.json`);
+  fs.writeFile('number.txt', number, (err) => {
+    if (err) throw err;
+  });
+  fs.unlinkSync(`${finalnumber}.json`, (err) => {
+    if (err) throw err;
+  });
 }
