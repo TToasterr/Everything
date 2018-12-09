@@ -1,8 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-
 const client = new Discord.Client();
-
 const config = require('./config.json');
 
 
@@ -44,7 +42,7 @@ client.on('message', message => {
 
     const command = client.commands.get(commandName);
 
-    if (command.args && !args.length) {
+    if (command.args && args == '') {
       let reply = 'You didnt\'t provide the necesarry arguments!';
       if (command.usage !== '') {
         reply += `\nThe proper usage would be \`${config.prefix}${command.name} ${command.usage}\``;
