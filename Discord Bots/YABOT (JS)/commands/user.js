@@ -4,6 +4,7 @@ module.exports = {
   name: 'user',
   description: 'Get data for a user!',
   usage: '<user>',
+  category: 'general',
   guildOnly: false,
   args: false,
   execute(message, args) {
