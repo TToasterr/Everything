@@ -4,6 +4,7 @@ module.exports = {
   name: '',
   description: '',
   usage: '',
+  category: '',
   guildOnly: false,
   args: false,
   execute(message, args) {
