@@ -5,7 +5,7 @@ module.exports = {
   name: 'suggest',
   description: 'Suggest something to Toaster!',
   usage: '<suggestion>',
-  category: 'general',
+  category: 'sugg',
   guildOnly: false,
   args: true,
   execute(message, args) {
@@ -45,6 +45,6 @@ module.exports = {
     // .addField('', '');
     // message.channel.send('');
     message.channel.send(finalEmbed);
-    // console.log(`${message.author.username} did something.`);
+    console.log(`${message.author.username} made a suggestion.`);
   },
 };

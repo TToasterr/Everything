@@ -66,6 +66,7 @@ client.on('message', message => {
       .then(user => {
         user.send(`A user got an error using the '${command.name}' command!\n\`\`\`${error}\`\`\``);
       })
+      console.error(error);
     }
   }
   catch(error) {
@@ -75,6 +76,7 @@ client.on('message', message => {
     .then(user => {
       user.send(`A user got a generic error!\n\`\`\`${error}\`\`\``);
     })
+    console.error(error);
   }
 })
 

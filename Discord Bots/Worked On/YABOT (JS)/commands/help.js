@@ -14,6 +14,7 @@ module.exports = {
     if (args == '') {
       var general = [];
       var thiss = [''];
+      var suggestions = [''];
       var commands = message.client.commands.map(command => command);
 
       for (var i = 0; i < commands.length; i++) {
@@ -23,6 +24,9 @@ module.exports = {
         else if (commands[i].category == 'this') {
           thiss.push(commands[i].name);
         }
+        else if (commands[i].category == 'sugg') {
+          suggestions.push(commands[i].name);
+        }
       }
 
       const final = new Discord.RichEmbed()
@@ -31,6 +35,7 @@ module.exports = {
       .setTitle('__**Here are all of my commands!**__')
       .addField('General', '```' + general.join('\n') + '```')
       .addField('This', '```' + thiss.join('\n') + '```')
+      .addField('Suggestions', '```' + suggestions.join('\n') + '```')
       .addField(`You can send \`${prefix}help <command name>\` to get info on a specific command!`, 'Have fun!');
 
       message.channel.send(final);
