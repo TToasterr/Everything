@@ -4,6 +4,7 @@ module.exports = {
   name: 'ping',
   description: 'Ping the bot!',
   usage: '',
+  category: 'general',
   guildOnly: true,
   args: false,
   execute(message, args) {
