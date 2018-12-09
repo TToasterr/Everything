@@ -16,10 +16,6 @@ module.exports = {
     .addBlankField()
     .addField('AVATAR', 'v')
     .setImage(message.guild.iconURL);
-    // .addField('Server Name', message.guild.name, true)
-    // .addField('Member Count', message.guild.memberCount, true)
-    // .addField('Created', `${message.guild.createdAt}`.substring(0,16), true)
-    // .addField('Region', message.guild.region, true);
 
     message.channel.send(final);
     console.log(`${message.author.username} got server stats for the server ${message.guild.name}.`);

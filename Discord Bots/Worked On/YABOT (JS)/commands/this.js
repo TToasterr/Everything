@@ -32,13 +32,10 @@ module.exports = {
         }
         i++;
         if (i >= (amount + noarg) && a == 0) {
-          // message.react('✅').catch(console.error);
           message.channel.send(`${author} likes ${message.author}'s message,\n\`${message.content}\``);
         }
       })
     });
-    // message.channel.send('');
-    // message.channel.send(`Amount: ${amount}\nNoarg: ${noarg}\nFinal: ${amount + noarg}`)
     console.log(`${message.author.username} agreed with a message.`);
   },
 };

@@ -42,8 +42,6 @@ module.exports = {
     .setAuthor('YABOT (Yet Another Bot Of Toaster\'s)', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=519640938667048960&permissions=8&scope=bot')
     .setTitle('Sucessfully added suggestion!')
     .setDescription(`**By:** ${object.who}\n**Suggestion:** ${object.what}`);
-    // .addField('', '');
-    // message.channel.send('');
     message.channel.send(finalEmbed);
     console.log(`${message.author.username} made a suggestion.`);
   },

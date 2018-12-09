@@ -41,8 +41,6 @@ module.exports = {
         finalEmbed.addField(i + ' - ' + suggestionn.status, suggestionn.who);
       }
     }
-    // .addField('', '');
-    // message.channel.send('');
     message.channel.send(finalEmbed);
     console.log(`${message.author.username} listed suggestions.`);
   },

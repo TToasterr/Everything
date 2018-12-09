@@ -1,4 +1,3 @@
-// yeet ur mom gay
 const { prefix } = require('../config.json');
 const Discord = require('discord.js');
 
