@@ -11,8 +11,20 @@ client.once('ready', () => {
   for (var i = 0; i <= 100; i++) {
     console.log();
   }
-  console.log('Bot started!\n');
+  console.log(`Bot has started!\nUSERS: ${client.users.size}\nCHANNELS: ${client.channels.size}\nSERVERS: ${client.guilds.size}`);
 })
+
+
+
+
+
+client.on("guildCreate", guild => {
+  console.log(`New server joined!\nNAME: ${guild.name}.\nMEMBERS: ${guild.memberCount}`);
+});
+
+client.on("guildDelete", guild => {
+  console.log(`Removed from server!\nNAME: ${guild.name}\nMEMBERS: ${guild.memberCount}`);
+});
 
 
 
@@ -53,6 +65,9 @@ client.on('message', message => {
     if (command.guildOnly && message.channel.type !== 'text') {
       return message.channel.send("That command only works in servers!");
     }
+
+    if(command.mod && !message.member.roles.some(r=>["Administrator", "Moderator", "Mod", "Admin", "Owner", "Toaster"].includes(r.name)) )
+      return message.channel.send("Sorry, you don't have permissions to use this command!");
 
 
 
