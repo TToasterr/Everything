@@ -4,6 +4,7 @@ module.exports = {
   name: 'invite',
   description: 'Get an invite link for the bot!',
   usage: '',
+  category: 'general',
   guildOnly: false,
   args: false,
   execute(message, args) {
