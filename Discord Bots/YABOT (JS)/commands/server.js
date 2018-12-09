@@ -4,6 +4,7 @@ module.exports = {
   name: 'server',
   description: 'Get statistics for the server you\'re on!',
   usage: '',
+  category: 'general',
   guildOnly: true,
   args: false,
   execute(message, args) {
