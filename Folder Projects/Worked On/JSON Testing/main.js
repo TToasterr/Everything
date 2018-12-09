@@ -42,10 +42,10 @@ else if (process.argv[2] == 'remove') {
 
   for (var i = 0; i <= number; i++) {
     if (i > numberr && i < 10) {
-      fs.renameSync(`0${i}.json`, `0${i - 1}.json`);
+      fs.rename(`0${i}.json`, `0${i - 1}.json`);
     }
     else if (i > numberr) {
-      fs.renameSync(`${i}.json`, `${i - 1}.json`);
+      fs.rename(`${i}.json`, `${i - 1}.json`);
     }
   }
   number--;
