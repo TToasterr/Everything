@@ -7,6 +7,7 @@ module.exports = {
   category: 'general',
   guildOnly: true,
   args: false,
+  mod: false,
   execute(message, args) {
     const date = `${message.guild.createdAt}`.substring(0,16);
     const final = new Discord.RichEmbed()

@@ -8,6 +8,7 @@ module.exports = {
   category: 'sugg',
   guildOnly: false,
   args: true,
+  mod: false,
   execute(message, args) {
     const config = require('../config.json');
     const author = message.author.username;

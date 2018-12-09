@@ -8,6 +8,7 @@ module.exports = {
   category: 'general',
   guildOnly: false,
   args: false,
+  mod: false,
   execute(message, args) {
 
     if (args == '') {

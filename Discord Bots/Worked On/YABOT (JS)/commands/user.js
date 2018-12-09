@@ -7,6 +7,7 @@ module.exports = {
   category: 'general',
   guildOnly: false,
   args: false,
+  mod: false,
   execute(message, args) {
     if (!message.mentions.users.size) {
       const tagged = message.author;

@@ -7,6 +7,7 @@ module.exports = {
   category: 'general',
   guildOnly: true,
   args: false,
+  mod: false,
   execute(message, args) {
     message.channel.send('Pong!');
     console.log(`${message.author.username} pinged the bot from ${message.guild.name}.`);

@@ -7,6 +7,7 @@ module.exports = {
   category: 'this',
   guildOnly: true,
   args: false,
+  mod: false,
   execute(message, args) {
     var amount;
     var noarg;

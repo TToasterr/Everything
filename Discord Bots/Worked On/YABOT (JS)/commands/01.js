@@ -7,6 +7,7 @@ module.exports = {
   category: '',
   guildOnly: false,
   args: false,
+  mod: false,
   execute(message, args) {
     // const final = new Discord.RichEmbed()
     // .setColor('#000000')
