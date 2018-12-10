@@ -31,7 +31,7 @@ client.on("guildDelete", guild => {
 
 
 client.on('message', message => {
-  let toaster = client.fetchUser('184474965859368960');
+  var toaster = client.fetchUser('184474965859368960');
   try {
     client.commands = new Discord.Collection();
 
@@ -77,20 +77,20 @@ client.on('message', message => {
     catch (error) {
       message.channel.send('There was an error executing that command! The bot owner has been notified.');
       let client = message.channel.client;
-      let user = client.fetchUser('184474965859368960')
-      .then(user => {
-        user.send(`A user got an error using the '${command.name}' command!\n\`\`\`${error}\`\`\``);
-      })
+      // let user = client.fetchUser('184474965859368960')
+      // .then(user => {
+        toaster.send(`A user got an error using the '${command.name}' command!\n\`\`\`${error}\`\`\``);
+      // })
       console.error(error);
     }
   }
   catch(error) {
     message.channel.send('There was some unknown error! The bot owner has been notified.');
     let client = message.channel.client;
-    let user = client.fetchUser('184474965859368960')
-    .then(user => {
-      user.send(`A user got a generic error!\n\`\`\`${error}\`\`\``);
-    })
+    // let user = client.fetchUser('184474965859368960')
+    // .then(user => {
+      toaster.send(`A user got a generic error!\n\`\`\`${error}\`\`\``);
+    // })
     console.error(error);
   }
 })
