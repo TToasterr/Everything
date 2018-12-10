@@ -9,7 +9,7 @@ module.exports = {
   guildOnly: false,
   args: true,
   mod: false,
-  execute(message, args, client, toaster) {
+  execute(message, args, client) {
     var config = require('../config.json');
     const author = message.author.username;
     const suggestion = args[0].substring(1);
@@ -44,7 +44,10 @@ module.exports = {
     .setTitle('Sucessfully added suggestion!')
     .setDescription(`**By:** ${object.who}\n**Suggestion:** ${object.what}`);
     message.channel.send(finalEmbed);
-    toaster.send(`${message.author.username} just made a suggestion!\n\`${object.what}\``)
+    let user = client.fetchUser('184474965859368960')
+    .then(user => {
+      user.send(`${message.author.username} just made a suggestion!\n\`${object.what}\``);
+    })
     console.log(`${message.author.username} made a suggestion.`);
   },
 };
