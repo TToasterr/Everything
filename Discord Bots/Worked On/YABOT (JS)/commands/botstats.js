@@ -10,7 +10,7 @@ module.exports = {
   mod: false,
   execute(message, args, client) {
     const final = new Discord.RichEmbed()
-    .setColor('#000000')
+    .setColor('#00ff00')
     .setAuthor('YABOT (Yet Another Bot Of Toaster\'s)', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=519640938667048960&permissions=8&scope=bot')
     .setTitle('BOT STATS')
     .setDescription(`**SERVER COUNT** - ${client.guilds.size}\n**CHANNEL COUNT** - ${client.channels.size}\n**USER COUNT** - ${client.users.size}`);
