@@ -33,10 +33,11 @@ module.exports = {
       .setColor('#00ff00')
       .setAuthor('YABOT (Yet Another Bot Of Toaster\'s)', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=519640938667048960&permissions=8&scope=bot')
       .setTitle('__**Here are all of my commands!**__')
+      .setDescription('*Arguments must be seperated with a comma and space or it will return an error.*')
       .addField('General', '```' + general.join('\n') + '```')
       .addField('This', '```' + thiss.join('\n') + '```')
       .addField('Suggestions', '```' + suggestions.join('\n') + '```')
-      .addField(`You can send \`${prefix}help <command name>\` to get info on a specific command!`, 'Have fun!');
+      .addField(`You can send \`${prefix}help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/YABOT%20');
 
       message.channel.send(final);
       return console.log(`${message.author.username} got help.`);
@@ -53,6 +54,7 @@ module.exports = {
     .setColor('#ff0000')
     .setAuthor('YABOT (Yet Another Bot Of Toaster\'s)', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=519640938667048960&permissions=8&scope=bot')
     .setTitle('**Name**')
+    .setDescription('*Arguments must be seperated with a comma and space or it will return an error.*')
     .setDescription(command.name)
     .addField('**Description**', command.description)
     .addField('**Usage**', `${prefix}${command.name} ${command.usage}`);
