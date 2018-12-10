@@ -6,7 +6,7 @@ from discord.utils import get
 import pygsheets
 import pandas as pd
 sys.path.append("H:/Misc")
-sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/server message storage")
+sys.path.append("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Bot Limbo/Toaster 3.0/server message storage")
 
 client = discord.Client()
 prefix = "t."
@@ -113,7 +113,7 @@ async def on_message(message):
 
     try:
         if int(wks.cell("A2").value) == 1 and msg[:2] != "t." and msg[0] not in {".", "!", "?"}:
-            with open("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/server message storage/%s.txt" % message.server.name, "a+") as serverFile:
+            with open("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Bot Limbo/Toaster 3.0/server message storage/%s.txt" % message.server.name, "a+") as serverFile:
                 serverFile.write("**%s**: %s\n" % (message.author, msg))
     except:
         do = "nothing"
