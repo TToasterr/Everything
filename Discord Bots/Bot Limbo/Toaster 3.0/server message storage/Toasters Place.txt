@@ -1970,3 +1970,9 @@ This came up in my suggested.  I don't know why, but I clicked on it.
 **Toaster#2600**: mk
 **Toaster#2600**: a
 **Toaster#2600**: ok
+**JONKKKK#4186**: are the legs on a different layer?
+**JONKKKK#4186**: because if they are i think you can just make a new layer above it and set it to clipping
+**JONKKKK#4186**: and then set the opacity to like 30 percent and color it in with a color that makes it look right
+**JONKKKK#4186**: thats how i would do it at least
+**GoldenPot8o#2294**: His feet are fucking brown guys
+**Toaster#2600**: —help
