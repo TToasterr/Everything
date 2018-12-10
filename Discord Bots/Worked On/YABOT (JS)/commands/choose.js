@@ -4,7 +4,7 @@ module.exports = {
   name: 'choose',
   description: 'Make the bot choose between two or more items!',
   usage: '<choice 1>, <choice 2>, [choice 3]...',
-  category: '',
+  category: 'general',
   guildOnly: false,
   args: false,
   mod: false,
