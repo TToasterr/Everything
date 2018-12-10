@@ -275,7 +275,7 @@ def cmd(msg, message, me, wks):
         print("%s tried to get a random message, but message storage wasnt turned on." % message.author)
         return()
 
-    with open("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 3.0 (Python)/server message storage/%s.txt" % message.server.name, "r") as serverFile:
+    with open("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Bot Limbo/Toaster 3.0/server message storage/%s.txt" % message.server.name, "r") as serverFile:
         uwu = serverFile.read().split(linebreak)
 
     cmdOut = ch(uwu)
