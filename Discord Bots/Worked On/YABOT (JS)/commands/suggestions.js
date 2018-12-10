@@ -39,7 +39,7 @@ module.exports = {
           });
         }
         var suggestionn = JSON.parse(fileContent);
-        finalEmbed.addField(i + ' - ' + suggestionn.status, suggestionn.who);
+        finalEmbed.addField(i + ' - ' + suggestionn.status, `**By:** ${suggestionn.who}**\n--------------`);
       }
     }
     message.channel.send(finalEmbed);
