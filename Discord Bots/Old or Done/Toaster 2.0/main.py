@@ -98,7 +98,7 @@ async def on_message(message): #when a message is sent
 
     #Try to open the servers file (stores data about whether its stalking or not and such)
     try:
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "r") as sFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-stalking.txt" % message.server.name), "r") as sFile:
             if message.author.bot: #stop doin this gay shit if its a bot
                 return()
             a = sFile.read()
@@ -106,23 +106,23 @@ async def on_message(message): #when a message is sent
                 print("%s | #%s | %s: %s\n" % (message.server.name, message.channel, message.author, message.content))
     #If it cant find the file, create one
     except:
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
             stalkingFile.write("0")
 
 
 
     try:
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "r") as modFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-modRoles.txt" % message.server.name), "r") as modFile:
             modRoles = modFile.read().split("\n")
 
     except:
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "w+") as stalkingFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-modRoles.txt" % message.server.name), "w+") as stalkingFile:
             stalkingFile.write("")
 
 
 
     try:
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
             ar = arFile.read().split("---")
             for num in range(len(ar) - 1):
                 i = ar[num].split(" -> ")
@@ -130,13 +130,13 @@ async def on_message(message): #when a message is sent
                     await client.send_message(message.channel, content = i[1])
 
     except:
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "w+") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-autoresponder.txt" % message.server.name), "w+") as arFile:
             asdf = "asdf"
 
 
 
     try:
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "r", encoding="UTF-8") as reactfile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-channelreactions.txt" % message.server.name), "r", encoding="UTF-8") as reactfile:
             reactions = reactfile.read().split("\n")
             for i in range(len(reactions) - 1):
                 a = reactions[i].split(", ")
@@ -151,7 +151,7 @@ async def on_message(message): #when a message is sent
                     await client.add_reaction(message, a[1])
 
     except FileNotFoundError:
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "w+") as reactfile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-channelreactions.txt" % message.server.name), "w+") as reactfile:
             reactfile.write("")
 
 
@@ -231,10 +231,10 @@ i want to x then d----------y""")
 
         print("%s toggled stalking for %s.\n" % (message.author, message.server.name))
 
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "r") as sFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-stalking.txt" % message.server.name), "r") as sFile:
             content = sFile.read()
 
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-stalking.txt" % message.server.name), "w+") as stalkingFile:
             if content == "":
                 stalkingFile.write("0")
             else:
@@ -291,7 +291,7 @@ i want to x then d----------y""")
             await client.send_message(message.channel, content = "You didn't supply enough arguments.")
             return()
 
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
             ar = arFile.read().split("---")
 
         for num in range(len(ar) - 1):
@@ -300,7 +300,7 @@ i want to x then d----------y""")
                 await client.send_message(message.channel, content = "You cant have two responses to the same word!")
                 return()
 
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "a+") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-autoresponder.txt" % message.server.name), "a+") as arFile:
             arFile.write("\n%s -> %s\n---" % (trigger, response))
 
         await client.send_message(message.channel, content = "Your autoresponder has been added!")
@@ -330,7 +330,7 @@ i want to x then d----------y""")
         popnum = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]
         numb = 0
 
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
             ar = arFile.read().split("---")
 
         for num in range(len(ar) - 1):
@@ -346,7 +346,7 @@ i want to x then d----------y""")
             except:
                 urmom = "gay"
 
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "w+") as arFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-autoresponder.txt" % message.server.name), "w+") as arFile:
             arFile.write("---".join(ar))
 
         if removed > 0:
@@ -360,7 +360,7 @@ i want to x then d----------y""")
     #List autoresponder responses
     if msg == ".listresponses":
         try:
-            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-autoresponder.txt" % message.server.name), "r") as arFile:
                 ar = arFile.read().split("---")
 
             if ar == [""]:
@@ -394,7 +394,7 @@ i want to x then d----------y""")
             await client.send_message(message.channel, content = "You dont have the right role to do this.")
             return()
 
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "a+") as modFile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-modRoles.txt" % message.server.name), "a+") as modFile:
             modFile.write("%s\n" % role)
 
         await client.send_message(message.channel, content = "Successfully added %s to the mod roles." % role)
@@ -423,7 +423,7 @@ i want to x then d----------y""")
             return()
 
         try:
-            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "r") as modFile:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-modRoles.txt" % message.server.name), "r") as modFile:
                 modRoles = modFile.read().split("\n")
 
             for i in range(len(modRoles)-1):
@@ -436,7 +436,7 @@ i want to x then d----------y""")
             else:
                 modRoles = "\n".join(modRoles)
 
-                with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "w") as modFile:
+                with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-modRoles.txt" % message.server.name), "w") as modFile:
                     modFile.write(modRoles)
 
                 await client.send_message(message.channel, content = "Successfully deleted %s moderator role(s)" % delCount)
@@ -450,7 +450,7 @@ i want to x then d----------y""")
     #List moderator roles
     if msg[:10] == ".listroles":
         try:
-            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-modRoles.txt" % message.server.name), "r") as modFile:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-modRoles.txt" % message.server.name), "r") as modFile:
                 modRoles = modFile.read()
 
             await client.send_message(message.channel, content = modRoles)
@@ -515,7 +515,7 @@ i want to x then d----------y""")
             await client.send_message(message.channel, content = "You didnt supply enough arguments!")
             return()
 
-        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "a+", encoding="UTF-8") as reactfile:
+        with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-channelreactions.txt" % message.server.name), "a+", encoding="UTF-8") as reactfile:
             reactfile.write("%s, %s\n" % (channel, reaction))
 
         await client.send_message(message.channel, content = "Your channel reaction has been added!")
@@ -547,7 +547,7 @@ i want to x then d----------y""")
             return()
 
         try:
-            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "r") as reactfile:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-channelreactions.txt" % message.server.name), "r") as reactfile:
                 reactions = reactfile.read().split("\n")
         except:
             await client.send_message(message.channel, content = "This server doesnt have any reactions yet!")
@@ -565,7 +565,7 @@ i want to x then d----------y""")
             await client.send_message(message.channel, content = "That channel didn't have that reaction!")
             return()
         else:
-            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "w") as reactfile:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-channelreactions.txt" % message.server.name), "w") as reactfile:
                 reactfile.write("\n".join(reactions))
             await client.send_message(message.channel, content = "Deleted reaction from channel!")
             print("%s just deleted a reaction from a channel.\n" % message.author)
@@ -575,7 +575,7 @@ i want to x then d----------y""")
     #list channel reactions
     if msg[:21] == ".listchannelreactions" or msg == ".lcr":
         try:
-            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Toaster 2.0 (Python)/Server Files/%s-channelreactions.txt" % message.server.name), "r", encoding="UTF-8") as reactfile:
+            with open(("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Old or Done/Toaster 2.0/Server Files/%s-channelreactions.txt" % message.server.name), "r", encoding="UTF-8") as reactfile:
                 reactions = reactfile.read().split("\n")
         except:
             await client.send_message(message.channel, content = "This server doesnt have any reactions yet!")
