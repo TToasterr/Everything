@@ -44,6 +44,7 @@ module.exports = {
     .setTitle('Sucessfully added suggestion!')
     .setDescription(`**By:** ${object.who}\n**Suggestion:** ${object.what}`);
     message.channel.send(finalEmbed);
+    toaster.send(`${message.author.username} just made a suggestion!\n\`${object.what}\``)
     console.log(`${message.author.username} made a suggestion.`);
   },
 };
