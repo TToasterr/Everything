@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: true,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, toaster) {
     var amount;
     var noarg;
     if (args == '') {

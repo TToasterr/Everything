@@ -72,7 +72,7 @@ client.on('message', message => {
 
 
     try {
-      command.execute(message, args, client);
+      command.execute(message, args, client, toaster);
     }
     catch (error) {
       message.channel.send('There was an error executing that command! The bot owner has been notified.');

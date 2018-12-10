@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: true,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, toaster) {
     const date = `${message.guild.createdAt}`.substring(0,16);
     const final = new Discord.RichEmbed()
     .setColor('#00ff00')

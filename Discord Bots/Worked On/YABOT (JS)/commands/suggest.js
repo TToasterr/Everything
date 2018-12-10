@@ -9,7 +9,7 @@ module.exports = {
   guildOnly: false,
   args: true,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, toaster) {
     var config = require('../config.json');
     const author = message.author.username;
     const suggestion = args[0].substring(1);

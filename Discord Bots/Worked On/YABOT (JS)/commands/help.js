@@ -9,7 +9,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, toaster) {
 
     if (args == '') {
       var general = [];

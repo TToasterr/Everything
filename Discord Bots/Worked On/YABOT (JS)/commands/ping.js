@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: true,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, toaster) {
     message.channel.send('Pong!');
     console.log(`${message.author.username} pinged the bot from ${message.guild.name}.`);
   },
