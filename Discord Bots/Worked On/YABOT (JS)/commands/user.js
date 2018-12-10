@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args) {
+  execute(message, args, client) {
     if (!message.mentions.users.size) {
       const tagged = message.author;
       const final = new Discord.RichEmbed()
