@@ -11,7 +11,7 @@ client.once('ready', () => {
   for (var i = 0; i <= 100; i++) {
     console.log();
   }
-  console.log(`Bot has started!\nUSERS: ${client.users.size}\nCHANNELS: ${client.channels.size}\nSERVERS: ${client.guilds.size}`);
+  console.log(`Bot has started!\nUSERS: ${client.users.size}\nCHANNELS: ${client.channels.size}\nSERVERS: ${client.guilds.size}\n`);
 })
 
 
