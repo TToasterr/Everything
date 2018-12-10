@@ -112,7 +112,7 @@ async def on_message(message):
 
 
     try:
-        if int(wks.cell("A2").value) == 1 and msg[:2] != "t." and msg[0] not in {".", "!", "?"}:
+        if int(wks.cell("A2").value) == 1 and msg[:2] != "t." and msg[0] not in {".", "!", "?"} and msg[:2] != "--":
             with open("C:/Users/matth/Documents/GitHub/Everything/Discord Bots/Bot Limbo/Toaster 3.0/server message storage/%s.txt" % message.server.name, "a+") as serverFile:
                 serverFile.write("**%s**: %s\n" % (message.author, msg))
     except:
