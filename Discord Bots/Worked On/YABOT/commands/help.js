@@ -37,7 +37,7 @@ module.exports = {
       .addField('General', '```' + general.join('\n') + '```')
       .addField('This', '```' + thiss.join('\n') + '```')
       .addField('Suggestions', '```' + suggestions.join('\n') + '```')
-      .addField(`You can send \`${prefix}help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/YABOT%20');
+      .addField(`You can send \`${prefix}help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/YABOT)');
 
       message.channel.send(final);
       return console.log(`${message.author.username} got help.`);
