@@ -14,7 +14,7 @@ module.exports = {
 
     const final = new Discord.RichEmbed()
     .setColor('#00ff00')
-    .setAuthor.setAuthor('BankerBot', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=530582447394521129&permissions=8&scope=bot')
+    .setAuthor('BankerBot', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=530582447394521129&permissions=8&scope=bot')
     .setTitle('__**All Servers this bot is in, and their member counts.**__');
 
     var thing = '';
