@@ -9,7 +9,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, time) {
     const config = require('../config.json');
     const author = message.author.username;
     const suggestion = args[0].substring(1);
@@ -43,6 +43,6 @@ module.exports = {
       }
     }
     message.channel.send(finalEmbed);
-    console.log(`${message.author.username} listed suggestions.`);
+    console.log(`[${time}] ${message.author.username} listed suggestions.`);
   },
 };

@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, time) {
     args[0] = args[0].substring(1);
 
     if (!args[1] || args[1] == '') {
@@ -24,6 +24,6 @@ module.exports = {
     .setDescription(args.join(', '))
     .addField('My Choice', args[randInt]);
     message.channel.send(final);
-    console.log(`${message.author.username} made the bot make a choice.`);
+    console.log(`[${time}] ${message.author.username} made the bot make a choice.`);
   },
 };

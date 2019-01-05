@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, time) {
     const allGuilds = client.guilds.map(g => g.name);
     const guildMCount = client.guilds.map(g => g.memberCount);
 
@@ -27,6 +27,6 @@ module.exports = {
     final.setDescription(thing);
 
     message.channel.send(final);
-    console.log(`${message.author.username} got the list of all servers the bot is in.`);
+    console.log(`[${time}] ${message.author.username} got the list of all servers the bot is in.`);
   },
 };

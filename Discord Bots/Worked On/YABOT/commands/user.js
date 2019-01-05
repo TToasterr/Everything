@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, time) {
     if (!message.mentions.users.size) {
       const tagged = message.author;
       const final = new Discord.RichEmbed()
@@ -20,7 +20,7 @@ module.exports = {
       .setImage(tagged.displayAvatarURL);
 
       message.channel.send(final);
-      console.log(`${message.author.username} got their own stats.`);
+      console.log(`[${time}] ${message.author.username} got their own stats.`);
     }
 
     else {
@@ -34,7 +34,7 @@ module.exports = {
       .setImage(tagged.displayAvatarURL);
 
       message.channel.send(final);
-      console.log(`${message.author.username} got the stats of ${tagged.username}.`);
+      console.log(`[${time}] ${message.author.username} got the stats of ${tagged.username}.`);
     }
   },
 };

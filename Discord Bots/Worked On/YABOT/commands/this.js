@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: true,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, time) {
     var amount;
     var noarg;
     if (args == '') {
@@ -37,6 +37,6 @@ module.exports = {
         }
       })
     });
-    console.log(`${message.author.username} agreed with a message.`);
+    console.log(`[${time}] ${message.author.username} agreed with a message.`);
   },
 };

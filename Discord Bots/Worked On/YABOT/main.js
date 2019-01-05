@@ -72,7 +72,11 @@ client.on('message', message => {
 
 
     try {
-      command.execute(message, args, client);
+      var date = new Date();
+      var day = date.toString().substring(0,3);
+      var mdy = date.toString().substring(4,15);
+      var time = date.toString().substring(16,24);
+      command.execute(message, args, client, time);
     }
     catch (error) {
       message.channel.send('There was an error executing that command! The bot owner has been notified.');

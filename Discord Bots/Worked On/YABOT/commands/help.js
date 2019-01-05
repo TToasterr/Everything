@@ -9,12 +9,13 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, time) {
 
     if (args == '') {
       var general = [];
       var thiss = [''];
       var suggestions = [''];
+      var bank = [''];
       var commands = message.client.commands.map(command => command);
 
       for (var i = 0; i < commands.length; i++) {
@@ -27,6 +28,9 @@ module.exports = {
         else if (commands[i].category == 'sugg') {
           suggestions.push(commands[i].name);
         }
+        else if (commands[i].category == 'bank') {
+          bank.push(commands[i].name);
+        }
       }
 
       const final = new Discord.RichEmbed()
@@ -37,10 +41,11 @@ module.exports = {
       .addField('General', '```' + general.join('\n') + '```')
       .addField('This', '```' + thiss.join('\n') + '```')
       .addField('Suggestions', '```' + suggestions.join('\n') + '```')
+      .addField('Bank', '```' + bank.join('\n') + '```')
       .addField(`You can send \`${prefix}help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/YABOT)');
 
       message.channel.send(final);
-      return console.log(`${message.author.username} got help.`);
+      return console.log(`[${time}] ${message.author.username} got help.`);
     }
 
     const name = args[0].toLowerCase().substring(1);
@@ -60,6 +65,6 @@ module.exports = {
     .addField('**Usage**', `${prefix}${command.name} ${command.usage}`);
 
     message.channel.send(final);
-    console.log(`${message.author.username} got help.`);
+    console.log(`[${time}] ${message.author.username} got help.`);
   },
 };

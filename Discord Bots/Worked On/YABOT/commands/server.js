@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: true,
   args: false,
   mod: false,
-  execute(message, args, client) {
+  execute(message, args, client, time) {
     const date = `${message.guild.createdAt}`.substring(0,16);
     const final = new Discord.RichEmbed()
     .setColor('#00ff00')
@@ -19,6 +19,6 @@ module.exports = {
     .setImage(message.guild.iconURL);
 
     message.channel.send(final);
-    console.log(`${message.author.username} got server stats for the server ${message.guild.name}.`);
+    console.log(`[${time}] ${message.author.username} got server stats for the server ${message.guild.name}.`);
   },
 };
