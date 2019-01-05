@@ -23,7 +23,7 @@ module.exports = {
     .setColor('#00ff00')
     .setAuthor('YABOT (Yet Another Bot Of Toaster\'s)', 'https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048', 'https://discordapp.com/api/oauth2/authorize?client_id=519640938667048960&permissions=8&scope=bot')
     .setTitle('__All Suggestions__')
-    .setDescription(`__*Number, status, and author are shown.*__`);
+    .setDescription(`__*Number, author, and status are shown.*__`);
 
     for (var i = 0; i <= config.number; i++) {
       if (i != 0) {
