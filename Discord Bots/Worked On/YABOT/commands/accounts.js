@@ -63,6 +63,6 @@ module.exports = {
     }
 
     message.channel.send(finalEmbed);
-    console.log(`${message.author.username} listed accounts.`);
+    console.log(`[${time}] ${message.author.username} listed accounts.`);
   },
 };

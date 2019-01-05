@@ -16,6 +16,6 @@ module.exports = {
     // .setDescription('')
     // .addField('', '');
     // message.channel.send(final);
-    // console.log(`${message.author.username} did something.`);
+    // console.log(`[${time}] ${message.author.username} did something.`);
   },
 };
