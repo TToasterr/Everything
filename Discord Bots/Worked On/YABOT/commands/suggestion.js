@@ -69,6 +69,6 @@ module.exports = {
     }
 
     message.channel.send(finalEmbed);
-    console.log(`[${time}] ${message.author.username} got info for a suggestion.`);
+    console.log(`[${time}] ${message.author.username} got or changed info for a suggestion.`);
   },
 };
