@@ -74,6 +74,10 @@ client.on(`message`, message => {
 
   // -----------------------------------------------------------------------------
 
+  if (message.author.bot) return;
+
+  // -----------------------------------------------------------------------------
+
   try {
     let autoresponses = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {
       if (err) throw err;
