@@ -8,10 +8,10 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client, time, final, prefix) {
+  execute(message, args, client, time, final, prefix, start) {
     final.setTitle('BOT STATS')
     .setDescription(`**Server Count** - ${client.guilds.size}\n**Channel Count** - ${client.channels.size}\n**User Count** - ${client.users.size}`);
-    
+
     message.channel.send(final);
     console.log(`[${time}] ${message.author.username} got the stats for the bot.`);
   },

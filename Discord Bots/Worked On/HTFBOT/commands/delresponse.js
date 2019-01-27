@@ -9,7 +9,7 @@ module.exports = {
   guildOnly: true,
   args: true,
   mod: false,
-  execute(message, args, client, time, final, prefix) {
+  execute(message, args, client, time, final, prefix, start) {
     let autoresponses = false;
     try {
       autoresponses = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {

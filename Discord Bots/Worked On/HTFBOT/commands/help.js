@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client, time, final, prefix) {
+  execute(message, args, client, time, final, prefix, start) {
 
     if (args == '') {
       var general = [];
@@ -33,7 +33,7 @@ module.exports = {
       .addField('General', '```' + general.join('\n') + '```')
       .addField('Suggestions', '```' + suggestions.join('\n') + '```')
       .addField('Autoresponder', '```' + autoresp.join('\n') + '```')
-      .addField(`You can send \`${prefix}help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/YABOT)');
+      .addField(`You can send \`${prefix}help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/HTFBOT)');
 
       message.channel.send(final);
       return console.log(`[${time}] ${message.author.username} got help.`);

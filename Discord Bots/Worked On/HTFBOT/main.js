@@ -1,5 +1,6 @@
 const fs = require(`fs`);
 const Discord = require(`discord.js`);
+const hrtime = require('process');
 const client = new Discord.Client();
 const prefix = `..`
 
@@ -50,6 +51,7 @@ function notEnoughArgs(command, message, time) {
 
 
 client.on(`message`, message => {
+  let start = process.hrtime()
   let final = new Discord.RichEmbed()
   .setColor(`#00ff00`)
   .setAuthor(`HTFBOT (Hopefully The Final Bot Of Toasters)`, `https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048`, `https://discordapp.com/api/oauth2/authorize?client_id=537774698809786368&permissions=8&scope=bot`)
@@ -94,7 +96,7 @@ client.on(`message`, message => {
     }
   }
   catch (err) {
-    throw err;
+    let dooo = `nothing please`
   }
 
   // -----------------------------------------------------------------------------
@@ -144,7 +146,7 @@ client.on(`message`, message => {
   // -----------------------------------------------------------------------------
 
   try {
-    command.execute(message, args, client, time, final, prefix);
+    command.execute(message, args, client, time, final, prefix, start);
   }
   catch (err) {
     final.setTitle(`__**Oops!**__`)
