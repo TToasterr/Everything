@@ -9,20 +9,33 @@ module.exports = {
   guildOnly: true,
   args: false,
   mod: false,
-  execute(message, args, client, time, final, prefix) {
+  execute(message, args, client, time, final, prefix, start) {
     final.setTitle('__All Suggestions__');
 
     // -----------------------------------------------------------------------------
 
-    let autoresponses = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {
-      if (err) {
-        final.setTitle(`Oops!`)
-        .setDescription(`There are no autoresponse triggers for this server!`);
+    let autoresponses;
 
-        message.channel.send(final);
-        return console.log(`[${time}] ${message.author.username} tried to list autoresponse triggers for ${message.guild.name}, but there werent any.`);
-      }
-    });
+    try {
+      let autoresponses = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {
+        if (err) {
+          final.setTitle(`Oops!`)
+          .setDescription(`There are no autoresponse triggers for this server!`);
+
+          message.channel.send(final);
+          return console.log(`[${time}] ${message.author.username} tried to list autoresponse triggers for ${message.guild.name}, but there werent any.`);
+          throw err;
+        }
+      });
+    }
+    catch (err) {
+      final.setTitle(`Oops!`)
+      .setDescription(`There are no autoresponse triggers for this server!`);
+
+      message.channel.send(final);
+      return console.log(`[${time}] ${message.author.username} tried to list autoresponse triggers for ${message.guild.name}, but there werent any.`);
+      throw err;
+    }
 
     if (autoresponses == `{}` || autoresponses == {}) {
       final.setTitle(`Oops!`)

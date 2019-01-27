@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: true,
   args: false,
   mod: false,
-  execute(message, args, client, time, final, prefix) {
+  execute(message, args, client, time, final, prefix, start) {
     const date = `${message.guild.createdAt}`.substring(0,16);
     final.addField('STATS', `**Name** - ${message.guild.name}\n**Members** - ${message.guild.memberCount}\n**Created** - ${date}\n**Region** - ${message.guild.region}`)
     .addBlankField()

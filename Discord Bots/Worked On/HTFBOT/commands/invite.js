@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client, time, final, prefix) {
+  execute(message, args, client, time, final, prefix, start) {
     final.setTitle('Invite Link')
     .setDescription('Add me to your server by clicking my name above!');
 

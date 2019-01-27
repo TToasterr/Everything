@@ -9,7 +9,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client, time, final, prefix) {
+  execute(message, args, client, time, final, prefix, start) {
     const config = require('../config.json');
     const author = message.author.username;
     const suggestion = args[0].substring(1);
@@ -36,7 +36,7 @@ module.exports = {
           });
         }
         var suggestionn = JSON.parse(fileContent);
-        final.addField(i + ' - ' + suggestionn.who, `**Status:** ${suggestionn.status}\n--------------`);
+        final.addField(i + `\ - \'` + suggestionn.what + `\'`, `**Status:** ${suggestionn.status}\n--------------`);
       }
     }
     message.channel.send(final);

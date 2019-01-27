@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client, time, final, prefix) {
+  execute(message, args, client, time, final, prefix, start) {
     const allGuilds = client.guilds.map(g => g.name);
     const guildMCount = client.guilds.map(g => g.memberCount);
 

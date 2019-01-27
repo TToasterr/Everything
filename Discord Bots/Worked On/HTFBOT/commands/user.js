@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: false,
   args: false,
   mod: false,
-  execute(message, args, client, time, final, prefix) {
+  execute(message, args, client, time, final, prefix, start) {
     if (!message.mentions.users.size) {
       const tagged = message.author;
       final.addField('STATS', `**Username** - ${tagged.username}\n**Created** - ` + `${tagged.createdAt}`.substring(0,16) + `\n**ID** - ${tagged.id}\n\n`)
