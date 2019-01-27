@@ -32,19 +32,19 @@ module.exports = {
       number = `0${number}`;
     }
 
-    const final = JSON.stringify(object);
+    const finalJSON = JSON.stringify(object);
 
-    fs.writeFileSync(`./commands/suggestions/${number}.json`, final, (err) => {
+    fs.writeFileSync(`./commands/suggestions/${number}.json`, finalJSON, (err) => {
       if (err) throw err;
     });
 
     final.setTitle('Sucessfully added suggestion!')
     .setDescription(`**By:** ${object.who}\n**Suggestion:** ${object.what}`);
-    
+
     message.channel.send(final);
     let user = client.fetchUser('184474965859368960')
     .then(user => {
-      user.send(`[${time}] ${message.author.username} just made a suggestion!\n\`${object.what}\``);
+      user.send(`${message.author.username} just made a suggestion!\n\`${object.what}\``);
     })
     console.log(`[${time}] ${message.author.username} made a suggestion.`);
   },

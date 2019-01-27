@@ -47,8 +47,8 @@ module.exports = {
         final.setTitle(`__Status for ${number} has been Changed!__`)
         .setDescription(`'${args[2]}'`);
 
-        const final = JSON.stringify(suggestionn);
-        fs.writeFileSync(`./commands/suggestions/${number}.json`, final, (err) => {
+        const finalJSON = JSON.stringify(suggestionn);
+        fs.writeFileSync(`./commands/suggestions/${number}.json`, finalJSON, (err) => {
           if (err) throw err;
         });
       }
@@ -57,8 +57,8 @@ module.exports = {
         final.setTitle(`__Notes for ${number} have been Changed!__`)
         .setDescription(`'${args[2]}'`);
 
-        const final = JSON.stringify(suggestionn);
-        fs.writeFileSync(`./commands/suggestions/${number}.json`, final, (err) => {
+        const finalJSON = JSON.stringify(suggestionn);
+        fs.writeFileSync(`./commands/suggestions/${number}.json`, finalJSON, (err) => {
           if (err) throw err;
         });
       }

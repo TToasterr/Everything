@@ -108,12 +108,12 @@ client.on(`message`, message => {
     return console.log(`[${time}] ${message.author.username} tried to do a guild only command outside of a guild.`);
   }
 
-  if (command.mod && !message.member.roles.some(r => [`Administrator`, `Moderator`, `Mod`, `Admin`, `Owners`, `Toaster`].inculdes(r.name))) {
+  if (command.mod && !message.member.roles.some(r => [`Administrator`, `Moderator`, `Mod`, `Admin`, `Owners`, `Toaster`, `EPIC GAMERS`, `COOL KIDS`].includes(r.name))) {
     final.setTitle(`__**Oops!**__`)
     .setDescription(`Sorry, you dont have permission to do this command!`);
 
     message.channel.send(final);
-    return console.log(`[${time}] ${message.author.usename} tried to do a command, but didnt have the right permission.`);
+    return console.log(`[${time}] ${message.author.username} tried to do a command, but didnt have the right permission.`);
   }
 
   // -----------------------------------------------------------------------------
