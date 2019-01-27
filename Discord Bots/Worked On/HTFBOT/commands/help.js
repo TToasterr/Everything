@@ -12,7 +12,8 @@ module.exports = {
 
     if (args == '') {
       var general = [];
-      var suggestions = [''];
+      var suggestions = [``];
+      var autoresp = [``];
       var commands = message.client.commands.map(command => command);
 
       for (var i = 0; i < commands.length; i++) {
@@ -22,12 +23,16 @@ module.exports = {
         else if (commands[i].category == 'sugg') {
           suggestions.push(commands[i].name);
         }
+        else if (commands[i].category == `autoresp`) {
+          autoresp.push(commands[i].name);
+        }
       }
 
       final.setTitle('__**Here are all of my commands!**__')
       .setDescription('*Arguments must be seperated with a comma and space or it will return an error.*')
       .addField('General', '```' + general.join('\n') + '```')
       .addField('Suggestions', '```' + suggestions.join('\n') + '```')
+      .addField('Autoresponder', '```' + autoresp.join('\n') + '```')
       .addField(`You can send \`${prefix}help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/YABOT)');
 
       message.channel.send(final);

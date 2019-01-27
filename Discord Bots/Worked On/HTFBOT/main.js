@@ -74,6 +74,27 @@ client.on(`message`, message => {
 
   // -----------------------------------------------------------------------------
 
+  try {
+    let autoresponses = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {
+      if (err) throw err;
+    });
+
+    autoresponses = JSON.parse(autoresponses);
+
+    let keys = Object.keys(autoresponses);
+
+    for (var key of keys) {
+      if (message.content.includes(key)) {
+        message.channel.send(autoresponses[key])
+      }
+    }
+  }
+  catch (err) {
+    throw err;
+  }
+
+  // -----------------------------------------------------------------------------
+
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   // -----------------------------------------------------------------------------
