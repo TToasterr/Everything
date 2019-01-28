@@ -11,7 +11,7 @@ module.exports = {
   mod: false,
   execute(message, args, client, time, final, prefix, start) {
     final.setTitle(`Pong!`)
-    .setDescription(`Took ${process.hrtime(start, `us`)}us`);
+    .setDescription(`Took ${process.hrtime(start, `us`)} μs`);
 
     message.channel.send(final);
     console.log(`[${time}] ${message.author.username} pinged the bot from ${message.guild.name}.`);

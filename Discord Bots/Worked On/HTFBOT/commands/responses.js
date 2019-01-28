@@ -15,38 +15,44 @@ module.exports = {
     // -----------------------------------------------------------------------------
 
     let autoresponses;
+    // console.log(autoresponses + `01`);
 
     try {
-      let autoresponses = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {
+      autoresponses = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {
         if (err) {
-          final.setTitle(`Oops!`)
-          .setDescription(`There are no autoresponse triggers for this server!`);
-
-          message.channel.send(final);
-          return console.log(`[${time}] ${message.author.username} tried to list autoresponse triggers for ${message.guild.name}, but there werent any.`);
+          // final.setTitle(`Oops!`)
+          // .setDescription(`There are no autoresponse triggers for this server!`);
+          //
+          // message.channel.send(final);
+          // return console.log(`[${time}] ${message.author.username} tried to list autoresponse triggers for ${message.guild.name}, but there werent any.`);
+          // console.log(autoresponses + `02`);
           throw err;
         }
       });
+      // console.log(autoresponses + `03`);
     }
     catch (err) {
       final.setTitle(`Oops!`)
       .setDescription(`There are no autoresponse triggers for this server!`);
 
       message.channel.send(final);
+      // console.log(autoresponses + `04`);
       return console.log(`[${time}] ${message.author.username} tried to list autoresponse triggers for ${message.guild.name}, but there werent any.`);
-      throw err;
+      // throw err;
     }
 
-    if (autoresponses == `{}` || autoresponses == {}) {
+    if (autoresponses == `{}`) {
       final.setTitle(`Oops!`)
       .setDescription(`There are no autoresponse triggers for this server!`);
 
       message.channel.send(final);
+      // console.log(autoresponses + `05`);
       return console.log(`[${time}] ${message.author.username} tried to list autoresponse triggers for ${message.guild.name}, but there werent any.`);
     }
 
     // -----------------------------------------------------------------------------
 
+    // console.log(autoresponses + `06`);
     autoresponses = JSON.parse(autoresponses);
     let keys = Object.keys(autoresponses);
     let description = `__*Trigger and response are shown.*__\n\n`;

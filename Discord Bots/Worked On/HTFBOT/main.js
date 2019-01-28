@@ -18,7 +18,7 @@ client.on(`guildCreate`, guild => {
 });
 
 client.on(`guildDelete`, guild => {
-  console.log(`Removed from server! \nNAME: {$guild.name} \nMEMBERS: ${guild.memberCount}`);
+  console.log(`Removed from server! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}`);
 });
 
 
@@ -81,17 +81,17 @@ client.on(`message`, message => {
   // -----------------------------------------------------------------------------
 
   try {
-    let autoresponses = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {
+    let autoresponsess = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {
       if (err) throw err;
     });
 
-    autoresponses = JSON.parse(autoresponses);
+    autoresponsess = JSON.parse(autoresponsess);
 
-    let keys = Object.keys(autoresponses);
+    let keys = Object.keys(autoresponsess);
 
     for (var key of keys) {
       if (message.content.includes(key)) {
-        message.channel.send(autoresponses[key])
+        message.channel.send(autoresponsess[key])
       }
     }
   }
@@ -158,7 +158,7 @@ client.on(`message`, message => {
     let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
       toaster.send(`${message.author.username} got an error using the ${command.name} command. \nCheck console my guy!`);
     });
-    return console.log(err + `\n`);
+    throw err;
   }
 });
 
