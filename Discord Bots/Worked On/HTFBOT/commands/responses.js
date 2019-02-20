@@ -10,7 +10,7 @@ module.exports = {
   args: false,
   mod: false,
   execute(message, args, client, time, final, prefix, start) {
-    final.setTitle('__All Suggestions__');
+    final.setTitle('__All AutoResponses__');
 
     // -----------------------------------------------------------------------------
 

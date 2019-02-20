@@ -1,6 +1,8 @@
 const fs = require(`fs`);
 const Discord = require(`discord.js`);
 const hrtime = require('process');
+// const readline = require('readline');
+// const {google} = require('googleapis');
 const client = new Discord.Client();
 const prefix = `..`
 
