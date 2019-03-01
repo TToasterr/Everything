@@ -16,11 +16,11 @@ client.once(`ready`, () => {
 // -----------------------------------------------------------------------------
 
 client.on(`guildCreate`, guild => {
-  console.log(`New server joined! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}`);
+  console.log(`\n-----------------------------\nNew server joined! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}\n-----------------------------\n`);
 });
 
 client.on(`guildDelete`, guild => {
-  console.log(`Removed from server! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}`);
+  console.log(`\n-----------------------------\nRemoved from server! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}\n-----------------------------\n`);
 });
 
 
@@ -82,23 +82,23 @@ client.on(`message`, message => {
 
   // -----------------------------------------------------------------------------
 
-  try {
-    let autoresponsess = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {
-      if (err) throw err;
+  try { //try to
+    let autoresponsess = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => { //get the autoresponses from a file
+      if (err) throw err; //if it gets an error say so
     });
 
-    autoresponsess = JSON.parse(autoresponsess);
+    autoresponsess = JSON.parse(autoresponsess); //parse the autoresponses so we can use them in our code
 
-    let keys = Object.keys(autoresponsess);
+    let keys = Object.keys(autoresponsess); //get all of the keys (triggers)
 
-    for (var key of keys) {
-      if (message.content.includes(key)) {
-        message.channel.send(autoresponsess[key])
+    for (var key of keys) { //for every trigger
+      if (message.content.includes(key)) { //if the message has the trigger in it
+        message.channel.send(autoresponsess[key]) //send the response linked to the trigger
       }
     }
   }
-  catch (err) {
-    let dooo = `nothing please`
+  catch (err) { //if any of the above gets an error
+    let dooo = `nothing please` //just dont do anything
   }
 
   // -----------------------------------------------------------------------------

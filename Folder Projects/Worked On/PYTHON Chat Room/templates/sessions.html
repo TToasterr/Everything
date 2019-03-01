@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Style/session.css') }}"> -->
+  <title>CHAT STUFF</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+
+
+
+
+    #mainContainer {
+      padding: 0;
+      <!-- position: fixed; -->
+      width: 86%;
+    }
+
+    #messages {
+      font-family: Arial;
+      color: #aaa;
+      height: 100%;
+      width: 100%;
+    }
+
+
+    #userListContainer {
+      font-family: Arial;
+      font-size: 20px;
+      background: #191C1F;
+      right: 0;
+      position: fixed;
+      height: 100%;
+      width: 14%;
+      border-left: 3px solid #070707;
+      padding: 0;
+      z-index: 10;
+    }
+
+    #userList {
+      color: #CCC;
+      height: 100%;
+      text-align: center;
+    }
+
+
+
+
+
+    #sendMessageForm {
+      padding: 10px;
+      bottom: 0;
+      width: 85%;
+      position: fixed;
+      background: #23272A;
+    }
+
+    #sendMessageBox {
+      color: #aaa;
+      background: #23272A;
+      font-size: 15px;
+      font-family: Arial;
+      width: 100%;
+      height: 20px;
+      border: 0;
+    }
+
+
+
+
+
+    #messageContainer {
+      background: #2A2C31;
+      padding: 2px;
+      border-bottom: 3px solid #13171A;
+    }
+
+    #name {
+      color: #ccc;
+      font-size: 20px;
+      display: inline;
+    }
+
+    #message {
+      color: #aaa;
+      font-size: 17px;
+      display: inline;
+    }
+  </style>
+</head>
+
+
+
+<body bgcolor="#2C2F33">
+
+  <div id="userListContainer">
+    <div id="userList">List of Users</div>
+  </div>
+
+  <div id="mainContainer">
+    <div id="messages"></div>
+  </div>
+
+
+
+  <div id="bottom"><br><br></div>
+  <div id="sendMessageContainer">
+    <form id="sendMessageForm" action="" method="POST">
+      <input id="sendMessageBox" autocomplete="off" class="inline" placeholder="Type here..." />
+    </form>
+  </div>
+
+  <!-- <div id="loginContainer">
+    <form id="loginForm" action="">
+      <div id="loginMessage"><u>PLEASE ENTER VALID CREDENTIALS</u></div>
+      <br><br>
+      <input id="loginInput" />
+    </form>
+  </div> -->
+
+
+
+  <!-- <script type="text/javascript" src="{{ url_for('static', filename='Code/chat.js') }}"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+  <script>
+var socket = io.connect("http://" + document.domain + ":" + location.port);
+
+
+socket.on("connect", function() {
+  socket.emit("event", {
+    data: "USER CONNECTED"
+  });
+
+  socket.on("disconnect", function() {
+    socket.emit("event", {
+      data: "USER DISCONNECTED"
+    });
+  });
+
+  var form = $("#sendMessageForm").on("submit", function(e) {
+    e.preventDefault();
+    // let username = $("input.username").val();
+    let username = "Toaster";
+    let input = $("#sendMessageBox").val();
+
+    socket.emit("event", {
+      data: "MESSAGE SENT",
+      username: username,
+      message: input
+    });
+
+    $("#sendMessageBox").val("").focus();
+  });
+});
+
+
+socket.on("response", function(msg) {
+  console.log(msg);
+  if (msg.username != "" && msg.username != undefined && msg.username != "undefined" && msg.username)
+  // $("#placeholderMsg").remove();
+  $("#messages").append(`<div id="messageContainer"><div id="name"><b>${msg.username}: </b></div><div id="message">${msg.message}</div></div>`);
+  document.getElementById('bottom').scrollIntoView(true);
+});
+  </script>
+
+</body>
+</html>

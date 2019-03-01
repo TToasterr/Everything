@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Flask_Chat_App</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Style/session.css') }}">
+</head>
+<body bgcolor="#000000">
+  <script>
+
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='Code/chat.js') }}"></script>
+
+  <h3 style="color: #ccc;font-size: 30px;">No message yet..</h3>
+  <div class="message_holder"></div>
+
+  <div id="sendMessageContainer">
+    <form id="sendMessageForm" action="" method="POST">
+      <input id="sendMessageBox" autocomplete="off" disabled="true" class="inline" />
+    </form>
+  </div>
+
+  <div id="loginContainer">
+    <form id="loginForm" action="">
+      <div id="loginMessage"><u>PLEASE ENTER VALID CREDENTIALS</u></div>
+      <br><br>
+      <input id="loginInput" />
+    </form>
+  </div>
+
+  <form action="" method="POST" id="messageForm">
+    <input type="text" class="message" placeholder="Messages"/>
+    <input type="submit"/>
+  </form>
+
+</body>
+</html>
