@@ -23,28 +23,58 @@ client.on(`guildDelete`, guild => {
 // -----------------------------------------------------------------------------
 
 client.on(`message`, message => {
+	if (message.author.bot) return;
+
 	var sent = [];
-	var done = false;
-	for (var i = 5000; i >= 0; i--) {
-		if (!done) {
-			if (i < 10) {
-				i = `00${i}`;
-			}
-			else if (i < 100) {
-				i = `0${i}`;
-			}
+	var includesSCP = false;
 
-			let final = new Discord.RichEmbed()
-			.setColor(`#000000`)
-			.setAuthor(`Marv`, `https://images.discordapp.net/avatars/538173713162567690/07187402dab82f0fd34348a0a5202ecc.png?size=512`, `https://discordapp.com/api/oauth2/authorize?client_id=554490018752626708&permissions=8&scope=bot`)
+	var splitMessage = message.content.split(" ");
 
-			if (message.content.includes(`SCP-${i}`)) {
-				final.setDescription(`[\`SCP-${i}\`](http://www.scp-wiki.net/scp-${i})`);
-				message.channel.send(final);
-				done = true;
-			}
+	var finalDesc = [];
+
+	let final = new Discord.RichEmbed()
+	.setColor(`#000000`)
+	.setAuthor(`Marv`, `https://images.discordapp.net/avatars/538173713162567690/07187402dab82f0fd34348a0a5202ecc.png?size=512`, `https://discordapp.com/api/oauth2/authorize?client_id=554490018752626708&permissions=8&scope=bot`)
+
+	for (var i = 0; i < splitMessage.length; i++) {
+		if (splitMessage[i].includes("SCP-")) {
+			finalDesc.push(`[${splitMessage[i]}](http://www.scp-wiki.net/${splitMessage[i]})`);
+			includesSCP = true;
+		}
+
+		if (splitMessage[i].includes("TALE-")) {
+			finalDesc.push(`[${splitMessage[i].substring(5).split("-").join(" ")}](http://www.scp-wiki.net/${splitMessage[i].substring(5)})`);
+			includesSCP = true;
 		}
 	}
+
+	if (includesSCP) {
+		final.setDescription(finalDesc.join("\n"));
+		message.channel.send(final);
+	}
+
+
+
+	// for (var i = 5000; i >= 0; i--) {
+	// 	if (!done) {
+	// 		if (i < 10) {
+	// 			i = `00${i}`;
+	// 		}
+	// 		else if (i < 100) {
+	// 			i = `0${i}`;
+	// 		}
+	//
+	// 		let final = new Discord.RichEmbed()
+	// 		.setColor(`#000000`)
+	// 		.setAuthor(`Marv`, `https://images.discordapp.net/avatars/538173713162567690/07187402dab82f0fd34348a0a5202ecc.png?size=512`, `https://discordapp.com/api/oauth2/authorize?client_id=554490018752626708&permissions=8&scope=bot`)
+	//
+	// 		if (message.content.includes(`SCP-${i}`)) {
+	// 			final.setDescription(`[\`SCP-${i}\`](http://www.scp-wiki.net/scp-${i})`);
+	// 			message.channel.send(final);
+	// 			done = true;
+	// 		}
+	// 	}
+	// }
 });
 
 // -----------------------------------------------------------------------------
