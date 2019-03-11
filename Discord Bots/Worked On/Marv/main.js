@@ -46,7 +46,7 @@ client.on(`message`, message => {
 
 	let final = new Discord.RichEmbed()
 	.setColor(`#000000`)
-	.setAuthor(`Marv`, `https://images.discordapp.net/avatars/538173713162567690/07187402dab82f0fd34348a0a5202ecc.png?size=512`, `https://discordapp.com/api/oauth2/authorize?client_id=554490018752626708&permissions=8&scope=bot`)
+	.setAuthor(`Marv`, `https://images.discordapp.net/avatars/538173713162567690/07187402dab82f0fd34348a0a5202ecc.png?size=512`, `https://discordapp.com/api/oauth2/authorize?client_id=554490018752626708&permissions=8&scope=bot`);
 
 	for (var i = 0; i < splitMessage.length; i++) {
 		if (splitMessage[i].includes("SCP-")) {
@@ -93,6 +93,10 @@ client.on(`message`, message => {
 	// }
 });
 
+
+
 // -----------------------------------------------------------------------------
+
+
 
 client.login(process.argv[2]);
