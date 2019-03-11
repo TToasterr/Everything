@@ -3,14 +3,22 @@ const Discord = require(`discord.js`);
 const hrtime = require('process');
 const client = new Discord.Client();
 
+
+
 // -----------------------------------------------------------------------------
+
+
 
 client.once(`ready`, () => {
   console.log(`\n\n\n\n\n\n\n`);
   console.log(`Bot has started! \nUSERS: ${client.users.size} \nCHANNELS: ${client.channels.size} \nSERVERS: ${client.guilds.size}\n`);
 })
 
+
+
 // -----------------------------------------------------------------------------
+
+
 
 client.on(`guildCreate`, guild => {
   console.log(`\n-----------------------------\nNew server joined! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}\n-----------------------------\n`);
@@ -20,7 +28,11 @@ client.on(`guildDelete`, guild => {
   console.log(`\n-----------------------------\nRemoved from server! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}\n-----------------------------\n`);
 });
 
+
+
 // -----------------------------------------------------------------------------
+
+
 
 client.on(`message`, message => {
 	if (message.author.bot) return;
@@ -52,6 +64,10 @@ client.on(`message`, message => {
 		final.setDescription(finalDesc.join("\n"));
 		message.channel.send(final);
 	}
+
+
+
+	// -----------------------------------------------------------------------------
 
 
 
