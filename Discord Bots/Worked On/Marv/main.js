@@ -68,7 +68,7 @@ client.on(`message`, message => {
 		includesCommand = true;
 		final.setTitle('__**Here are all of my commands!**__')
 	        .setDescription('*Arguments must be seperated with a comma and space or it will return an error.*')
-	        .addField('General', '```\nhelp\ntoggleprefix```');
+	        .addField('General', '```\nhelp\ntoggleprefix\nstats```');
 	}
 
 	else if (message.content.startsWith("marv.toggleprefix")) {
@@ -83,6 +83,12 @@ client.on(`message`, message => {
 			final.setTitle('__**The prefix has been turned on!**__')
 			.setDescription('Marv will now only pick up on numbers with a prefix (SCP-001).');
 		}
+	}
+
+	else if (message.content.startsWith("marv.stats")) {
+		includesCommand = true;
+        	final.setTitle('BOT STATS')
+        	.setDescription(`**Server Count** - ${client.guilds.size}\n**Channel Count** - ${client.channels.size}\n**User Count** - ${client.users.size}`);
 	}
 
 	// -----------------------------------------------------------------------------
