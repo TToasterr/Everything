@@ -1,7 +1,6 @@
-const fs = require(`fs`);
-const Discord = require(`discord.js`);
-const hrtime = require('process');
-const client = new Discord.Client();
+const fs = require(`fs`);							// install filesystems 		(reading/writing files)
+const Discord = require(`discord.js`);						// install discord.js		(discord stuff)
+const client = new Discord.Client();						// make a Discord client	(just the bot itself)
 
 
 
@@ -38,10 +37,18 @@ client.on(`guildDelete`, guild => {
 client.on(`message`, message => {
 	if (message.author.bot) return;
 
-	console.log(`${message.guild.name}  ██  #${message.channel.name}  ██  ${message.author.username}: ${message.content}`);
+	var dm = false;
+
+	if (message.guild !== null) {
+		console.log(`${message.guild.name}  ██  #${message.channel.name}  ██  ${message.author.username}: ${message.content}`);
+	}
+	else {
+		dm = true;
+		console.log(`DM   ██  DM  ██  ${message.author.username}: ${message.content}`);
+	}
 
 	var sent = [];
-	var serverSettings;
+	var serverSettings = { SCPPrefix: true };
 	var includesSCP = false;
 	var includesCommand = false;
 	var splitMessage = message.content.split(" ");
@@ -52,26 +59,28 @@ client.on(`message`, message => {
 	.setColor(`#000000`)
 	.setAuthor(`Marv`, `https://images.discordapp.net/avatars/538173713162567690/07187402dab82f0fd34348a0a5202ecc.png?size=512`, `https://discordapp.com/api/oauth2/authorize?client_id=554490018752626708&permissions=8&scope=bot`);
 
-	try {
-		serverSettings = fs.readFileSync(`./settings/${message.guild.name}.json`, (err) => {
-	        	if (err) throw err;
-	        });
-		serverSettings = JSON.parse(serverSettings);
-	}
-	catch(err) {
-		serverSettings = { SCPPrefix: true };
+	if (dm == false) {
+		try {
+			serverSettings = fs.readFileSync(`./settings/${message.guild.name}.json`, (err) => {
+		        	if (err) throw err;
+		        });
+			serverSettings = JSON.parse(serverSettings);
+		}
+		catch(err) {
+			serverSettings = { SCPPrefix: true };
+		}
 	}
 
 	// -----------------------------------------------------------------------------
 
-	if (message.content.startsWith("marv.help")) {
+	if (message.content.toLowerCase().startsWith("marv.help")) {
 		includesCommand = true;
 		final.setTitle('__**Here are all of my commands!**__')
 	        .setDescription('*Arguments must be seperated with a comma and space or it will return an error.*')
 	        .addField('General', '```\nhelp\ntoggleprefix\nstats```');
 	}
 
-	else if (message.content.startsWith("marv.toggleprefix")) {
+	else if (message.content.toLowerCase().startsWith("marv.toggleprefix")) {
 		includesCommand = true;
 		if (serverSettings.SCPPrefix == true) {
 			serverSettings["SCPPrefix"] = false;
@@ -85,7 +94,7 @@ client.on(`message`, message => {
 		}
 	}
 
-	else if (message.content.startsWith("marv.stats")) {
+	else if (message.content.toLowerCase().startsWith("marv.stats")) {
 		includesCommand = true;
         	final.setTitle('BOT STATS')
         	.setDescription(`**Server Count** - ${client.guilds.size}\n**Channel Count** - ${client.channels.size}\n**User Count** - ${client.users.size}`);
@@ -148,10 +157,12 @@ client.on(`message`, message => {
 
 
 
-	let JSONObject = JSON.stringify(serverSettings);
-	fs.writeFileSync(`./settings/${message.guild.name}.json`, JSONObject, (err) => {
-		if (err) throw err;
-	});
+	if (dm == false) {
+		let JSONObject = JSON.stringify(serverSettings);
+		fs.writeFileSync(`./settings/${message.guild.name}.json`, JSONObject, (err) => {
+			if (err) throw err;
+		});
+	}
 });
 
 
