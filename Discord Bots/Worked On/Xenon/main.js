@@ -30,45 +30,6 @@ client.on(`guildDelete`, guild => {
 
 
 
-client.defaultCommands = new Discord.Collection();
-client.tCommands = new Discord.Collection();
-client.jCommands = new Discord.Collection();
-client.nCommands = new Discord.Collection();
-client.lCommands = new Discord.Collection();
-
-const defaultCommandFiles = fs.readdirSync(`./default`).filter(file => file.endsWith(`.js`));
-const tCommandFiles = fs.readdirSync(`./toaster`).filter(file => file.endsWith(`.js`));
-const jCommandFiles = fs.readdirSync(`./jonathan`).filter(file => file.endsWith(`.js`));
-const nCommandFiles = fs.readdirSync(`./nate`).filter(file => file.endsWith(`.js`));
-const lCommandFiles = fs.readdirSync(`./liam`).filter(file => file.endsWith(`.js`));
-
-for (var file of defaultCommandFiles) {
-        var command = require(`./default/${file}`);
-        client.defaultCommands.set(command.name, command);
-}
-for (var file of tCommandFiles) {
-        var command = require(`./toaster/${file}`);
-        client.tCommands.set(command.name, command);
-}
-for (var file of jCommandFiles) {
-        var command = require(`./jonathan/${file}`);
-        client.jCommands.set(command.name, command);
-}
-for (var file of nCommandFiles) {
-        var command = require(`./nate/${file}`);
-        client.nCommands.set(command.name, command);
-}
-for (var file of lCommandFiles) {
-        var command = require(`./liam/${file}`);
-        client.lCommands.set(command.name, command);
-}
-
-
-
-// -----------------------------------------------------------------------------
-
-
-
 function reloadbot() {
         client.defaultCommands = new Discord.Collection();
         client.tCommands = new Discord.Collection();
@@ -110,6 +71,7 @@ function reloadbot() {
 
 
 
+reloadbot();
 var profPic = `https://cdn.discordapp.com/attachments/539116623261466635/555604369068785664/600px-Radiation_warning_symbol.svg.png`;
 var invLink = `https://discordapp.com/api/oauth2/authorize?client_id=555556786908954624&permissions=8&scope=bot`;
 
