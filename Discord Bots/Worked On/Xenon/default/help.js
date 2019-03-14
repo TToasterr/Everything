@@ -7,37 +7,9 @@ module.exports = {
         guildOnly: false,
         args: false,
         mod: false,
-        execute(message, args, client, time, final, prefix, start) {
-
-                if (args == '') {
-                        var general = [];
-                        var commands = message.client.commands.map(command => command);
-
-                        for (var i = 0; i < commands.length; i++) {
-                                general.push(commands[i].name);
-                        }
-
-                        final.setTitle('__**Here are all of my commands!**__')
-                                .setDescription('*Arguments must be seperated with a comma and space or it will return an error.*')
-                                .addField('General', '```' + general.join('\n') + '```')
-                                .addField(`You can send \`xn.help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/HTFBOT)');
-
-                        message.channel.send(final);
-                        return console.log(`[${time}] ${message.author.username} got help.`);
-                }
-
-                const name = args[0].toLowerCase().substring(1);
-                const command = message.client.commands.get(name);
-
-                if (!command) {
-                        return message.channel.send('That\'s not a valid command!');
-                }
-
-                final.setTitle('**Name**')
-                        .setDescription('*Arguments must be seperated with a comma and space or it will return an error.*')
-                        .setDescription(command.name)
-                        .addField('**Description**', command.description)
-                        .addField('**Usage**', `${prefix}${command.name} ${command.usage}`);
+        execute(message, args, client, time, final) {
+                final.setTitle('__**About the bot:**__')
+                        .setDescription('*This bot is made by 4 sepearate people, each of which will make their own commands.*\n\nOther valid prefixes are rdt, rdj, rdn, and rdl.')
 
                 message.channel.send(final);
                 console.log(`[${time}] ${message.author.username} got help.`);

@@ -11,7 +11,7 @@ const client = new Discord.Client();
 client.once(`ready`, () => {
         console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
         console.log(`XENON IS LIVE\nOBERVABLE USERS: ${client.users.size}\nOBSERVABLE CHANNELS: ${client.channels.size}\nOBSERVED SERVERS: ${client.guilds.size}\n`);
-        client.user.setActivity(`xn.help`);
+        client.user.setActivity(`rd.help`);
 });
 
 // -----------------------------------------------------------------------------
@@ -69,7 +69,7 @@ for (var file of lCommandFiles) {
 
 
 
-var profPic = `https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048`;
+var profPic = `https://cdn.discordapp.com/attachments/539116623261466635/555604369068785664/600px-Radiation_warning_symbol.svg.png`;
 var invLink = `https://discordapp.com/api/oauth2/authorize?client_id=555556786908954624&permissions=8&scope=bot`;
 
 
@@ -79,14 +79,13 @@ var invLink = `https://discordapp.com/api/oauth2/authorize?client_id=55555678690
 
 
 client.on(`message`, message => {
-        if (message.author.bot || !message.content.startsWith('xn')) return;
+        if (message.author.bot || !message.content.startsWith('rd')) return;
         // time and final defining
         var entire;
         var date = new Date();
         var time = date.toString().substring(16, 24);
         var final = new Discord.RichEmbed()
-                .setColor(`#FF0000`)
-                .setAuthor(`Xenon`, profPic, invLink);
+                .setColor(`#FF0000`);
 
         // -----------------------------------------------------------------------------
 
@@ -105,20 +104,33 @@ client.on(`message`, message => {
         var commandName = entire.split(` `)[0];
         var args = entire.slice(commandName.length).split(`, `);
         var command;
-        if (!client.commands.has(commandName)) return;
+        var prefix;
+        if (!client.defaultCommands.has(commandName) && !client.tCommands.has(commandName) && !client.jCommands.has(commandName) && !client.nCommands.has(commandName) && !client.lCommands.has(commandName)) return;
 
 
         // getting command from the right collection
         if (message.content[2] == `.`) {
                 command = client.defaultCommands.get(commandName);
+                prefix = 'rd.';
+                final.setAuthor(`Radon`, profPic, invLink);
         } else if (message.content[2] == `t`) {
                 command = client.tCommands.get(commandName);
+                prefix = 'rdt.';
+                final.setAuthor(`Radon (Toaster)`, profPic, invLink);
         } else if (message.content[2] == `j`) {
                 command = client.jCommands.get(commandName);
+                prefix = 'rdj.';
+                final.setAuthor(`Radon (Jonathan)`, profPic, invLink);
         } else if (message.content[2] == `n`) {
                 command = client.nCommands.get(commandName);
+                prefix = 'rdn.';
+                final.setAuthor(`Radon (Nate)`, profPic, invLink);
         } else if (message.content[2] == `l`) {
                 command = client.lCommands.get(commandName);
+                prefix = 'rdl.';
+                final.setAuthor(`Radon (Liam)`, profPic, invLink);
+        } else {
+                return;
         }
 
 
@@ -156,10 +168,10 @@ client.on(`message`, message => {
 
         // executing the command
         try {
-                command.execute(message, args, client, time, final, prefix, start);
+                command.execute(message, args, client, time, final);
         } catch (err) {
-                final.setTitle(`__**OOps!**__`)
-                        .setDescription(`Xenon got an error.\n*Owners have been notified.*`)
+                final.setTitle(`__**Oops!**__`)
+                        .setDescription(`Radon got an error.\n*Owners have been notified.*`)
 
                 message.channel.send(final);
 
