@@ -4,6 +4,7 @@ module.exports = {
         name: 'rolldice',
         description: 'Roll some dice, with a variable amount of sides!',
         usage: '<amount of sides>',
+        category: '',
         guildOnly: false,
         args: true,
         mod: false,
