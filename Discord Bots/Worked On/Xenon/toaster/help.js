@@ -26,7 +26,7 @@ module.exports = {
                         final.setTitle('__**Here are all of Toasters commands!**__')
                                 .setDescription('*Arguments must be seperated with a comma and space or it will return an error.*')
                                 .addField('__General Commands:__', '`' + general.join('\n') + '`')
-                                .addField('__Testing/In Progress:__', '`' + testing.join('\n' + '`')
+                                .addField('__Testing/In Progress:__', '`' + testing.join('\n') + '`')
                                 .addField(`You can send \`rdt.help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/Xenon)');
 
                         message.channel.send(final);
