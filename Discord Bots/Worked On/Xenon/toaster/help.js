@@ -18,7 +18,7 @@ module.exports = {
                         for (var i = 0; i < commands.length; i++) {
                                 if (commands[i].category == '') {
                                         general.push(commands[i].name);
-                                } else if (command[i].category == 'testing') {
+                                } else if (commands[i].category == 'testing') {
                                         testing.push(commands[i].name);
                                 }
                         }
