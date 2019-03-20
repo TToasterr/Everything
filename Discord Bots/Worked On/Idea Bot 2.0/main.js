@@ -40,10 +40,19 @@ client.on(`message`, message => {
         } else if (message.content == `thanks for existing, bot`) {
                 send(`no problemo xd`);
                 console.log(`The bot was thanked for existing by ${message.author.username}`);
-        } else if (message.content.startsWith(`./invite`)) {
+        } else if (message.content.startsWith(`./help`)) {
+		send(`**Commands:**\n\n\`./help\n./ping\n./invite\n./descriptions\n\n./idea [category], [alias], [idea]\n./listideas [category]\n./showratings [category], [alias]\n./delidea [category], [alias]\n./rate [category], [alias], [rating]\``);
+		console.log(`${message.author.username} just got help.`);
+	} else if (message.content.startsWith(`./invite`)) {
                 send(`Wow you must really like me\n\nhttps://discordapp.com/api/oauth2/authorize?client_id=496529456178003987&permissions=8&scope=bot`);
                 console.log(`An invite link was gotten by ${message.author.username}`);
-        } else if (message.content.startsWith(`./idea`)) {
+        } else if (message.content.startsWith(`./descriptions`)) {
+		send(`Descriptions of each category:\n\n\`NEWS - General NEWS episodes. Unscripted, but uses ideas and tries to have plot.\n\
+CWN - Cooking with Nate, loosely scripted [this person does this here]\n\
+ARTICLE - Scripted. NEWS Shorts.\n\
+GENERAL - Just general ideas, videos or whatever.\n\
+JOKE - Ideas for jokes.\``)
+	} else if (message.content.startsWith(`./idea`)) {
                 let args = message.content.slice(`./idea `.length).split(`, `);
                 let category = args[0];
 		let alias = args[1];
@@ -57,11 +66,7 @@ client.on(`message`, message => {
 
                 let ideas;
                 let object = {
-			idea: idea,
-                        liam: -1,
-                        toaster: -1,
-                        jonathan: -1,
-                        nate: -1
+			idea: idea
                 };
 
                 try {
@@ -113,7 +118,8 @@ client.on(`message`, message => {
 			ideas[key] = JSON.parse(ideas[key]);
 			final.push(`${key} - ${ideas[key]['idea']}`);
 		}
-		send(`Here ye be, the ideas in the category \`${category}\`:\n\n${final.join('\n')}`)
+		send(`Here ye be, the ideas in the category \`${category}\`:\n\n${final.join('\n')}`);
+		console.log(`${message.author.username} just listed the ideas in ${category}.`);
 	} else if (message.content.startsWith(`./showratings`)) {
 		let args = message.content.slice(`./showratings `.length).split(`, `);
                 let category = args[0];
@@ -151,7 +157,8 @@ client.on(`message`, message => {
 				}
 			}
 		}
-		send(`**${idea}**\n\n${final.join('\n')}`);
+		send(`**${idea}**\n\`${ideas[idea]['idea']}\`\n\n${final.join('\n')}`);
+		console.log(`${message.author.username} just got the ratings for an idea in ${category}.`);
 	} else if (message.content.startsWith(`./delidea`)) {
 		let args = message.content.slice(`./delidea `.length).split(`, `);
                 let category = args[0];
@@ -181,7 +188,7 @@ client.on(`message`, message => {
                         if (err) console.log(`\nERROR WRITING IDEAS FILE\n\n${err}`);
                 });
 
-		send(`YOOO :b::b::b::b: the idea\n\`${idea}\`\nwas just deLETED FROM EXISTENCE`);
+		send(`yo :b: the idea\n\`${idea}\`\nwas just deLETED FROM EXISTENCE`);
 		console.log(`${message.author.username} just un-idead from ${category}.`)
 	} else if (message.content.startsWith(`./rate`)) {
 		let args = message.content.slice(`./rate `.length).split(`, `);
