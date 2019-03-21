@@ -6,7 +6,7 @@ testArray = [['%s' % "  ".join(['%s' % ((x + 1 * (z + 1)) + y)
 
 for i in testArray:
         sleep(0.015)
-        print("\n")
+        print()
 
         # for x in i:
         # 	print("|" * x)
