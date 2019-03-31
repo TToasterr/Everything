@@ -1,0 +1,8 @@
+let toaster be "very cool"
+let jonathan be "less cool"
+let number be the result of the number() function
+
+if jonathan is "less cool" and toaster is "very cool":
+	print "everything is right in the world"
+
+print "ended"
