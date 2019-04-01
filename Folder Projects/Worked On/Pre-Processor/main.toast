@@ -1,8 +1,11 @@
-let toaster be "very cool"
-let jonathan be "less cool"
-let number be the result of the number() function
+while true {
+	let date be a new Date()
+	let time be string(date)[16,24]
+	if int(time) is greater than 12 {
+		time = string(int(time) - 12)
+	}
+	print time
+	sleep 1000
+}
 
-if jonathan is "less cool" and toaster is "very cool":
-	print "everything is right in the world"
-
-print "ended"
+print "xd"
