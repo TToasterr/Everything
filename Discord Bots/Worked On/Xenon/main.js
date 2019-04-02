@@ -89,6 +89,7 @@ client.on(`message`, message => {
 		let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
 			toaster.send(`${message.author.username} suggests:\n\`${suggestion}\``);
 		});
+		console.log("suggestion made");
 	}
 
 
