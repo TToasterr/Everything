@@ -99,7 +99,7 @@ client.on(`message`, message => {
 		console.log(`${message.author.username} rolled a dice`);
 	}
 	
-	if (entire.includes(`thank you radon`)) {
+	if (entire.includes(`thank you `)) {
 		message.channel.send('very cool');
 		console.log("orange man say a funnee"); 
 	}
