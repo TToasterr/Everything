@@ -10,7 +10,7 @@ const client = new Discord.Client();
 
 client.once(`ready`, () => {
 	console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
-	console.log(`RADON IS LIVE\nOBERVABLE USERS: ${client.users.size}\nOBSERVABLE CHANNELS: ${client.channels.size}\nOBSERVED SERVERS: ${client.guilds.size}\n`);
+	console.log(`RADON IS LIVE\nOBSERVABLE USERS: ${client.users.size}\nOBSERVABLE CHANNELS: ${client.channels.size}\nOBSERVED SERVERS: ${client.guilds.size}\n`);
 	client.user.setActivity(`rd.help`);
 });
 
