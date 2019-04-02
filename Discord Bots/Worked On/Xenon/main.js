@@ -1,4 +1,5 @@
 const fs = require(`fs`);
+const request = require(`request`);
 const Discord = require(`discord.js`);
 const client = new Discord.Client();
 
@@ -98,10 +99,18 @@ client.on(`message`, message => {
 		message.channel.send(roll);
 		console.log(`${message.author.username} rolled a dice`);
 	}
-	
+
 	if (entire.includes(`thank you `)) {
 		message.channel.send('very cool');
-		console.log("orange man say a funnee"); 
+		console.log("orange man say a funnee");
+	}
+
+	if (entire.startsWith(`rdn.latestvid`)) {
+		request('https://www.youtube.com/channel/UCJMh6yv37R-1G_OyvFsr0MQ?', function(error, response, body) {
+			console.log('error: ', error);
+			console.log('body: ', `${body}`.split('<h3 class="yt-lockup-title ">')[1].split('href="')[1].split('"')[0]);
+			message.channel.send('https://www.youtube.com' + `${body}`.split('<h3 class="yt-lockup-title ">')[1].split('href="')[1].split('"')[0]);
+		});
 	}
 
 
