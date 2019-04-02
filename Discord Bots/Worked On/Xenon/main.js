@@ -9,19 +9,19 @@ const client = new Discord.Client();
 
 
 client.once(`ready`, () => {
-        console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
-        console.log(`XENON IS LIVE\nOBERVABLE USERS: ${client.users.size}\nOBSERVABLE CHANNELS: ${client.channels.size}\nOBSERVED SERVERS: ${client.guilds.size}\n`);
-        client.user.setActivity(`rd.help`);
+	console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
+	console.log(`RADON IS LIVE\nOBERVABLE USERS: ${client.users.size}\nOBSERVABLE CHANNELS: ${client.channels.size}\nOBSERVED SERVERS: ${client.guilds.size}\n`);
+	client.user.setActivity(`rd.help`);
 });
 
 // -----------------------------------------------------------------------------
 
 client.on(`guildCreate`, guild => {
-        console.log(`\nNEW SERVER OBSERVED: ${guild.name}\nNEW USERS OBSERVABLE: ${guild.memberCount}\n`);
+	console.log(`\nNEW SERVER OBSERVED: ${guild.name}\nNEW USERS OBSERVABLE: ${guild.memberCount}\n`);
 });
 
 client.on(`guildDelete`, guild => {
-        console.log(`\nLOST SIGHT OF ${guild.name}\nOBSERVABLE USERS LOST: ${guild.memberCount}`);
+	console.log(`\nLOST SIGHT OF ${guild.name}\nOBSERVABLE USERS LOST: ${guild.memberCount}`);
 });
 
 
@@ -30,48 +30,11 @@ client.on(`guildDelete`, guild => {
 
 
 
-function reloadbot() {
-        client.defaultCommands = new Discord.Collection();
-        client.tCommands = new Discord.Collection();
-        client.jCommands = new Discord.Collection();
-        client.nCommands = new Discord.Collection();
-        client.lCommands = new Discord.Collection();
-
-        const defaultCommandFiles = fs.readdirSync(`./default`).filter(file => file.endsWith(`.js`));
-        const tCommandFiles = fs.readdirSync(`./toaster`).filter(file => file.endsWith(`.js`));
-        const jCommandFiles = fs.readdirSync(`./jonathan`).filter(file => file.endsWith(`.js`));
-        const nCommandFiles = fs.readdirSync(`./nate`).filter(file => file.endsWith(`.js`));
-        const lCommandFiles = fs.readdirSync(`./liam`).filter(file => file.endsWith(`.js`));
-
-        for (var file of defaultCommandFiles) {
-                var command = require(`./default/${file}`);
-                client.defaultCommands.set(command.name, command);
-        }
-        for (var file of tCommandFiles) {
-                var command = require(`./toaster/${file}`);
-                client.tCommands.set(command.name, command);
-        }
-        for (var file of jCommandFiles) {
-                var command = require(`./jonathan/${file}`);
-                client.jCommands.set(command.name, command);
-        }
-        for (var file of nCommandFiles) {
-                var command = require(`./nate/${file}`);
-                client.nCommands.set(command.name, command);
-        }
-        for (var file of lCommandFiles) {
-                var command = require(`./liam/${file}`);
-                client.lCommands.set(command.name, command);
-        }
-}
-
-
-
 // -----------------------------------------------------------------------------
 
 
 
-reloadbot();
+// reloadbot();
 var profPic = `https://cdn.discordapp.com/attachments/539116623261466635/555604369068785664/600px-Radiation_warning_symbol.svg.png`;
 var invLink = `https://discordapp.com/api/oauth2/authorize?client_id=555556786908954624&permissions=8&scope=bot`;
 
@@ -82,117 +45,55 @@ var invLink = `https://discordapp.com/api/oauth2/authorize?client_id=55555678690
 
 
 client.on(`message`, message => {
-        if (message.author.bot || !message.content.startsWith('rd')) return;
-        // time and final defining
-        var entire;
-        var date = new Date();
-        var time = date.toString().substring(16, 24);
-        var final = new Discord.RichEmbed()
-                .setColor(`#FF0000`);
+	if (message.author.bot) return;
+	// time and final defining
+	let entire = message.content.toLowerCase();
+	// let date = new Date();
+	// let time = date.toString().substring(16, 24);
+	let final = new Discord.RichEmbed()
+		.setColor(`#FF0000`);
 
-        // -----------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------
 
-        // entire defining
-        if (message.content[2] == `.`) {
-                entire = message.content.slice(3).toLowerCase();
-        } else {
-                entire = message.content.slice(4).toLowerCase();
-        }
-
-        // -----------------------------------------------------------------------------
-
-        if (entire.split(` `)[0] == `reload`) {
-                reloadbot()
-                final.setTitle(`__**Commands have been reloaded!**__`)
-                        .setDescription(`Any new changes will now show up!`)
-
-                message.channel.send(final);
-                return console.log(`[${time}] ${message.author.username} reloaded the bot.`);
-        }
+	// if (entire.split(` `)[0] == `reload`) {
+	//         reloadbot()
+	//         final.setTitle(`__**Commands have been reloaded!**__`)
+	//                 .setDescription(`Any new changes will now show up!`)
+	//
+	//         message.channel.send(final);
+	//         return console.log(`[${time}] ${message.author.username} reloaded the bot.`);
+	// }
 
 
 
-        // variable defining
-        var commandName = entire.split(` `)[0];
-        var args = entire.slice(commandName.length).split(`, `);
-        var command;
-        var prefix;
-        if (!client.defaultCommands.has(commandName) && !client.tCommands.has(commandName) && !client.jCommands.has(commandName) && !client.nCommands.has(commandName) && !client.lCommands.has(commandName)) return;
+	// variable defining
+	var command = entire.split(` `)[0];
+	var args = entire.slice(command.length).split(`, `);
+	var command;
+	var prefix;
+	console.log(entire);
+	// if (!client.defaultCommands.has(commandName) && !client.tCommands.has(commandName) && !client.jCommands.has(commandName) && !client.nCommands.has(commandName) && !client.lCommands.has(commandName)) return;
 
 
-        // getting command from the right collection
-        if (message.content[2] == `.`) {
-                command = client.defaultCommands.get(commandName);
-                prefix = 'rd.';
-                final.setAuthor(`Radon`, profPic, invLink);
-        } else if (message.content[2] == `t`) {
-                command = client.tCommands.get(commandName);
-                prefix = 'rdt.';
-                final.setAuthor(`Radon (Toaster)`, profPic, invLink);
-        } else if (message.content[2] == `j`) {
-                command = client.jCommands.get(commandName);
-                prefix = 'rdj.';
-                final.setAuthor(`Radon (Jonathan)`, profPic, invLink);
-        } else if (message.content[2] == `n`) {
-                command = client.nCommands.get(commandName);
-                prefix = 'rdn.';
-                final.setAuthor(`Radon (Nate)`, profPic, invLink);
-        } else if (message.content[2] == `l`) {
-                command = client.lCommands.get(commandName);
-                prefix = 'rdl.';
-                final.setAuthor(`Radon (Liam)`, profPic, invLink);
-        } else {
-                return;
-        }
+	// final.setAuthor(`Radon`, profPic, invLink);
+
+
+	if (entire.startsWith(`pass the `) && (entire.includes(`juul`) || entire.includes(`joule`) || entire.includes(`jewel`))) {
+		message.channel.send(`${message.author.username} passed the ${entire.split(' ')[2]} to ${entire.split(' ')[3]}`);
+		console.log("juul passed");
+	}
+
+	if (entire.startsWith(`rd.suggest`)) {
+		let suggestion = entire.slice(`rd.suggest `.length);
+
+		let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
+			toaster.send(`${message.author.username} suggests:\n\`${suggestion}\``);
+		});
+	}
 
 
 
-        // -----------------------------------------------------------------------------
-
-
-
-        // if args and if guildonly
-        if (command.args && args == ``) {
-                final.setTitle(`__**Oops!**__`)
-                        .setDescription(`You didnt provide any arguments!`);
-
-                if (command.usage !== ``) {
-                        final.addField(`Usage`, `${prefix}${command.name} ${command.usage}`);
-                }
-
-                message.channel.send(final);
-                return console.log(`[${time}] ${message.author.username} FAILED TO USE ARGUMENTS`);
-        }
-
-        if (command.guildOnly && message.channel.type !== `text`) {
-                final.setTitle(`__**Oops!**__`)
-                        .setDescription(`That command only works in servers!`);
-
-                message.channel.send(final);
-                return console.log(`[${time}] ${message.author.username} MESSAGED ME DIRECTLY WHEN DISALLOWED`);
-        }
-
-
-
-        // -----------------------------------------------------------------------------
-
-
-
-        // executing the command
-        try {
-                command.execute(message, args, client, time, final);
-        } catch (err) {
-                final.setTitle(`__**Oops!**__`)
-                        .setDescription(`Radon got an error.\n*Owners have been notified.*`)
-
-                message.channel.send(final);
-
-                let client = message.channel.client;
-                let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
-                        toaster.send(`\`${message.author.username}\` got an error using \`${command.name}\`.`)
-                });
-                throw err;
-        }
+	// -----------------------------------------------------------------------------
 });
 
 client.on('error', console.error);
@@ -203,4 +104,7 @@ client.on('error', console.error);
 
 
 
-client.login(process.argv[2]);
+const token = fs.readFileSync(`H:/Misc/radontoken.txt`, (err) => {
+	if (err) console.log(`Error reading token!\n$ {err}`);
+});
+client.login(token.toString());
