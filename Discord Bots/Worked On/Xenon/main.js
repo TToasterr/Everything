@@ -83,7 +83,7 @@ client.on(`message`, message => {
 		console.log("juul passed");
 	}
 
-	if (entire.startsWith(`rd.suggest`)) {
+	if (entire.startsWith(`rdn.suggest`)) {
 		let suggestion = entire.slice(`rd.suggest `.length);
 
 		let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
@@ -91,6 +91,13 @@ client.on(`message`, message => {
 		});
 		console.log("suggestion made");
 	}
+	
+if (entire.startsWith('rdn.diceroll')) {
+let sides=entire.split(" ")[0];
+let roll=Math.floor(Math.random()*(sides-1))+1;
+message.channel.send(roll);
+console.log(`${message.author.username} rolled a dice`);
+}
 
 
 
