@@ -31,10 +31,6 @@ client.on(`guildDelete`, guild => {
 
 
 
-// -----------------------------------------------------------------------------
-
-
-
 // reloadbot();
 var profPic = `https://cdn.discordapp.com/attachments/539116623261466635/555604369068785664/600px-Radiation_warning_symbol.svg.png`;
 var invLink = `https://discordapp.com/api/oauth2/authorize?client_id=555556786908954624&permissions=8&scope=bot`;
@@ -54,17 +50,8 @@ client.on(`message`, message => {
 	let final = new Discord.RichEmbed()
 		.setColor(`#FF0000`);
 
+	
 	// -----------------------------------------------------------------------------
-
-	// if (entire.split(` `)[0] == `reload`) {
-	//         reloadbot()
-	//         final.setTitle(`__**Commands have been reloaded!**__`)
-	//                 .setDescription(`Any new changes will now show up!`)
-	//
-	//         message.channel.send(final);
-	//         return console.log(`[${time}] ${message.author.username} reloaded the bot.`);
-	// }
-
 
 
 	// variable defining
@@ -112,10 +99,6 @@ client.on(`message`, message => {
 			message.channel.send('https://www.youtube.com' + `${body}`.split('<h3 class="yt-lockup-title ">')[1].split('href="')[1].split('"')[0]);
 		});
 	}
-
-
-
-	// -----------------------------------------------------------------------------
 });
 
 client.on('error', console.error);
