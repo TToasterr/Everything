@@ -50,7 +50,7 @@ client.on(`message`, message => {
 	let final = new Discord.RichEmbed()
 		.setColor(`#FF0000`);
 
-	
+
 	// -----------------------------------------------------------------------------
 
 
@@ -89,7 +89,7 @@ client.on(`message`, message => {
 
 	if (entire.includes(`thank you `)) {
 		message.channel.send('very cool');
-		console.log("orange man say a funnee");
+		console.log("thank you [someone] very cool");
 	}
 
 	if (entire.startsWith(`rdn.latestvid`)) {
@@ -98,6 +98,7 @@ client.on(`message`, message => {
 			console.log('body: ', `${body}`.split('<h3 class="yt-lockup-title ">')[1].split('href="')[1].split('"')[0]);
 			message.channel.send('https://www.youtube.com' + `${body}`.split('<h3 class="yt-lockup-title ">')[1].split('href="')[1].split('"')[0]);
 		});
+		console.log("latest LTJN video gotten");
 	}
 });
 

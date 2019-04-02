@@ -83,6 +83,22 @@ client.on(`message`, message => { // when the bot gets a message
 			.addField('General', '```\nhelp\ntoggleprefix\nstats```'); // add a field of all the commands
 		console.log(`[${message.guild.name}] ${message.author.username} got help.`);
 	}
+	else if (message.content.toLowerCase().startsWith("marv.serverlist")) {
+		includesCommand = true;
+		const allGuilds = client.guilds.map(g => g.name);
+		const guildMCount = client.guilds.map(g => g.memberCount);
+
+		final.setTitle('__**All Servers this bot is in, and their member counts.**__');
+
+		var thing = '__**All Servers this bot is in, and their member counts.**__';
+
+		for (var i = 0; i < allGuilds.length; i++) {
+			thing += `\n**${allGuilds[i]}** - ${guildMCount[i]}`;
+		}
+
+		thing += `\n\n**Total Member Count** - ${client.users.size}`;
+		message.channel.send(thing);
+	}
 	else if (message.content.toLowerCase().startsWith("marv.toggleprefix")) { // if the message starts with marv.toggleprefix
 		includesCommand = true; // the message includes a command
 		if (serverSettings.SCPPrefix == true) { // if the server has the SCP- prefix on
