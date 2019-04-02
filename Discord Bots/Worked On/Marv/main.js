@@ -10,7 +10,7 @@ const client = new Discord.Client(); // make a Discord client (just the bot itse
 
 client.once(`ready`, () => { // once the bot turns on
 	console.log(`\n\n\n\n\n\n\n`); // partially empty the console
-	console.log(`Bot has started! \nUSERS: ${client.users.size} \n CHANNELS: ${client.channels.size} \nSERVERS: ${client.guilds.size}\n`); // log the amount of users, amount of channels, and amount of servers the bot has
+	console.log(`Bot has started! \nUSERS: ${client.users.size} \nCHANNELS: ${client.channels.size} \nSERVERS: ${client.guilds.size}\n`); // log the amount of users, amount of channels, and amount of servers the bot has
 	client.user.setActivity('marv.help'); // set the 'playing' to marv.help
 })
 
@@ -48,11 +48,12 @@ client.on(`message`, message => { // when the bot gets a message
 	var done = false; // done (used for when the SCP- prefix is off) is false
 
 	if (message.guild !== null) { // if the message has a guild (not a DM)
-		console.log(`${message.guild.name}  ██  #${message.channel.name}  ██  ${message.author.username}: ${message.content}`); // log the message normally
+		// console.log(`${message.guild.name}  ██  #${message.channel.name}  ██  ${message.author.username}: ${message.content}`); // log the message normally
+		dm = false;
 	}
 	else { // else (if the message is a DM)
 		dm = true; // dm = true
-		console.log(`DM   ██  DM  ██  ${message.author.username}: ${message.content}`); // log it using only a DM instead of the guild name
+		// console.log(`DM   ██  DM  ██  ${message.author.username}: ${message.content}`); // log it using only a DM instead of the guild name
 	}
 
 	let final = new Discord.RichEmbed() // create the richembed (final message)
@@ -80,6 +81,7 @@ client.on(`message`, message => { // when the bot gets a message
 		final.setTitle('__**Here are all of my commands!**__') // set the title of the embed
 			.setDescription('*Arguments must be seperated with a comma and space or it will return an error.*') // set the description of the embed
 			.addField('General', '```\nhelp\ntoggleprefix\nstats```'); // add a field of all the commands
+		console.log(`[${message.guild.name}] ${message.author.username} got help.`);
 	}
 	else if (message.content.toLowerCase().startsWith("marv.toggleprefix")) { // if the message starts with marv.toggleprefix
 		includesCommand = true; // the message includes a command
@@ -87,17 +89,20 @@ client.on(`message`, message => { // when the bot gets a message
 			serverSettings["SCPPrefix"] = false; // turn it off
 			final.setTitle('__**The prefix has been turned off!**__') // set the title of the embed
 				.setDescription('Marv will now pick up on only numbers, (001) instead of numbers with the prefix (SCP-001).\nTales still require the \'TALE-\' prefix to work.'); // set the description of the embed
+			console.log(`[${message.guild.name}] ${message.author.username} toggled the prefix off.`);
 		}
 		else { // if the server has the SCP- prefix off
 			serverSettings.SCPPrefix = true; // turn it on
 			final.setTitle('__**The prefix has been turned on!**__') // set the title of the embed
 				.setDescription('Marv will now only pick up on numbers with a prefix (SCP-001).'); // set the description of the embed
+			console.log(`[${message.guild.name}] ${message.author.username} toggled the prefix on.`);
 		}
 	}
 	else if (message.content.toLowerCase().startsWith("marv.stats")) { // if the message starts with marv.stats
 		includesCommand = true; // the message includes a command
 		final.setTitle('BOT STATS') // set the title of the embed
 			.setDescription(`**Server Count** - ${client.guilds.size}\n**Channel Count** - ${client.channels.size}\n**User Count** - ${client.users.size}`); // set the description of the embed
+		console.log(`[${message.guild.name}] ${message.author.username} got the bot stats.`);
 	}
 
 	// -----------------------------------------------------------------------------
@@ -107,11 +112,13 @@ client.on(`message`, message => { // when the bot gets a message
 				if (splitMessage[i].toUpperCase().startsWith("TALE-")) { // if the word starts with TALE-
 					finalDesc.push(`[${splitMessage[i].substring(5).split("-").join(" ")}](http://www.scp-wiki.net/${splitMessage[i].substring(5)})`); // add the link to whatever is after TALE-
 					includesSCP = true; // the message includes an SCP
+					console.log(`[${message.guild.name}] Found a message from ${message.author.username} that included the '${splitMessage[i].substring(5).split("-").join(" ")}' tale!`);
 				}
 
 				if (splitMessage[i].toUpperCase().startsWith("SCP-")) { // if the word starts with SCP-
 					finalDesc.push(`[${splitMessage[i].toUpperCase()}](http://www.scp-wiki.net/${splitMessage[i]})`); // add the link to whatever is after SCP-
 					includesSCP = true; // the message includes an SCP
+					console.log(`[${message.guild.name}] Found a message from ${message.author.username} that included ${splitMessage[i].toUpperCase()}!`);
 				}
 			}
 		}
@@ -120,6 +127,7 @@ client.on(`message`, message => { // when the bot gets a message
 				if (splitMessage[i].toUpperCase().startsWith("TALE-")) { // if the word starts with TALE-
 					finalDesc.push(`[${splitMessage[i].substring(5).split("-").join(" ")}](http://www.scp-wiki.net/${splitMessage[i].substring(5)})`); // add the link to whatever is after TALE-
 					includesSCP = true; // the message includes an SCP
+					console.log(`[${message.guild.name}] Found a message from ${message.author.username} that included the '${splitMessage[i].substring(5).split("-").join(" ")}' tale!`);
 				}
 			}
 
@@ -136,6 +144,7 @@ client.on(`message`, message => { // when the bot gets a message
 						finalDesc.push(`[SCP-${i}](http://www.scp-wiki.net/scp-${i})`); // add the link to the SCP
 						done = true; // the SCP has been found
 						includesSCP = true; // the message includes an SCP
+						console.log(`[${message.guild.name}] Found a message from ${message.author.username} that included SCP-${i}!`);
 					}
 				}
 			}
