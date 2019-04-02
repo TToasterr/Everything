@@ -94,8 +94,8 @@ client.on(`message`, message => {
 
 	if (entire.startsWith(`rdn.latestvid`)) {
 		request('https://www.youtube.com/channel/UCJMh6yv37R-1G_OyvFsr0MQ?', function(error, response, body) {
-			console.log('error: ', error);
-			console.log('body: ', `${body}`.split('<h3 class="yt-lockup-title ">')[1].split('href="')[1].split('"')[0]);
+			// console.log('error: ', error);
+			// console.log('body: ', `${body}`.split('<h3 class="yt-lockup-title ">')[1].split('href="')[1].split('"')[0]);
 			message.channel.send('https://www.youtube.com' + `${body}`.split('<h3 class="yt-lockup-title ">')[1].split('href="')[1].split('"')[0]);
 		});
 		console.log("latest LTJN video gotten");
