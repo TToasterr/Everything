@@ -71,7 +71,7 @@ client.on(`message`, message => {
 	var args = entire.slice(command.length).split(`, `);
 	var command;
 	var prefix;
-	console.log(entire);
+	// console.log(entire);
 	// if (!client.defaultCommands.has(commandName) && !client.tCommands.has(commandName) && !client.jCommands.has(commandName) && !client.nCommands.has(commandName) && !client.lCommands.has(commandName)) return;
 
 
@@ -91,13 +91,13 @@ client.on(`message`, message => {
 		});
 		console.log("suggestion made");
 	}
-	
-if (entire.startsWith('rdn.diceroll')) {
-let sides=entire.split(" ")[0];
-let roll=Math.floor(Math.random()*(sides-1))+1;
-message.channel.send(roll);
-console.log(`${message.author.username} rolled a dice`);
-}
+
+	if (entire.startsWith('rdn.diceroll')) {
+		let sides = entire.split(" ")[1];
+		let roll = Math.floor(Math.random() * (parseInt(sides) - 1)) + 1;
+		message.channel.send(roll);
+		console.log(`${message.author.username} rolled a dice`);
+	}
 
 
 
