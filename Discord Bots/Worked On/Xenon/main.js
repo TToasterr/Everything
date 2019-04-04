@@ -35,6 +35,10 @@ client.on(`guildDelete`, guild => {
 var profPic = `https://cdn.discordapp.com/attachments/539116623261466635/555604369068785664/600px-Radiation_warning_symbol.svg.png`;
 var invLink = `https://discordapp.com/api/oauth2/authorize?client_id=555556786908954624&permissions=8&scope=bot`;
 
+var lastJonathanMessage;
+var lastToasterMessage;
+var lastNateMessage;
+
 
 
 // -----------------------------------------------------------------------------
@@ -92,6 +96,16 @@ client.on(`message`, message => {
 		console.log("thank you [someone] very cool");
 	}
 
+	if (entire.includes(`jonk`)) {
+		message.channel.send(`jonk more like \'${lastJonathanMessage}\'`);
+	}
+	if (entire.includes(`toaster`)) {
+		message.channel.send(`toaster more like '${lastToasterMessage}'`);
+	}
+	if (entire.includes(`nate`)) {
+		message.channel.send(`nate more like '${lastNateMessage}'`);
+	}
+
 	if (entire.startsWith(`rdn.latestvid`)) {
 		request('https://www.youtube.com/channel/UCJMh6yv37R-1G_OyvFsr0MQ?', function(error, response, body) {
 			// console.log('error: ', error);
@@ -99,6 +113,17 @@ client.on(`message`, message => {
 			message.channel.send('https://www.youtube.com' + `${body}`.split('<h3 class="yt-lockup-title ">')[1].split('href="')[1].split('"')[0]);
 		});
 		console.log("latest LTJN video gotten");
+	}
+
+
+	if (message.author.username == "JONKKKK") {
+		lastJonathanMessage = message.content;
+	}
+	if (message.author.username == "Toaster") {
+		lastToasterMessage = message.content;
+	}
+	if (message.author.username == "GoldenPot8o") {
+		lastNateMessage = message.content;
 	}
 });
 
