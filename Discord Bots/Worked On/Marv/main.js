@@ -198,6 +198,12 @@ client.on(`message`, message => { // when the bot gets a message
 							final.setTitle(`__**${scpNick}**__`);
 							finalDesc = [`__**[SCP-${scpNumber}](http://www.scp-wiki.net/scp-${scpNumber})**__`, "", "**Class:** " + scpClass, "**Rating:** " + scpRating, "**Picture:**"];
 							final.setDescription(finalDesc.join("\n"))
+
+							if (scpNick == `None` && scpClass == `None` && scpRating == `None` && scpPic == `None`) {
+								final.setTitle(`__**That SCP doesnt exist!**__`)
+									.setDescription(`Please try another SCP.`);
+							}
+
 							message.channel.send(final); // send the message
 						});
 					});
