@@ -177,33 +177,18 @@ client.on(`message`, message => { // when the bot gets a message
 						}
 
 						request(`http://www.scp-wiki.net/scp-${scpNumber}`, function(error, response, body) {
-							if ((`${body}`.split(`class="number prw54353">`)[1])) {
-								scpRating = (`${body}`.split(`class="number prw54353">`)[1].split(`</span>`)[0]);
-							}
-							else {
-								scpRating = `None`;
-							}
+							scpRating = ((`${body}`.split(`class="number prw54353">`)[1]) ? (`${body}`.split(`class="number prw54353">`)[1].split(`</span>`)[0]) : `None`);
+							scpClass = ((`${body}`.split(`Object Class:</strong> `)[1]) ? (`${body}`.split(`Object Class:</strong> `)[1].split(`</p>`)[0]) : `None`);
+							scpPic = (`${body}`.split(/class="scp-image-block block-right" style="width:\d*px;"><img src="/g)[1] ? (`${body}`.split(/class="scp-image-block block-right" style="width:\d*px;"><img src="/g)[1].split(`" `)[0]) : `None`);
 
-							// -----------------------------------------------------------------------------
-
-							if ((`${body}`.split(`Object Class:</strong> `)[1])) {
-								scpClass = (`${body}`.split(`Object Class:</strong> `)[1].split(`</p>`)[0]);
-							}
-							else {
-								scpClass = `None`;
-							}
-
-							// -----------------------------------------------------------------------------
-
-							if (`${body}`.split(/class="scp-image-block block-right" style="width:\d*px;"><img src="/g)[1]) {
-								scpPic = `${body}`.split(/class="scp-image-block block-right" style="width:\d*px;"><img src="/g)[1].split(`" `)[0];
+							if (scpPic !== `None`) {
 								final.setImage(scpPic);
 							}
 							else {
 								scpPic = `None`;
 							}
 
-							// -----------------------------------------------------------------------------
+
 
 							final.setTitle(`__**${scpNick}**__`);
 							finalDesc = [`__**[SCP-${scpNumber}](http://www.scp-wiki.net/scp-${scpNumber})**__`, "", "**Class:** " + scpClass, "**Rating:** " + scpRating, "**Picture:**"];
