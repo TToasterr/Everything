@@ -125,6 +125,11 @@ client.on(`message`, message => {
 	if (message.author.username == "GoldenPot8o") {
 		lastNateMessage = message.content;
 	}
+
+	if ((/(wow )(.+)( is gay xd)/g).test(entire)) {
+		message.channel.send(`haha yes i agree ${entire.split(" ")[1]} is v homosexual`);
+		console.log("aaaa");
+	}
 });
 
 client.on('error', console.error);
