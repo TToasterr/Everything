@@ -1,4 +1,6 @@
 const fs = require(`fs`); // install filesystems (reading/writing files)
+const request = require(`request`); // install request (web scraping)
+const sleep = require(`sleep`); // install sleep (sleeping)
 const Discord = require(`discord.js`); // install discord.js (discord stuff)
 const client = new Discord.Client(); // make a Discord client (just the bot itself)
 
@@ -27,6 +29,8 @@ client.on(`guildCreate`, guild => { // when the bot joins a server
 client.on(`guildDelete`, guild => { // when the bot leaves a server
 	console.log(`\n-----------------------------\nRemoved from server! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}\n-----------------------------\n`); // log the amount of users and server name
 });
+
+client.on('unhandledRejection', console.error);
 
 
 
@@ -132,8 +136,74 @@ client.on(`message`, message => { // when the bot gets a message
 				}
 
 				if (splitMessage[i].toUpperCase().startsWith("SCP-")) { // if the word starts with SCP-
-					finalDesc.push(`[${splitMessage[i].toUpperCase()}](http://www.scp-wiki.net/${splitMessage[i]})`); // add the link to whatever is after SCP-
-					includesSCP = true; // the message includes an SCP
+					// finalDesc.push(`[${splitMessage[i].toUpperCase()}](http://www.scp-wiki.net/${splitMessage[i]})`); // add the link to whatever is after SCP-
+					// includesSCP = true; // the message includes an SCP
+					let series;
+
+					let scpNumber = splitMessage[i].substring(4);
+					let scpNick;
+					let scpRating;
+					let scpClass;
+					let scpPic;
+
+
+					if (scpNumber < 1000) {
+						series = '';
+					}
+					else if (scpNumber < 2000) {
+						series = '-2';
+					}
+					else if (scpNumber < 3000) {
+						series = '-3';
+					}
+					else if (scpNumber < 4000) {
+						series = '-4';
+					}
+					else if (scpNumber < 5000) {
+						series = '-5';
+					}
+
+
+					request(`http://www.scp-wiki.net/scp-series${series}`, function(error, response, body) {
+						// console.log('error: ', error);
+						if (`${body}`.split(`SCP-${scpNumber}</a> - `)[1]) {
+							scpNick = (`${body}`.split(`SCP-${scpNumber}</a> - `)[1].split(`\n`)[0]);
+							scpNick = scpNick.replace(/<(.*)>(.*)<\/(\1)>/g, '$2');
+							scpNick = scpNick.replace(/\<\/\l\i\>/g, '');
+							scpNick = scpNick.replace(/&quot;/g, '"');
+						}
+						else {
+							scpNick = `None`;
+						}
+
+						request(`http://www.scp-wiki.net/scp-${scpNumber}`, function(error, response, body) {
+							if ((`${body}`.split(`\">+`)[1].split(`</span>`)[0]) && (`${body}`.split(`Object Class:</strong> `)[1])) {
+								scpRating = `+` + (`${body}`.split(`\">+`)[1].split(`</span>`)[0]);
+								scpClass = (`${body}`.split(`Object Class:</strong> `)[1].split(`</p>`)[0]);
+							}
+							else {
+								scpRating = `None`;
+								scpClass = `None`;
+							}
+
+							if (`${body}`.split(/class="scp-image-block block-right" style="width:\d*px;"><img src="/g)[1]) {
+								scpPic = `${body}`.split(/class="scp-image-block block-right" style="width:\d*px;"><img src="/g)[1].split(`" `)[0];
+								final.setImage(scpPic);
+							}
+							else {
+								scpPic = `None`;
+							}
+
+							// console.log(scpPic);
+							final.setTitle(`__**${scpNick}**__`);
+							finalDesc = [`__**[SCP-${scpNumber}](http://www.scp-wiki.net/scp-${scpNumber})**__`, "", "**Class:** " + scpClass, "**Rating:** " + scpRating, "**Picture:**"];
+							final.setDescription(finalDesc.join("\n"))
+							message.channel.send(final); // send the message
+						});
+					});
+
+
+					// message.channel.send(`Sorry, ${message.author.username}. This bot is under construction right now!\nContact Toaster#0403 with questions.`);
 					console.log(`[${message.guild.name}] Found a message from ${message.author.username} that included ${splitMessage[i].toUpperCase()}!`);
 				}
 			}
