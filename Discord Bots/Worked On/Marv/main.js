@@ -173,30 +173,32 @@ client.on(`message`, message => { // when the bot gets a message
 							scpNick = scpNick.replace(/&quot;/g, '"');
 						}
 						else {
-							scpNick = `None`;
+							scpNick = `[REDACTED]`;
 						}
 
 						request(`http://www.scp-wiki.net/scp-${scpNumber}`, function(error, response, body) {
-							scpRating = ((`${body}`.split(`class="number prw54353">`)[1]) ? (`${body}`.split(`class="number prw54353">`)[1].split(`</span>`)[0]) : `None`);
-							scpClass = ((`${body}`.split(`Object Class:</strong> `)[1]) ? (`${body}`.split(`Object Class:</strong> `)[1].split(`</p>`)[0]) : `None`);
-							scpPic = (`${body}`.split(/class="scp-image-block block-right" style="width:\d*px;"><img src="/g)[1] ? (`${body}`.split(/class="scp-image-block block-right" style="width:\d*px;"><img src="/g)[1].split(`" `)[0]) : `None`);
+							scpRating = ((`${body}`.split(`class="number prw54353">`)[1]) ? (`${body}`.split(`class="number prw54353">`)[1].split(`</span>`)[0]) : `[REDACTED]`);
+							scpClass = ((`${body}`.split(`Object Class:</strong> `)[1]) ? (`${body}`.split(`Object Class:</strong> `)[1].split(`</p>`)[0]) : `[REDACTED]`);
+							scpPic = (`${body}`.split(/class="scp-image-block block-right" style="width:\d*px;"><img src="/g)[1] ? (`${body}`.split(/class="scp-image-block block-right" style="width:\d*px;"><img src="/g)[1].split(`" `)[0]) : `https://cdn.discordapp.com/attachments/563139194063552552/563499468679282745/b7f3399f405a4d936ddbb39be933ac37e7680cd0_00.png`);
 
-							if (scpPic !== `None`) {
-								final.setImage(scpPic);
+
+							if (scpClass.includes(`line-through`)) {
+								scpClass = scpClass.replace(/<(.*) .*>(.*)<\/\1>/g, '~~$2~~');
 							}
 							else {
-								scpPic = `None`;
+								scpClass = scpClass.replace(/<(((.*) .*)|(.*))>(.*)<\/\1>/g, '$2');
 							}
-
 
 
 							final.setTitle(`__**${scpNick}**__`);
-							finalDesc = [`__**[SCP-${scpNumber}](http://www.scp-wiki.net/scp-${scpNumber})**__`, "", "**Class:** " + scpClass, "**Rating:** " + scpRating, "**Picture:**"];
+							finalDesc = [`**[SCP-${scpNumber}](http://www.scp-wiki.net/scp-${scpNumber})**`, "", "**Class:** " + scpClass, "**Rating:** " + scpRating];
 							final.setDescription(finalDesc.join("\n"))
+								.setImage(scpPic);
 
-							if (scpNick == `None` && scpClass == `None` && scpRating == `None` && scpPic == `None`) {
+							if (scpNick == `[REDACTED]` && scpClass == `[REDACTED]` && scpRating == `[REDACTED]` && scpPic == `https://cdn.discordapp.com/attachments/563139194063552552/563499468679282745/b7f3399f405a4d936ddbb39be933ac37e7680cd0_00.png`) {
 								final.setTitle(`__**That SCP doesnt exist!**__`)
-									.setDescription(`Please try another SCP.`);
+									.setDescription(`Please try another SCP.`)
+									.setImage();
 							}
 
 							message.channel.send(final); // send the message

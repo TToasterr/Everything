@@ -47,10 +47,7 @@ var lastNateMessage;
 
 client.on(`message`, message => {
 	if (message.author.bot) return;
-	// time and final defining
 	let entire = message.content.toLowerCase();
-	// let date = new Date();
-	// let time = date.toString().substring(16, 24);
 	let final = new Discord.RichEmbed()
 		.setColor(`#FF0000`);
 
@@ -63,17 +60,15 @@ client.on(`message`, message => {
 	var args = entire.slice(command.length).split(`, `);
 	var command;
 	var prefix;
-	// console.log(entire);
-	// if (!client.defaultCommands.has(commandName) && !client.tCommands.has(commandName) && !client.jCommands.has(commandName) && !client.nCommands.has(commandName) && !client.lCommands.has(commandName)) return;
 
-
-	// final.setAuthor(`Radon`, profPic, invLink);
 
 
 	if (entire.startsWith(`pass the `) && (entire.includes(`juul`) || entire.includes(`joule`) || entire.includes(`jewel`))) {
 		message.channel.send(`${message.author.username} passed the ${entire.split(' ')[2]} to ${entire.split(' ')[3]}`);
 		console.log("juul passed");
 	}
+
+
 
 	if (entire.startsWith(`rdn.suggest`)) {
 		let suggestion = entire.slice(`rd.suggest `.length);
@@ -84,6 +79,8 @@ client.on(`message`, message => {
 		console.log("suggestion made");
 	}
 
+
+
 	if (entire.startsWith('rdn.diceroll')) {
 		let sides = entire.split(" ")[1];
 		let roll = Math.floor(Math.random() * (parseInt(sides) - 1)) + 1;
@@ -91,20 +88,45 @@ client.on(`message`, message => {
 		console.log(`${message.author.username} rolled a dice`);
 	}
 
+
+
 	if (entire.includes(`thank you `)) {
 		message.channel.send('very cool');
 		console.log("thank you [someone] very cool");
 	}
 
+
+
+	if (entire.includes('google')) {
+		message.channel.send("Oh god, what are you googling?");
+
+		let collector = new Discord.MessageCollector(message.channel, m => m.author.id == message.author.id, {
+			time: 30000
+		});
+
+		collector.on('collect', message => {
+			request(`https://www.google.com/search?&q=${message.content.replace(/( )/g, '+')}&tbm=isch`, function(error, response, body) {
+				message.channel.send(`**FIRST IMAGE RESULT FOR '${message.content}':**\n` + `${body}`.split('" jsaction="load:str.tbn"')[0].split('src="')[1].split('" width="')[0]);
+			});
+			collector.stop();
+		});
+	}
+
+
+
 	if (entire.includes(`jonk`)) {
 		message.channel.send(`jonk more like \'${lastJonathanMessage}\'`);
 	}
+
 	if (entire.includes(`toaster`)) {
 		message.channel.send(`toaster more like '${lastToasterMessage}'`);
 	}
+
 	if (entire.includes(`nate`)) {
 		message.channel.send(`nate more like '${lastNateMessage}'`);
 	}
+
+
 
 	if (entire.startsWith(`rdn.latestvid`)) {
 		request('https://www.youtube.com/channel/UCJMh6yv37R-1G_OyvFsr0MQ?', function(error, response, body) {
@@ -116,12 +138,16 @@ client.on(`message`, message => {
 	}
 
 
+
+
 	if (message.author.username == "JONKKKK") {
 		lastJonathanMessage = message.content;
 	}
+
 	if (message.author.username == "Toaster") {
 		lastToasterMessage = message.content;
 	}
+
 	if (message.author.username == "GoldenPot8o") {
 		lastNateMessage = message.content;
 	}
