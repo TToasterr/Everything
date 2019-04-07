@@ -20,7 +20,7 @@ client.on(`guildDelete`, guild => {
 // -----------------------------------------------------------------------------
 
 
-const ideaCategories = [`NEWS`, `CWN`, `ARTICLE`, `GENERAL`, `JOKE`];
+const ideaCategories = [`NEWS`, `CWN`, `ARTICLE`, `GENERAL`, `JOKE`, `WAFM`];
 
 
 client.on(`message`, message => {
@@ -43,7 +43,7 @@ client.on(`message`, message => {
 		console.log(`The bot was thanked for existing by ${message.author.username}`);
 	}
 	else if (message.content.startsWith(`./help`)) {
-		send(`**Commands:**\n\n\`./help\n./ping\n./invite\n./descriptions\n\n./idea [category], [alias], [idea]\n./listideas [category]\n./showratings [category], [alias]\n./delidea [category], [alias]\n./rate [category], [alias], [rating]\``);
+		send(`**Commands:**\n\n\`./help\n./ping\n./invite\n./descriptions\n\n./idea [category], [alias], [idea]\n./listideas [category]\n./listallideas\n./showratings [category], [alias]\n./delidea [category], [alias]\n./rate [category], [alias], [rating]\``);
 		console.log(`${message.author.username} just got help.`);
 	}
 	else if (message.content.startsWith(`./invite`)) {
@@ -55,12 +55,13 @@ client.on(`message`, message => {
 CWN - Cooking with Nate, loosely scripted [this person does this here]\n\
 ARTICLE - Scripted. NEWS Shorts.\n\
 GENERAL - Just general ideas, videos or whatever.\n\
-JOKE - Ideas for jokes.\``);
+JOKE - Ideas for jokes.\n\
+WAFM - [somethimg] was a fucking mistake. (Reviews/Rants)\``);
 	}
 	else if (message.content.startsWith(`./idea`)) {
 		let args = message.content.slice(`./idea `.length).split(`, `);
 		let category = args[0];
-		let alias = args[1];
+		let alias = args[1].toLowerCase();
 		let idea = args[2];
 
 		if (!ideaCategories.includes(category.toUpperCase())) {
@@ -129,6 +130,53 @@ JOKE - Ideas for jokes.\``);
 		send(`Here ye be, the ideas in the category \`${category}\`:\n\n${final.join('\n')}`);
 		console.log(`${message.author.username} just listed the ideas in ${category}.`);
 	}
+	else if (message.content.startsWith(`./listallideas`)) {
+		let allIdeaList = [];
+
+		for (var category of ideaCategories) {
+			let ideas;
+			try {
+				ideas = fs.readFileSync(`./${category.toLowerCase()}/ideas.json`, (err) => {
+					if (err) {
+						ideas = '{}';
+					}
+				});
+			}
+			catch (err) {
+				ideas = '{}';
+			}
+
+			ideas = JSON.parse(ideas);
+			for (var key in ideas) {
+				ideas[key] = JSON.parse(ideas[key]);
+				let ratings = [];
+				let ratingAmount = 0;
+				let ratingAverage = 0;
+
+				for (var rating in ideas[key]) {
+					if (rating !== 'idea' && ideas[key][rating] !== -1) {
+						ratings.push(ideas[key][rating]);
+					}
+				}
+
+				for (var rating of ratings) {
+					ratingAverage += rating;
+					ratingAmount++;
+				}
+
+				ratingAverage = ratingAverage / ratingAmount;
+				ratingAverage = Math.round(ratingAverage * 100) / 100
+				if (isNaN(ratingAverage)) {
+					ratingAverage = 'None';
+				}
+
+				allIdeaList.push(`**[${category}]** - \`${key}\` - ${ratingAverage}`);
+			}
+		}
+
+		send(`**A list of ALL IDEAS:**\n\n${allIdeaList.join('\n')}`);
+		console.log(`${message.author.username} just listed all ideas.`);
+	}
 	else if (message.content.startsWith(`./showratings`)) {
 		let args = message.content.slice(`./showratings `.length).split(`, `);
 		let category = args[0];
@@ -159,7 +207,7 @@ JOKE - Ideas for jokes.\``);
 		ideas[idea] = JSON.parse(ideas[idea]);
 		let final = [];
 
-		for (var key in ideas[idea]) {
+		for (var key in ideas[idea.toLowerCase()]) {
 			// console.log(ideas[idea][key])
 			if (!(key == 'idea')) {
 				if (!(ideas[idea][key] == -1)) {
@@ -230,12 +278,17 @@ JOKE - Ideas for jokes.\``);
 			return console.log(`${message.author.username} tried to list ideas in a category that doesnt have ideas.`);
 		}
 
-		ideas = JSON.parse(ideas);
-		ideas[idea] = JSON.parse(ideas[idea]);
-		ideas[idea][message.author.username] = parseInt(rating);
-		// console.log(ideas);
-		ideas[idea] = JSON.stringify(ideas[idea]);
-		ideas = JSON.stringify(ideas);
+		try {
+			ideas = JSON.parse(ideas);
+			ideas[idea] = JSON.parse(ideas[idea]);
+			ideas[idea][message.author.username] = parseInt(rating);
+			ideas[idea] = JSON.stringify(ideas[idea]);
+			ideas = JSON.stringify(ideas);
+		}
+		catch (err) {
+			send(`Dunno how my other error catches didnt get this but you used a category or idea that doesnt exist.`);
+			return console.log(`${message.author.username} cant read categories`);
+		}
 
 		fs.writeFileSync(`./${category}/ideas.json`, ideas, (err) => {
 			if (err) console.log(`\nERROR WRITING IDEAS FILE\n\n${err}`);
