@@ -9,18 +9,18 @@ const prefix = `..`
 // -----------------------------------------------------------------------------
 
 client.once(`ready`, () => {
-  console.log(`\n\n\n\n\n\n\n`);
-  console.log(`Bot has started! \nUSERS: ${client.users.size} \nCHANNELS: ${client.channels.size} \nSERVERS: ${client.guilds.size}\n`);
+	console.log(`\n\n\n\n\n\n\n`);
+	console.log(`Bot has started! \nUSERS: ${client.users.size} \nCHANNELS: ${client.channels.size} \nSERVERS: ${client.guilds.size}\n`);
 })
 
 // -----------------------------------------------------------------------------
 
 client.on(`guildCreate`, guild => {
-  console.log(`\n-----------------------------\nNew server joined! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}\n-----------------------------\n`);
+	console.log(`\n-----------------------------\nNew server joined! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}\n-----------------------------\n`);
 });
 
 client.on(`guildDelete`, guild => {
-  console.log(`\n-----------------------------\nRemoved from server! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}\n-----------------------------\n`);
+	console.log(`\n-----------------------------\nRemoved from server! \nNAME: ${guild.name} \nMEMBERS: ${guild.memberCount}\n-----------------------------\n`);
 });
 
 
@@ -31,18 +31,18 @@ client.on(`guildDelete`, guild => {
 
 
 function notEnoughArgs(command, message, time) {
-  let final = new Discord.RichEmbed()
-  .setColor(`#00ff00`)
-  .setAuthor(`HTFBOT (Hopefully The Final Bot Of Toasters)`, `https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048`, `https://discordapp.com/api/oauth2/authorize?client_id=537774698809786368&permissions=8&scope=bot`)
-  .setTitle(`__**Oops!**__`)
-  .setDescription(`You didnt provide the necesarry arguments!`);
+	let final = new Discord.RichEmbed()
+		.setColor(`#00ff00`)
+		.setAuthor(`HTFBOT (Hopefully The Final Bot Of Toasters)`, `https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048`, `https://discordapp.com/api/oauth2/authorize?client_id=537774698809786368&permissions=8&scope=bot`)
+		.setTitle(`__**Oops!**__`)
+		.setDescription(`You didnt provide the necesarry arguments!`);
 
-  if (command.usage !== ``) {
-    final.addField(`Usage`, `${prefix}${command.name} ${command.usage}`);
-  }
+	if (command.usage !== ``) {
+		final.addField(`Usage`, `${prefix}${command.name} ${command.usage}`);
+	}
 
-  message.channel.send(final);
-  console.log(`[${time}] ${message.author.username} tried to do a command, but didnt use enough arguments.`);
+	message.channel.send(final);
+	console.log(`[${time}] ${message.author.username} tried to do a command, but didnt use enough arguments.`);
 }
 
 
@@ -53,115 +53,115 @@ function notEnoughArgs(command, message, time) {
 
 
 client.on(`message`, message => {
-  let start = process.hrtime()
-  let final = new Discord.RichEmbed()
-  .setColor(`#00ff00`)
-  .setAuthor(`HTFBOT (Hopefully The Final Bot Of Toasters)`, `https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048`, `https://discordapp.com/api/oauth2/authorize?client_id=537774698809786368&permissions=8&scope=bot`)
+	let start = process.hrtime()
+	let final = new Discord.RichEmbed()
+		.setColor(`#00ff00`)
+		.setAuthor(`HTFBOT (Hopefully The Final Bot Of Toasters)`, `https://cdn.discordapp.com/avatars/184474965859368960/5325a0eed911e9f09e24fd277e886846.png?size=2048`, `https://discordapp.com/api/oauth2/authorize?client_id=537774698809786368&permissions=8&scope=bot`)
 
-  // -----------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------
 
-  let date = new Date();
-  let day = date.toString().substring(0,3);
-  let mdy = date.toString().substring(4,15);
-  let time = date.toString().substring(16,24);
+	let date = new Date();
+	let day = date.toString().substring(0, 3);
+	let mdy = date.toString().substring(4, 15);
+	let time = date.toString().substring(16, 24);
 
-  // -----------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------
 
-  client.commands = new Discord.Collection();
+	client.commands = new Discord.Collection();
 
-  const commandFiles = fs.readdirSync(`./commands`).filter(file => file.endsWith(`.js`));
+	const commandFiles = fs.readdirSync(`./commands`).filter(file => file.endsWith(`.js`));
 
-  for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
-  }
+	for (const file of commandFiles) {
+		const command = require(`./commands/${file}`);
+		client.commands.set(command.name, command);
+	}
 
-  // -----------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------
 
-  if (message.author.bot) return;
+	if (message.author.bot) return;
 
-  // -----------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------
 
-  try { //try to
-    let autoresponsess = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => { //get the autoresponses from a file
-      if (err) throw err; //if it gets an error say so
-    });
+	try { //try to
+		let autoresponsess = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => { //get the autoresponses from a file
+			if (err) throw err; //if it gets an error say so
+		});
 
-    autoresponsess = JSON.parse(autoresponsess); //parse the autoresponses so we can use them in our code
+		autoresponsess = JSON.parse(autoresponsess); //parse the autoresponses so we can use them in our code
 
-    let keys = Object.keys(autoresponsess); //get all of the keys (triggers)
+		let keys = Object.keys(autoresponsess); //get all of the keys (triggers)
 
-    for (var key of keys) { //for every trigger
-      if (message.content.includes(key)) { //if the message has the trigger in it
-        message.channel.send(autoresponsess[key]) //send the response linked to the trigger
-      }
-    }
-  }
-  catch (err) { //if any of the above gets an error
-    let dooo = `nothing please` //just dont do anything
-  }
+		for (var key of keys) { //for every trigger
+			if (message.content.includes(key)) { //if the message has the trigger in it
+				message.channel.send(autoresponsess[key]) //send the response linked to the trigger
+			}
+		}
+	}
+	catch (err) { //if any of the above gets an error
+		let dooo = `nothing please` //just dont do anything
+	}
 
-  // -----------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------
 
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-  // -----------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------
 
-  const entire = message.content.slice(prefix.length).toLowerCase();
-  const commandName = entire.split(` `)[0];
-  const args = entire.slice(commandName.length).split(`, `);
+	const entire = message.content.slice(prefix.length).toLowerCase();
+	const commandName = entire.split(` `)[0];
+	const args = entire.slice(commandName.length).split(`, `);
 
-  if (!client.commands.has(commandName)) return;
+	if (!client.commands.has(commandName)) return;
 
-  const command = client.commands.get(commandName);
+	const command = client.commands.get(commandName);
 
-  // -----------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------
 
-  if (command.args && args == ``) {
-    final.setTitle(`__**Oops!**__`)
-    .setDescription(`You didnt provide any arguments!`);
+	if (command.args && args == ``) {
+		final.setTitle(`__**Oops!**__`)
+			.setDescription(`You didnt provide any arguments!`);
 
-    if (command.usage !== ``) {
-      final.addField(`Usage`, `${prefix}${command.name} ${command.usage}`);
-    }
+		if (command.usage !== ``) {
+			final.addField(`Usage`, `${prefix}${command.name} ${command.usage}`);
+		}
 
-    message.channel.send(final);
-    return console.log(`[${time}] ${message.author.username} tried to do a command, but didnt use any arguments.`);
-  }
+		message.channel.send(final);
+		return console.log(`[${time}] ${message.author.username} tried to do a command, but didnt use any arguments.`);
+	}
 
-  if (command.guildOnly && message.channel.type !== `text`) {
-    final.setTitle(`__**Oops!**__`)
-    .setDescription(`That command only works in servers!`);
+	if (command.guildOnly && message.channel.type !== `text`) {
+		final.setTitle(`__**Oops!**__`)
+			.setDescription(`That command only works in servers!`);
 
-    message.channel.send(final);
-    return console.log(`[${time}] ${message.author.username} tried to do a guild only command outside of a guild.`);
-  }
+		message.channel.send(final);
+		return console.log(`[${time}] ${message.author.username} tried to do a guild only command outside of a guild.`);
+	}
 
-  if (command.mod && !message.member.roles.some(r => [`Administrator`, `Moderator`, `Mod`, `Admin`, `Owners`, `Toaster`, `EPIC GAMERS`, `COOL KIDS`].includes(r.name))) {
-    final.setTitle(`__**Oops!**__`)
-    .setDescription(`Sorry, you dont have permission to do this command!`);
+	if (command.mod && !message.member.roles.some(r => [`Administrator`, `Moderator`, `Mod`, `Admin`, `Owners`, `Toaster`, `EPIC GAMERS`, `COOL KIDS`].includes(r.name))) {
+		final.setTitle(`__**Oops!**__`)
+			.setDescription(`Sorry, you dont have permission to do this command!`);
 
-    message.channel.send(final);
-    return console.log(`[${time}] ${message.author.username} tried to do a command, but didnt have the right permission.`);
-  }
+		message.channel.send(final);
+		return console.log(`[${time}] ${message.author.username} tried to do a command, but didnt have the right permission.`);
+	}
 
-  // -----------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------
 
-  try {
-    command.execute(message, args, client, time, final, prefix, start);
-  }
-  catch (err) {
-    final.setTitle(`__**Oops!**__`)
-    .setDescription(`There was an error executing that command!\nThe bot owner has been notified.`);
+	try {
+		command.execute(message, args, client, time, final, prefix, start);
+	}
+	catch (err) {
+		final.setTitle(`__**Oops!**__`)
+			.setDescription(`There was an error executing that command!\nThe bot owner has been notified.`);
 
-    message.channel.send(final);
+		message.channel.send(final);
 
-    let client = message.channel.client;
-    let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
-      toaster.send(`${message.author.username} got an error using the ${command.name} command. \nCheck console my guy!`);
-    });
-    throw err;
-  }
+		let client = message.channel.client;
+		let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
+			toaster.send(`${message.author.username} got an error using the ${command.name} command. \nCheck console my guy!`);
+		});
+		throw err;
+	}
 });
 
 
