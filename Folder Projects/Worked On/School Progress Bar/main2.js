@@ -51,10 +51,10 @@ while (true) {
 		let day_length = (until_sleep_clean + after_wake_clean);
 		let sleep_length = secs_in_day - day_length;
 
-		let percent_left = Math.round((until_sleep_clean / day_length) * 1000) / 10;
-		let percent_through = Math.round((after_wake_clean / day_length) * 1000) / 10;
+		let percent_through = Math.round((until_sleep_clean / day_length) * 1000) / 10;
+		let percent_left = Math.round((after_wake_clean / day_length) * 1000) / 10;
 
-		statement = `You have ${percent_through}% left in the night, and\nYou are ${percent_left}% through the night.`;
+		statement = `You have ${percent_through}% left in the day, and\nYou are ${percent_left}% through the day.`;
 	}
 
 	// -----------------------------------------------------------------------------
