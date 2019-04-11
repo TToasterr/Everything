@@ -14,72 +14,101 @@ mmnt.relativeTimeThreshold("s", 1000000000000000000);
 mmnt.relativeTimeThreshold("ss", 0);
 
 let timeFormat = "HH:mm:ss";
-let sleep_time = mmnt("22:00:00", timeFormat);
-let wake_time = mmnt("6:50:00", timeFormat);
-let school_start = mmnt("7:50:00", timeFormat);
-let school_end = mmnt("14:35:00", timeFormat);
+// let sleep_time = mmnt("22:00:00", timeFormat);
+// let wake_time = mmnt("6:50:00", timeFormat);
+// let wake_time = mmnt("7:50:00", timeFormat);
+// let sleep_time = mmnt("14:35:00", timeFormat);
+let x = 0;
 
 // -----------------------------------------------------------------------------
 
 while (true) {
-
 	process.stdout.write("\x1b[2J");
 
-	let until_sleep = mmnt(sleep_time).fromNow();
-	let after_wake = mmnt(wake_time).toNow().replace(/in (.+) seconds/g, "$1 seconds ago");
+	let wake_time = mmnt("7:50:00", timeFormat);
+	let sleep_time = mmnt("14:35:00", timeFormat);
 
-	let until_sleep_clean, after_wake_clean, statement, day_length, sleep_length, percent_left, percent_through;
+	let until_sleep = mmnt(sleep_time).fromNow();
+	// let after_wake = mmnt(wake_time).toNow().replace(/in (.+) seconds/g, "$1 seconds ago");
+
+	let after_wake, until_sleep_clean, after_wake_clean, statement, day_length, sleep_length, percent_left, percent_through;
 
 	// -----------------------------------------------------------------------------
 
 	if (!until_sleep.endsWith("seconds")) { // this never triggers, need to find a condition that is only true after sleep_time and before wake_time
+		// Need to flip school start time to be in the future (add one day)
+		until_sleep = mmnt(sleep_time).fromNow();
+		after_wake = mmnt(wake_time.add(1, 'd')).fromNow();
+		// .replace(/in (.+) seconds/g, "$1 seconds ago");
+
 		until_sleep_clean = parseInt(until_sleep.split(" ")[0]);
-		after_wake_clean = 0;
+		after_wake_clean = parseInt(after_wake.split(" ")[1]);
 
-		let day_length = (until_sleep_clean + after_wake_clean);
-		let sleep_length = secs_in_day - day_length;
+		day_length = (until_sleep_clean + after_wake_clean);
+		sleep_length = secs_in_day - day_length;
 
-		let percent_left = Math.round((until_sleep_clean / day_length) * 1000) / 10;
-		let percent_through = Math.round((after_wake_clean / day_length) * 1000) / 10;
+		percent_through = Math.round((until_sleep_clean / day_length) * 1000) / 10;
+		percent_left = Math.round((after_wake_clean / day_length) * 1000) / 10;
 
-		statement = `You have ${percent_left}% left in the day, and\nYou are ${percent_through}% through the day.`;
+		statement = `Percent of time until school starts left:     ${percent_left}%\nPercent through that time:                    ${percent_through}%`;
 	}
 	else {
+		until_sleep = mmnt(sleep_time).fromNow();
+		after_wake = mmnt(wake_time).toNow();
+
 		until_sleep_clean = parseInt(until_sleep.split(" ")[1]);
-		after_wake_clean = parseInt(after_wake.split(" ")[0]);
+		after_wake_clean = parseInt(after_wake.split(" ")[1]);
 
-		let day_length = (until_sleep_clean + after_wake_clean);
-		let sleep_length = secs_in_day - day_length;
+		day_length = (until_sleep_clean + after_wake_clean);
+		sleep_length = secs_in_day - day_length;
 
-		let percent_through = Math.round((until_sleep_clean / day_length) * 1000) / 10;
-		let percent_left = Math.round((after_wake_clean / day_length) * 1000) / 10;
+		percent_left = Math.round((until_sleep_clean / day_length) * 1000) / 10;
+		percent_through = Math.round((after_wake_clean / day_length) * 1000) / 10;
 
-		statement = `You have ${percent_through}% left in the day, and\nYou are ${percent_left}% through the day.`;
+		statement = `Percent of school left:     ${percent_left}%\nPercent through school:     ${percent_through}%`;
 	}
 
 	// -----------------------------------------------------------------------------
 
 	// console.log(`${day_length}\n${sleep_length}`);
-	console.log(until_sleep);
+	// console.log(until_sleep);
 
 	// -----------------------------------------------------------------------------
 
 
 	process.stdout.write(`\n\n${statement}\n`);
 	for (var i = 0; i < 100; i++) {
-		if (i < Math.floor(percent_through)) {
+		if (i < Math.round(percent_through)) {
 			process.stdout.write('█');
 		}
 		else {
 			process.stdout.write('░');
 		}
 	}
+	// process.stdout.write('\n\n');
+	// for (var i = 0; i < 7; i++) {
+	// 	process.stdout.write(`\x1b[3${i}m`);
+	// 	for (var o = 0; o < 100; o++) {
+	// 		if (x == 115) {
+	// 			x = 0;
+	// 		}
+	//
+	// 		if (o < x - (i * i ^ i)) {
+	// 			process.stdout.write('█');
+	// 		}
+	// 		else {
+	// 			process.stdout.write('░');
+	// 		}
+	// 	}
+	// 	process.stdout.write('\n');
+	// }
 
 
-	process.stdout.write(`\n\n\nSchleemp Time is ${until_sleep}\nWaek Time was ${after_wake}\n\n`);
-	console.log("\n\n\n");
+	process.stdout.write(`\x1b[0m\n\n\nSchool end time:       ${until_sleep}\nSchool start time:     ${after_wake}\n\n`);
+	// console.log("\n\n\n");
 
 	// -----------------------------------------------------------------------------
 
-	s.sleep(1);
+	x++;
+	s.msleep(500);
 }
