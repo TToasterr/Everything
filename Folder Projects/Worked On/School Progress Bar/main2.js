@@ -75,6 +75,8 @@ while (true) {
 			process.stdout.write('░');
 		}
 	}
+
+
 	// process.stdout.write('\n\n');
 	// for (var i = 0; i < 7; i++) {
 	// 	process.stdout.write(`\x1b[3${i}m`);
