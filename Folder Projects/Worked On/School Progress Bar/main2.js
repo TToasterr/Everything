@@ -13,11 +13,11 @@ const secs_in_day = 86400;
 mmnt.relativeTimeThreshold("s", 1000000000000000000);
 mmnt.relativeTimeThreshold("ss", 0);
 
-let timeFormat = "HH:mm:ss";
 // let sleep_time = mmnt("22:00:00", timeFormat);
 // let wake_time = mmnt("6:50:00", timeFormat);
 // let wake_time = mmnt("7:50:00", timeFormat);
 // let sleep_time = mmnt("14:35:00", timeFormat);
+let timeFormat = "HH:mm:ss";
 let x = 0;
 
 // -----------------------------------------------------------------------------
@@ -27,19 +27,14 @@ while (true) {
 
 	let wake_time = mmnt("7:50:00", timeFormat);
 	let sleep_time = mmnt("14:35:00", timeFormat);
-
 	let until_sleep = mmnt(sleep_time).fromNow();
-	// let after_wake = mmnt(wake_time).toNow().replace(/in (.+) seconds/g, "$1 seconds ago");
-
 	let after_wake, until_sleep_clean, after_wake_clean, statement, day_length, sleep_length, percent_left, percent_through;
 
 	// -----------------------------------------------------------------------------
 
-	if (!until_sleep.endsWith("seconds")) { // this never triggers, need to find a condition that is only true after sleep_time and before wake_time
-		// Need to flip school start time to be in the future (add one day)
+	if (!until_sleep.endsWith("seconds")) {
 		until_sleep = mmnt(sleep_time).fromNow();
 		after_wake = mmnt(wake_time.add(1, 'd')).fromNow();
-		// .replace(/in (.+) seconds/g, "$1 seconds ago");
 
 		until_sleep_clean = parseInt(until_sleep.split(" ")[0]);
 		after_wake_clean = parseInt(after_wake.split(" ")[1]);
@@ -67,11 +62,6 @@ while (true) {
 
 		statement = `Percent of school left:     ${percent_left}%\nPercent through school:     ${percent_through}%`;
 	}
-
-	// -----------------------------------------------------------------------------
-
-	// console.log(`${day_length}\n${sleep_length}`);
-	// console.log(until_sleep);
 
 	// -----------------------------------------------------------------------------
 
@@ -105,7 +95,6 @@ while (true) {
 
 
 	process.stdout.write(`\x1b[0m\n\n\nSchool end time:       ${until_sleep}\nSchool start time:     ${after_wake}\n\n`);
-	// console.log("\n\n\n");
 
 	// -----------------------------------------------------------------------------
 
