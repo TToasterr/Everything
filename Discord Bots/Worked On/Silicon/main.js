@@ -30,9 +30,8 @@ client.on(`message`, message => {
 	let serverSettings;
 	let serverPrefix;
 	let serverRandom;
-	let serverIdeas;
-	let serverContext;
 	let serverMarv;
+	let serverIdeas;
 
 	// -----------------------------------------------------------------------------
 
@@ -69,6 +68,26 @@ client.on(`message`, message => {
 		});
 		serverSettings = JSON.parse(serverSettings);
 
+		try {
+			serverPrefix = serverSettings[`prefix`];
+		}
+		catch (err) {
+			serverPrefix = `si.`;
+		}
+
+		try {
+			serverRandom = serverSettings[`random`];
+		}
+		catch (err) {
+			serverRandom = false;
+		}
+
+		try {
+			serverMarv = serverSettings[`marv`];
+		}
+		catch (err) {
+			serverMarv = false;
+		}
 	}
 
 	// -----------------------------------------------------------------------------
