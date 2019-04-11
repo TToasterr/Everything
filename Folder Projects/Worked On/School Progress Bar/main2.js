@@ -32,7 +32,7 @@ while (true) {
 
 	// -----------------------------------------------------------------------------
 
-	if (!until_sleep.endsWith("seconds")) {
+	if (!until_sleep.endsWith("seconds")) { // this never triggers, need to find a condition that is only true after sleep_time and before wake_time
 		until_sleep_clean = parseInt(until_sleep.split(" ")[0]);
 		after_wake_clean = 0;
 
