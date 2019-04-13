@@ -89,6 +89,13 @@ client.on(`message`, message => {
 			serverMarv = false;
 		}
 	}
+	catch (err) {
+		serverSettings = {
+			serverPrefix = `si.`,
+			serverRandom = false,
+			serverMarv = false
+		}
+	}
 
 	// -----------------------------------------------------------------------------
 
