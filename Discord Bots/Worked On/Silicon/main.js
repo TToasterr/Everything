@@ -13,11 +13,11 @@ client.once(`ready`, () => {
 // -----------------------------------------------------------------------------
 
 client.on(`guildCreate`, guild => {
-	console.log(`\nNEW SERVER VISIBLE: ${guild.name}\nNEW USERS VISIBLE:  ${guild.memberCount}\n`);
+	console.log(`\n${guild.name} HAS MADE CONTACT\nNEW USERS VISIBLE:  ${guild.memberCount}\n`);
 });
 
 client.on(`guildDelete`, guild => {
-	console.log(`\nLOST VISIBILITY ON ${guild.name}\nUSERS LOST: ${guild.memberCoutn}`);
+	console.log(`\nLOST CONTACT WITH ${guild.name}\nUSERS LOST: ${guild.memberCount}`);
 })
 
 // -----------------------------------------------------------------------------
@@ -27,11 +27,18 @@ client.on(`message`, message => {
 
 	let content = message.content;
 	let splitMessage = content.split(` `);
+	let channel = message.channel;
+	let channelName = channel.name;
+	let channelID = channel.id;
+	let guild = message.guild;
+	let guildName = guild.name;
+
 	let serverSettings;
 	let serverPrefix;
 	let serverRandom;
 	let serverMarv;
 	let serverIdeas;
+	let serverDNDChannels;
 
 	// -----------------------------------------------------------------------------
 
@@ -45,7 +52,7 @@ client.on(`message`, message => {
 	// -----------------------------------------------------------------------------
 
 	try {
-		let autoResponses = fs.readFileSync(`./autoresponders/${message.guild.name}.json`, (err) => {
+		let autoResponses = fs.readFileSync(`./autoresponders/${guildName}.json`, (err) => {
 			if (err) throw err;
 		});
 		autoResponses = JSON.parse(autoResponses);
@@ -63,7 +70,7 @@ client.on(`message`, message => {
 
 
 	try {
-		serverSettings = fs.readFileSync(`./servers/${message.guild.name}Settings.json`, (err) => {
+		serverSettings = fs.readFileSync(`./servers/${guildName}Settings.json`, (err) => {
 			if (err) throw err;
 		});
 		serverSettings = JSON.parse(serverSettings);
@@ -88,13 +95,19 @@ client.on(`message`, message => {
 		catch (err) {
 			serverMarv = false;
 		}
+
+		try {
+			serverDNDChannels = serverSettings[`DNDChannels`];
+		}
+		catch (err) {
+			serverDNDChannels = [];
+		}
 	}
 	catch (err) {
-		serverSettings = {
-			serverPrefix = `si.`,
-			serverRandom = false,
-			serverMarv = false
-		}
+		serverPrefix = `si.`;
+		serverRandom = false;
+		serverMarv = false;
+		serverDNDChannels = [];
 	}
 
 	// -----------------------------------------------------------------------------
@@ -104,4 +117,15 @@ client.on(`message`, message => {
 	// -----------------------------------------------------------------------------
 
 
+
+	// commands go here
+
+
+
+	// -----------------------------------------------------------------------------
+
+	serverSettings = JSON.stringify(serverSettings);
+	fs.writeFileSync(`./servers/${guildName}Settings.json`, serverSettings, (err) => {
+		if (err) console.log(`Error writing to '${guildName}'s settings file:\n${err}\n`);
+	});
 });
