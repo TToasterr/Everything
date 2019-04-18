@@ -2,7 +2,15 @@ const fs = require(`fs`);
 const Discord = require(`discord.js`);
 const client = new Discord.Client();
 
+
+
+
+
 // -----------------------------------------------------------------------------
+
+
+
+
 
 client.once(`ready`, () => {
 	console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
@@ -10,7 +18,15 @@ client.once(`ready`, () => {
 	client.user.setActivity(`slc.help`);
 });
 
+
+
+
+
 // -----------------------------------------------------------------------------
+
+
+
+
 
 client.on(`guildCreate`, guild => {
 	console.log(`\n${guild.name} HAS MADE CONTACT\nNEW USERS VISIBLE:  ${guild.memberCount}\n`);
@@ -20,7 +36,15 @@ client.on(`guildDelete`, guild => {
 	console.log(`\nLOST CONTACT WITH ${guild.name}\nUSERS LOST: ${guild.memberCount}`);
 })
 
+
+
+
+
 // -----------------------------------------------------------------------------
+
+
+
+
 
 client.on(`message`, message => {
 	if (message.author.bot) return;
@@ -40,7 +64,15 @@ client.on(`message`, message => {
 	let serverIdeas;
 	let serverDNDChannels;
 
+
+
+
+
 	// -----------------------------------------------------------------------------
+
+
+
+
 
 	client.commands = new Discord.Collection();
 	const commandFiles = fs.readdirSync(`./commands`).filter(file => file.endsWith(`.js`));
@@ -49,7 +81,15 @@ client.on(`message`, message => {
 		client.commands.set(command.name, command);
 	}
 
+
+
+
+
 	// -----------------------------------------------------------------------------
+
+
+
+
 
 	try {
 		let autoResponses = fs.readFileSync(`./autoresponders/${guildName}.json`, (err) => {
@@ -66,7 +106,6 @@ client.on(`message`, message => {
 	catch (err) {
 		let nothing;
 	}
-
 
 
 	try {
@@ -110,11 +149,27 @@ client.on(`message`, message => {
 		serverDNDChannels = [];
 	}
 
+
+
+
+
 	// -----------------------------------------------------------------------------
+
+
+
+
 
 	if (!content.startsWith(serverPrefix)) return;
 
+
+
+
+
 	// -----------------------------------------------------------------------------
+
+
+
+
 
 
 
@@ -122,7 +177,15 @@ client.on(`message`, message => {
 
 
 
+
+
+
+
 	// -----------------------------------------------------------------------------
+
+
+
+
 
 	serverSettings = JSON.stringify(serverSettings);
 	fs.writeFileSync(`./servers/${guildName}Settings.json`, serverSettings, (err) => {
