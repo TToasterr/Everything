@@ -6,16 +6,18 @@ module.exports = {
 	description: 'Gives you help on all commands the bot has!',
 	usage: '<command name>',
 	category: 'general',
+	passThrough: false,
+	autoExec: false,
 	guildOnly: false,
 	args: false,
 	mod: false,
-	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, final) {
+	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
 		if (args == '') {
 			var general = [];
-			var autoresponder = [``];
-			var marv = [``];
-			var dnd = [``];
-			var random = [``];
+			var autoresponder = [];
+			var marv = [];
+			var dnd = [];
+			var random = [];
 			var commands = message.client.commands.map(command => command);
 
 			for (var i = 0; i < commands.length; i++) {
