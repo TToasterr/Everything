@@ -6,14 +6,22 @@ module.exports = {
 	description: '',
 	usage: '',
 	category: '',
+	passThrough: false,
+	autoExec: false,
 	guildOnly: false,
 	args: false,
 	mod: false,
-	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, final) {
+	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
 		// final.setTitle('')
 		// .setDescription('')
 		// .addField('', '');
-		// message.channel.send(final);
-		// console.log(`[${time}] ${message.author.username} did something.`);
+
+		// serverSettings = JSON.stringify(serverSettings);
+		// fs.writeFileSync(`./servers/${guildName}Settings.json`, serverSettings, (err) => {
+		// 	if (err) console.log(`Error writing to '${guildName}'s settings file:\n${err}\n`);
+		// });
+
+		// channel.send(final);
+		// console.log(`[${time}] ${authorName} did something.`);
 	},
 };
