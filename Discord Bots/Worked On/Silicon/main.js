@@ -139,7 +139,10 @@ client.on(`message`, message => {
 		serverPrefix = `si.`;
 		serverRandom = false;
 		serverMarv = false;
-		serverDNDChannels = [];
+		serverDNDChannels = {
+			inCharacter: [],
+			outOfCharacter: []
+		};
 
 		serverSettings = {
 			prefix: serverPrefix,
@@ -155,6 +158,22 @@ client.on(`message`, message => {
 
 
 
+	if (serverRandom) {
+		let commands = message.client.commands.map(command => command);
+		for (var i = 0; i < commands.length; i++) {
+			if (commands[i].category == `random` && commands[i].autoExec) {
+				commands[i].execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final);
+			}
+		}
+	}
+
+
+
+	// -----------------------------------------------------------------------------
+
+
+
+	// console.log(content);
 	if (!content.startsWith(serverPrefix)) return;
 	commandName = commandName.slice(serverPrefix.length);
 	if (!client.commands.has(commandName)) return;
@@ -178,7 +197,7 @@ client.on(`message`, message => {
 		return console.log(`[${time}] ${authorName} tried to use ${commandName} without any arguments.`);
 	}
 
-	if (command.guildOnly && channe.type !== `text`) {
+	if (command.guildOnly && channel.type !== `text`) {
 		final.setTitle(`__**Whoops!**__`)
 			.setDescription(`That command only works in servers!`);
 
@@ -186,7 +205,7 @@ client.on(`message`, message => {
 		return console.log(`[${time}] ${authorName} tried to use ${commandName} outside of a server.`);
 	}
 
-	if (command.category == `random` && !serverRandom) {
+	if (command.category == `random` && !serverRandom && !command.passThrough) {
 		final.setTitle(`__**Whoops!**__`)
 			.setDescription(`That command is in the \`random\` category, which you don't have enabled!\nPlease enable the category to use the command.`);
 
@@ -194,7 +213,7 @@ client.on(`message`, message => {
 		return console.log(`[${time}] ${authorName} tried to use ${commandName} but didnt have the Random module enabled.`);
 	}
 
-	if (command.category == `marv` && !serverMarv) {
+	if (command.category == `marv` && !serverMarv && !command.passThrough) {
 		final.setTitle(`__**Whoops!**__`)
 			.setDescription(`That command is in the \`marv\` category, which you don't have enabled!\nPlease enable the category to use the command.`);
 
@@ -202,7 +221,7 @@ client.on(`message`, message => {
 		return console.log(`[${time}] ${authorName} tried to use ${commandName} but didnt have the Marv module enabled.`);
 	}
 
-	if (command.category == `dnd` && !serverDNDChannels.includes(channelID)) {
+	if (command.category == `dnd` && !serverDNDChannels[`inCharacter`].includes(channelID) && !serverDNDChannels[`outOfCharacter`].includes(channelID) && !command.passThrough) {
 		final.setTitle(`__**Whoops!**__`)
 			.setDescription(`That command is only available in channels with DND enabled!\nPlease make this channel a DND channel to use the command.`);
 
@@ -219,7 +238,7 @@ client.on(`message`, message => {
 
 
 	try {
-		command.execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, final)
+		command.execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final);
 	}
 	catch (err) {
 		final.setTitle(`__**Whoops!**__`)
@@ -239,13 +258,6 @@ client.on(`message`, message => {
 
 
 	// -----------------------------------------------------------------------------
-
-
-
-	serverSettings = JSON.stringify(serverSettings);
-	fs.writeFileSync(`./servers/${guildName}Settings.json`, serverSettings, (err) => {
-		if (err) console.log(`Error writing to '${guildName}'s settings file:\n${err}\n`);
-	});
 });
 
 
