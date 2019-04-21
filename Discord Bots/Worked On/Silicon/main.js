@@ -167,6 +167,15 @@ client.on(`message`, message => {
 		}
 	}
 
+	if ((serverDNDChannels[`inCharacter`].includes(channelID) || serverDNDChannels[`outOfCharacter`].includes(channelID))) {
+		let commands = message.client.commands.map(command => command);
+		for (var i = 0; i < commands.length; i++) {
+			if (commands[i].category == `dnd` && commands[i].autoExec) {
+				commands[i].execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final);
+			}
+		}
+	}
+
 
 
 	// -----------------------------------------------------------------------------
