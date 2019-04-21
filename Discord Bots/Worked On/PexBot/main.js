@@ -69,6 +69,12 @@ client.on(`message`, msg => {
 			.setDescription(`Yes, I exist.`);
 		msg.channel.send(final);
 	}
+
+	else if (command == `help`) {
+		final.setTitle(`All commands:`)
+			.setDescription(`i dont have any yet lol except .ping thx`);
+		msg.channel.send(final);
+	}
 });
 
 client.on('error', console.error);
