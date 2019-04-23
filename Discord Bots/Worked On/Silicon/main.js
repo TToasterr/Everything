@@ -1,4 +1,5 @@
 const fs = require(`fs`);
+const e = require(`H:/Modules/ease.js`);
 const discord = require(`discord.js`);
 const client = new discord.Client();
 
@@ -89,15 +90,18 @@ client.on(`message`, message => {
 			if (err) throw err;
 		});
 		autoResponses = JSON.parse(autoResponses);
-		let keys = Object.keys(autoresponses);
+		let keys = Object.keys(autoResponses);
 		for (let key of keys) {
-			if (content.includes(key)) {
+			if (content.toLowerCase().includes(key.toLowerCase())) {
 				message.channel.send(autoResponses[key]);
 			}
 		}
 	}
 	catch (err) {
-		let nothing;
+		fs.writeFileSync(`./autoresponders/${guildName}.json`, `{}`, (err) => {
+			if (err) console.log(`Error writing to '${guildName}'s autoresponses file:\n${err}\n`);
+		});
+		// console.log(err);
 	}
 
 
@@ -236,6 +240,14 @@ client.on(`message`, message => {
 
 		channel.send(final);
 		return console.log(`[${time}] ${authorName} tried to use ${commandName} outside of a DND channel.`);
+	}
+
+	if (command.mod && !((message.author.hasPermission(`ADMINISTRATOR`)) || message.member.roles.some(role => role.name == `Bot Mod`))) {
+		final.setTitle(`__**Whoops!**__`)
+			.setDescription(`That command is only available to moderators!\nThis bot counts anyone with the 'Administrator' permission, or 'Bot Mod' role as a moderator.`);
+
+		channel.send(final);
+		return console.log(`[${time}] ${authorName} tried to use ${commandName} even though they arent an admin.`)
 	}
 
 
