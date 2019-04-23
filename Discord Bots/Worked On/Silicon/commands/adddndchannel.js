@@ -4,13 +4,13 @@ const fs = require('fs');
 module.exports = {
 	name: 'adddndchannel',
 	description: 'Add a DND channel to the server!',
-	usage: '[in character or out of character]',
+	usage: '[in Character or out Of Character]',
 	category: 'dnd',
 	passThrough: true,
 	autoExec: false,
 	guildOnly: true,
 	args: true,
-	mod: false,
+	mod: true,
 	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
 		args[0] = args[0].slice(1);
 
