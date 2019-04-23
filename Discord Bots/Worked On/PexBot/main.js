@@ -1,4 +1,5 @@
 const fs = require(`fs`);
+const e = require(`H:/Modules/ease.js`);
 // const request = require(`request`);
 // const randomImage = require(`random-puppy`);
 const Discord = require(`discord.js`);
@@ -62,18 +63,21 @@ client.on(`message`, msg => {
 		final.setTitle(`Also Ali:`)
 			.setDescription(`This is a richembed.`);
 		msg.channel.send(final);
+		console.log(`${msg.author.username} said the bot was awesome.`);
 	}
 
 	if (command == `ping`) {
 		final.setTitle(`Hello!`)
 			.setDescription(`Yes, I exist.`);
 		msg.channel.send(final);
+		console.log(`${msg.author.username} pinged the bot.`);
 	}
 
 	else if (command == `help`) {
 		final.setTitle(`All commands:`)
 			.setDescription(`i dont have any yet lol except .ping thx`);
 		msg.channel.send(final);
+		console.log(`${msg.author.username} got help.`);
 	}
 });
 
