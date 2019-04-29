@@ -12,7 +12,10 @@ module.exports = {
 	args: false,
 	mod: false,
 	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
-		let split = content.split(' ');
+		let nonoChars = [`\``, `\~`, `\!`, `\#`, `\^`, `\&`, `\*`, `\(`, `\)`, `\_`, `\-`, `\+`, `\=`, `\[`, `\]`, `\{`, `\}`, `\"`, `\'`, `\<`, `\>`, `\/`, `\\`, `\|`];
+		let maybeChars = [`\:`, `\'`, `\"`, `\,`, `\.`, `\?`];
+		let split = content.split('\n').join(' ').split(' ');
+		let allGood = true;
 		let serverwordcount;
 
 		try {
@@ -26,36 +29,33 @@ module.exports = {
 		serverwordcount = JSON.parse(serverwordcount);
 
 		for (let word of split) {
-			word = word.replace(/`/g, '')
-				.replace(/\~/g, '')
-				.replace(/\!/g, '')
-				.replace(/\^/g, '')
-				.replace(/\*/g, '')
-				.replace(/\(/g, '')
-				.replace(/\)/g, '')
-				.replace(/\[/g, '')
-				.replace(/\]/g, '')
-				.replace(/\{/g, '')
-				.replace(/\}/g, '')
-				.replace(/\:/g, '')
-				.replace(/\'/g, '')
-				.replace(/\"/g, '')
-				.replace(/\,/g, '')
-				.replace(/\./g, '')
-				.replace(/\</g, '')
-				.replace(/\>/g, '')
-				.replace(/\//g, '')
-				.replace(/\\/g, '')
-				.replace(/\_/g, '')
-				.replace(/\+/g, '')
-				.replace(/\-/g, '')
-				.replace(/\=/g, '')
-
-			if (serverwordcount[word.toLowerCase()]) {
-				serverwordcount[word.toLowerCase()]++;
+			for (let char of maybeChars) {
+				if (word.startsWith(char)) {
+					allGood = false;
+				}
+				else {
+					for (var i = 0; i < 100; i++) {
+						word = word.replace(char, '');
+					}
+				}
 			}
-			else {
-				serverwordcount[word.toLowerCase()] = 1;
+
+			for (let char of nonoChars) {
+				if (!word.includes(char) && allGood) {
+					allGood = true;
+				}
+				else {
+					allGood = false;
+				}
+			}
+
+			if (allGood && word !== '') {
+				if (serverwordcount[word.toLowerCase()]) {
+					serverwordcount[word.toLowerCase()]++;
+				}
+				else {
+					serverwordcount[word.toLowerCase()] = 1;
+				}
 			}
 		}
 
@@ -63,5 +63,5 @@ module.exports = {
 		fs.writeFileSync(`./servers/${guildName} wordcounts.json`, serverwordcount, (err) => {
 			if (err) console.log(`Error writing to '${guildName}'s wordcount file:\n${err}\n`);
 		});
-	},
+	}
 };
