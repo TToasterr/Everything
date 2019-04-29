@@ -37,8 +37,13 @@ module.exports = {
 
 		wordarray = array.reverse();
 
-		for (var i = 0; i < 10; i++) {
-			finalarray.push(`**${wordarray[i][0]}** - ${wordarray[i][1]}`);
+		try {
+			for (var i = 0; i < 10; i++) {
+				finalarray.push(`**${wordarray[i][0]}** - ${wordarray[i][1]}`);
+			}
+		}
+		catch (err) {
+			finalarray = [`Whoops!`, `There arent even 10 different words used yet!`, `Talk some more, and then try again!`];
 		}
 
 		final.setTitle(`__**Top 10 most used words on ${guildName}:**__`)
