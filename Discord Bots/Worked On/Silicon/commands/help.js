@@ -21,7 +21,7 @@ module.exports = {
 			var commands = message.client.commands.map(command => command);
 
 			for (var i = 0; i < commands.length; i++) {
-				if (commands[i].name !== '') {
+				if (commands[i].name !== '' && !(commands[i].autoExec)) {
 					if (commands[i].category == 'general' || commands[i].category == '') {
 						general.push(commands[i].name);
 					}
