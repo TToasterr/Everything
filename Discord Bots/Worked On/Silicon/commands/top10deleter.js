@@ -40,7 +40,7 @@ module.exports = {
 				wordarray = array.reverse();
 
 				for (var i = 0; i < 10; i++) {
-					if (content.includes(` ${wordarray[i][0]} `) || content == wordarray[i][0]) {
+					if (content.includes(` ${wordarray[i][0]} `) || content == wordarray[i][0] || content.startsWith(wordarray[i][0]) || content.endsWith(wordarray[i][0])) {
 						message.delete();
 					}
 				}
