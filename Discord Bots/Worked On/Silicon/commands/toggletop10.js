@@ -3,7 +3,7 @@ const fs = require('fs');
 
 module.exports = {
 	name: 'toggletop10',
-	description: 'Toggle the usage of the top 10 most used words in this channel!',
+	description: 'Toggle the usage of the top 10 most used words in this channel!\nIf on, this will delete any message that include any words in .mostusedwords',
 	usage: '',
 	category: 'random',
 	passThrough: false,
