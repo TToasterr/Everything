@@ -242,7 +242,7 @@ client.on(`message`, message => {
 		return console.log(`[${time}] ${authorName} tried to use ${commandName} outside of a DND channel.`);
 	}
 
-	if (command.mod && !((message.author.hasPermission(`ADMINISTRATOR`)) || message.member.roles.some(role => role.name == `Bot Mod`))) {
+	if (command.mod && !((message.member.permissions.has(`ADMINISTRATOR`)) || message.member.roles.some(role => role.name == `Bot Mod`))) {
 		final.setTitle(`__**Whoops!**__`)
 			.setDescription(`That command is only available to moderators!\nThis bot counts anyone with the 'Administrator' permission, or 'Bot Mod' role as a moderator.`);
 
