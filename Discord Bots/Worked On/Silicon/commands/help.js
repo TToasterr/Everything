@@ -42,11 +42,11 @@ module.exports = {
 
 			final.setTitle('__**Here are all of my commands!**__')
 				.setDescription('*Arguments must be seperated with a comma and space or it will return an error.*')
-				.addField('General', '-' + general.join('\n-'))
-				.addField('Autoresponder', '-' + autoresponder.join('\n-'))
-				.addField('Marv', '-' + marv.join('\n-'))
-				.addField('DND', '-' + dnd.join('\n-'))
-				.addField('Random', '-' + random.join('\n-'))
+				.addField('General', serverPrefix + general.join(`\n${serverPrefix}`))
+				.addField('Autoresponder', serverPrefix + autoresponder.join(`\n${serverPrefix}`))
+				.addField('Marv', serverPrefix + marv.join(`\n${serverPrefix}`))
+				.addField('DND', serverPrefix + dnd.join(`\n${serverPrefix}`))
+				.addField('Random', serverPrefix + random.join(`\n${serverPrefix}`))
 				.addField(`You can send \`${serverPrefix}help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/Silicon)');
 
 			channel.send(final);
