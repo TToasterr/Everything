@@ -28,7 +28,7 @@ module.exports = {
 			serverSettings[`top10channels`] = [channelID];
 		}
 
-		final.setTitle(`__**Usage of the top 10 most used words has been turned ${toggled} in this channel!**__`)
+		final.setTitle(`__**Deletion of the top 10 most used words has been turned ${toggled} in this channel!**__`)
 			.setDescription(`Have fun!`);
 
 		serverSettings = JSON.stringify(serverSettings);
@@ -37,6 +37,6 @@ module.exports = {
 		});
 
 		channel.send(final);
-		console.log(`[${time}] ${authorName} turned top10words in ${channelName} ${toggled}.`);
+		console.log(`[${time}] ${authorName} turned top10words ${toggled} in ${channelName}.`);
 	},
 };
