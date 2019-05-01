@@ -19,7 +19,7 @@ module.exports = {
 		let serverwordcount;
 
 		try {
-			serverwordcount = fs.readFileSync(`./servers/${guildName} wordcounts.json`, (err) => {
+			serverwordcount = fs.readFileSync(`./servers/${guild.id} wordcounts.json`, (err) => {
 				if (err) throw err;
 			});
 		}
@@ -60,7 +60,7 @@ module.exports = {
 		}
 
 		serverwordcount = JSON.stringify(serverwordcount);
-		fs.writeFileSync(`./servers/${guildName} wordcounts.json`, serverwordcount, (err) => {
+		fs.writeFileSync(`./servers/${guild.id} wordcounts.json`, serverwordcount, (err) => {
 			if (err) console.log(`Error writing to '${guildName}'s wordcount file:\n${err}\n`);
 		});
 	}

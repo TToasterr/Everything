@@ -23,7 +23,7 @@ module.exports = {
 			.setDescription(`<#${channelID}> has been removed from the ${args[0].toLowerCase()} DND channels.`);
 
 		serverSettings = JSON.stringify(serverSettings);
-		fs.writeFileSync(`./servers/${guildName}Settings.json`, serverSettings, (err) => {
+		fs.writeFileSync(`./servers/${guild.id} Settings.json`, serverSettings, (err) => {
 			if (err) console.log(`Error writing to '${guildName}'s settings file:\n${err}\n`);
 		});
 

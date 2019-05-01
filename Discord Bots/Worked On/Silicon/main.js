@@ -86,7 +86,7 @@ client.on(`message`, message => {
 
 
 	try {
-		let autoResponses = fs.readFileSync(`./autoresponders/${guildName}.json`, (err) => {
+		let autoResponses = fs.readFileSync(`./autoresponders/${guild.id}.json`, (err) => {
 			if (err) throw err;
 		});
 		autoResponses = JSON.parse(autoResponses);
@@ -98,7 +98,7 @@ client.on(`message`, message => {
 		}
 	}
 	catch (err) {
-		fs.writeFileSync(`./autoresponders/${guildName}.json`, `{}`, (err) => {
+		fs.writeFileSync(`./autoresponders/${guild.id}.json`, `{}`, (err) => {
 			if (err) console.log(`Error writing to '${guildName}'s autoresponses file:\n${err}\n`);
 		});
 		// console.log(err);
@@ -106,7 +106,7 @@ client.on(`message`, message => {
 
 
 	try {
-		serverSettings = fs.readFileSync(`./servers/${guildName}Settings.json`, (err) => {
+		serverSettings = fs.readFileSync(`./servers/${guild.id} Settings.json`, (err) => {
 			if (err) throw err;
 		});
 		serverSettings = JSON.parse(serverSettings);

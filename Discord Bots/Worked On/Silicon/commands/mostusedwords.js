@@ -17,7 +17,7 @@ module.exports = {
 		let finalarray = [];
 
 		try {
-			serverwordcount = fs.readFileSync(`./servers/${guildName} wordcounts.json`, (err) => {
+			serverwordcount = fs.readFileSync(`./servers/${guild.id} wordcounts.json`, (err) => {
 				if (err) throw err;
 			});
 		}

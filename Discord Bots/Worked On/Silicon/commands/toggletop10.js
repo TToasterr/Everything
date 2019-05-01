@@ -32,7 +32,7 @@ module.exports = {
 			.setDescription(`Have fun!`);
 
 		serverSettings = JSON.stringify(serverSettings);
-		fs.writeFileSync(`./servers/${guildName}Settings.json`, serverSettings, (err) => {
+		fs.writeFileSync(`./servers/${guild.id} Settings.json`, serverSettings, (err) => {
 			if (err) console.log(`Error writing to '${guildName}'s settings file:\n${err}\n`);
 		});
 

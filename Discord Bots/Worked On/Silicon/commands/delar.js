@@ -16,7 +16,7 @@ module.exports = {
 		let doesntExist = false;
 
 		try {
-			object = fs.readFileSync(`./autoresponders/${guildName}.json`, (err) => {
+			object = fs.readFileSync(`./autoresponders/${guild.id}.json`, (err) => {
 				if (err) throw err;
 			});
 
@@ -42,7 +42,7 @@ module.exports = {
 		}
 		else {
 			let autoresponses = JSON.stringify(object);
-			fs.writeFileSync(`./autoresponders/${guildName}.json`, autoresponses, (err) => {
+			fs.writeFileSync(`./autoresponders/${guild.id}.json`, autoresponses, (err) => {
 				if (err) console.log(`Error writing to '${guildName}'s autoresponses file:\n${err}\n`);
 			});
 

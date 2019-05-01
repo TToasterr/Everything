@@ -16,7 +16,7 @@ module.exports = {
 		let array = [];
 
 		try {
-			object = fs.readFileSync(`./autoresponders/${guildName}.json`, (err) => {
+			object = fs.readFileSync(`./autoresponders/${guild.id}.json`, (err) => {
 				if (err) throw err;
 			});
 
