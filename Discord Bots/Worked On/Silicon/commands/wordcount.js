@@ -12,8 +12,8 @@ module.exports = {
 	args: false,
 	mod: false,
 	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
-		let nonoChars = [`\``, `\~`, `\!`, `\#`, `\^`, `\&`, `\*`, `\(`, `\)`, `\_`, `\-`, `\+`, `\=`, `\[`, `\]`, `\{`, `\}`, `\"`, `\'`, `\<`, `\>`, `\/`, `\\`, `\|`];
-		let maybeChars = [`\:`, `\'`, `\"`, `\,`, `\.`, `\?`];
+		let nonoChars = [`si.`, `\^`, `\&`, `\*`, `\+`, `\=`, `\<`, `\>`, `\/`, `\\`, `\|`];
+		let maybeChars = [`\:`, `\'`, `\"`, `\,`, `\.`, `\(`, `\)`, `\_`, `\-`, `\``, `\~`, `\!`, `\#`, `\[`, `\]`, `\{`, `\}`, `\"`, `\'`, `\?`];
 		let split = content.split('\n').join(' ').split(' ');
 		let allGood = true;
 		let serverwordcount;
@@ -29,6 +29,15 @@ module.exports = {
 		serverwordcount = JSON.parse(serverwordcount);
 
 		for (let word of split) {
+			for (let char of nonoChars) {
+				if (!word.includes(char) && allGood) {
+					allGood = true;
+				}
+				else {
+					allGood = false;
+				}
+			}
+
 			for (let char of maybeChars) {
 				if (word.startsWith(char)) {
 					allGood = false;
@@ -40,14 +49,6 @@ module.exports = {
 				}
 			}
 
-			for (let char of nonoChars) {
-				if (!word.includes(char) && allGood) {
-					allGood = true;
-				}
-				else {
-					allGood = false;
-				}
-			}
 
 			if (allGood && word !== '') {
 				if (serverwordcount[word.toLowerCase()]) {
