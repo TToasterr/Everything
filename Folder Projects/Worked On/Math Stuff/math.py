@@ -29,8 +29,6 @@ for number in page_questions.split("\n"):
         print(number, end=' ')
         if "<img alt=\"\" class=\"image-large\"" in answer:
             answer = answer.split("<img alt=\"\" class=\"image-large\"")[0].strip().replace("<img alt=\"\" class=\"image-reg\" src=\"", "").replace("\"/>", "")
-            img = image.open(BytesIO((requests.get(answer)).content)).convert("RGBA")
-            img.show()
         print(answer)
 
 # print(page_questions)
