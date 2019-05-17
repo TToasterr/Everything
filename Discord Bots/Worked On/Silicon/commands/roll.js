@@ -61,13 +61,13 @@ module.exports = {
 					final.setTitle(`__**${authorName} rolled a d${maxAmount} ${amountToRoll} time(s).**__`);
 				}
 				final.setDescription(`**They got:**\n${finalNumbers.join(", ")}`);
-				
+
 				if (amountToRoll > 1) {
 					let total = 0;
-					for (let number in finalNumbers) {
-						total += number;
+					for (let number of finalNumbers) {
+						total += parseInt(number);
 					}
-					final.addField(`Stats:`, `**Average:** ${total/amountToRoll}\n**Total:** ${total}`);
+					final.addField(`Stats:`, `**Average:** ${total/parseInt(amountToRoll)}\n**Total:** ${total}`);
 				}
 			}
 		}

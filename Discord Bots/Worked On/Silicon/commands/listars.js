@@ -34,7 +34,8 @@ module.exports = {
 
 		let keys = Object.keys(object);
 		for (let key of keys) {
-			array.push(`**'${key}'** - '${object[key]}'`);
+			// array.push(`**'${key}'** - '${object[key]}'`);
+			final.addField(`**${key}**`, `${object[key]}`);
 		}
 
 		if (object == {} || !object || object == '' || object == '{}' || array == [] || !array || array == '[]' || !array[0]) {
@@ -46,7 +47,7 @@ module.exports = {
 		}
 
 		final.setTitle(`__**List of all autoresponses:**__`)
-			.setDescription(`${array.join('\n')}`);
+		// .setDescription(`${array.join('\n')}`);
 
 		channel.send(final);
 		console.log(`[${time}] ${authorName} listed autoresponders for ${guildName}.`);
