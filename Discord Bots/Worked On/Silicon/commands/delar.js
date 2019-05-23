@@ -14,6 +14,7 @@ module.exports = {
 	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
 		args[0] = args[0].slice(1);
 		let doesntExist = false;
+		let response = '';
 
 		try {
 			object = fs.readFileSync(`./autoresponders/${guild.id}.json`, (err) => {
@@ -22,6 +23,7 @@ module.exports = {
 
 			object = JSON.parse(object);
 			if (object[args[0]]) {
+				response = object[args[0]];
 				delete object[args[0]];
 			}
 			else {
@@ -47,7 +49,7 @@ module.exports = {
 			});
 
 			final.setTitle(`__**Autoresponder removed!**__`)
-				.setDescription(`**Trigger:** ${args[0]}\n**Response:** ${object[args[0]]}`);
+				.setDescription(`**Trigger:** ${args[0]}\n**Response:** ${response}`);
 
 			channel.send(final);
 			console.log(`[${time}] ${authorName} removed an autoresponder from ${guildName}.`);
