@@ -11,7 +11,7 @@ module.exports = {
 	guildOnly: true,
 	args: true,
 	mod: true,
-	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
+	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client) {
 		args[0] = args[0].slice(1);
 
 		if (args[0] !== `in Character` && args[0] !== `out Of Character`) {

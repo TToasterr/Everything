@@ -11,7 +11,7 @@ module.exports = {
 	guildOnly: false,
 	args: true,
 	mod: false,
-	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
+	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client) {
 		let timee = args[0].slice(1);
 		let type = args[0].slice(args[0].length - 1);
 

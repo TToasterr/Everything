@@ -11,7 +11,7 @@ module.exports = {
 	guildOnly: true,
 	args: false,
 	mod: false,
-	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
+	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client) {
 		let inCharacter = serverSettings[`DNDChannels`][`inCharacter`];
 		let outOfCharacter = serverSettings[`DNDChannels`][`outOfCharacter`];
 		let inCharacterList = [];

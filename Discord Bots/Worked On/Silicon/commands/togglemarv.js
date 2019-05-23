@@ -11,7 +11,7 @@ module.exports = {
 	guildOnly: true,
 	args: false,
 	mod: true,
-	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
+	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client) {
 		let state;
 
 		if (serverSettings[`marv`]) {

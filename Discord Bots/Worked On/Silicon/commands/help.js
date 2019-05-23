@@ -11,7 +11,7 @@ module.exports = {
 	guildOnly: false,
 	args: false,
 	mod: false,
-	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
+	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client) {
 		if (args == '') {
 			var general = [];
 			var autoresponder = [];
@@ -47,7 +47,7 @@ module.exports = {
 				.addField('Marv', serverPrefix + marv.join(`\n${serverPrefix}`))
 				.addField('DND', serverPrefix + dnd.join(`\n${serverPrefix}`))
 				.addField('Random', serverPrefix + random.join(`\n${serverPrefix}`))
-				.addField(`You can send \`${serverPrefix}help <command name>\` to get info on a specific command!`, '[`My Github`](https://github.com/TToasterr/Everything/tree/master/Discord%20Bots/Worked%20On/Silicon)');
+				.addField(`You can send \`${serverPrefix}help <command name>\` to get info on a specific command!`, '*Message `Toaster#0403` to suggest commands or changes!*');
 
 			channel.send(final);
 			return console.log(`[${time}] ${authorName} got help.`);

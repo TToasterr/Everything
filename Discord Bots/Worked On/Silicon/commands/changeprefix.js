@@ -11,7 +11,7 @@ module.exports = {
 	guildOnly: true,
 	args: true,
 	mod: true,
-	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
+	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client) {
 		serverPrefix = args[0].slice(1).split(' ')[0];
 
 		final.setTitle('__**Success!**__')

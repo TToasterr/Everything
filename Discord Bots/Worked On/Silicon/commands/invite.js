@@ -11,7 +11,7 @@ module.exports = {
 	guildOnly: false,
 	args: false,
 	mod: false,
-	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final) {
+	execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client) {
 		final.setTitle('__**Invite Link**__')
 			.setDescription('Open an invite link by clicking my name above!');
 

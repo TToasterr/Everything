@@ -166,7 +166,7 @@ client.on(`message`, message => {
 		let commands = message.client.commands.map(command => command);
 		for (var i = 0; i < commands.length; i++) {
 			if (commands[i].category == `random` && commands[i].autoExec) {
-				commands[i].execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final);
+				commands[i].execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client);
 			}
 		}
 	}
@@ -175,7 +175,7 @@ client.on(`message`, message => {
 		let commands = message.client.commands.map(command => command);
 		for (var i = 0; i < commands.length; i++) {
 			if (commands[i].category == `dnd` && commands[i].autoExec) {
-				commands[i].execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final);
+				commands[i].execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client);
 			}
 		}
 	}
@@ -261,7 +261,7 @@ client.on(`message`, message => {
 
 
 	try {
-		command.execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final);
+		command.execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client);
 	}
 	catch (err) {
 		final.setTitle(`__**Whoops!**__`)
