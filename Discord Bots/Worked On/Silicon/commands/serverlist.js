@@ -21,7 +21,7 @@ module.exports = {
 		for (var i = 0; i < allGuilds.length; i++) {
 			thing += `**${allGuilds[i]}** - ${guildMCount[i]}\n`;
 		}
-		thing += `\n**Total Member Count** - ${client.users.size}`;
+		thing += `\n**Total Member Count** - ${client.users.size}\n*(The server member counts include bots, while the total member count does not.)*`;
 		final.setDescription(thing);
 
 		channel.send(final);
