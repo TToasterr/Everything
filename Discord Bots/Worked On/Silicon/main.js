@@ -22,10 +22,16 @@ client.once(`ready`, () => {
 
 
 client.on(`guildCreate`, guild => {
+	let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
+		toaster.send(`[JOINED]\nay :b:ruh I just joined **${guild.name}**.\nIt has ${guild.memberCount} users.`);
+	});
 	console.log(`\n${guild.name} HAS MADE CONTACT\nNEW USERS VISIBLE:  ${guild.memberCount}\n`);
 });
 
 client.on(`guildDelete`, guild => {
+	let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
+		toaster.send(`[LEFT]\nay :b:ruh I just left **${guild.name}**.\nIt had ${guild.memberCount} users.`);
+	});
 	console.log(`\nLOST CONTACT WITH ${guild.name}\nUSERS LOST: ${guild.memberCount}`);
 })
 

@@ -46,9 +46,29 @@ module.exports = {
 			return console.log(`[${time}] ${authorName} tried to list autoresponders for ${guildName} but it doesnt have any.`);
 		}
 
+		array = array.join('\n');
+		if (array.length > 2048) {
+			let half1 = array.slice(0, 2047);
+			let half2 = array.slice(2047);
+			final.setDescription(half1);
+
+			if (half2.length > 1024) {
+				let half2half1 = half2.slice(0, 1023);
+				let half2half2 = half2.slice(1024);
+				final.addField('*(2048 character limit break)*', half2half1)
+					.addField('*(2048 character limit break)*', half2half2);
+			}
+			else {
+				final.addField('*(2048 character limit break)*', half2);
+			}
+		}
+		else {
+			final.setDescription(array);
+		}
+
 		final.setTitle(`__**List of all autoresponses:**__`)
-			// .setDescription(`*(in ${guildName})*`);
-			.setDescription(array.join('\n'));
+		// .setDescription(`*(in ${guildName})*`);
+		// .setDescription(array.join('\n'));
 
 		channel.send(final);
 		console.log(`[${time}] ${authorName} listed autoresponders for ${guildName}.`);
