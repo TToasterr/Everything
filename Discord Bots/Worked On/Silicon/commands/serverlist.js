@@ -38,6 +38,9 @@ module.exports = {
 				final.addField('*(2048 character limit break)*', half2);
 			}
 		}
+		else {
+			final.setDescription(thing);
+		}
 
 		channel.send(final);
 		console.log(`[${time}] ${authorName} listed all servers Silicon is in.`);
