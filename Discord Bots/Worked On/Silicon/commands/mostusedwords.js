@@ -46,6 +46,8 @@ module.exports = {
 			finalarray = [`Whoops!`, `There arent even 10 different words used yet!`, `Talk some more, and then try again!`];
 		}
 
+		finalarray.push(`\n*Coming soon: Toggling specific random commands,\ninstead of all commands in the 'random' category collectively.*`)
+
 		final.setTitle(`__**Top 10 most used words on ${guildName}:**__`)
 			.setDescription(finalarray.join(`\n`));
 

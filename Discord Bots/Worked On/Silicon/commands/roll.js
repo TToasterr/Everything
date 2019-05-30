@@ -17,7 +17,18 @@ module.exports = {
 		args[0] = args[0].slice(1);
 		let number;
 
-		if (args[0] == `percentile`) {
+		if (args[0] == `e`) {
+			let output;
+			try {
+				output = eval(args[1]);
+			}
+			catch (err) {
+				output = err;
+			}
+			final.setTitle(`*spooky*`)
+				.setDescription(output);
+		}
+		else if (args[0] == `percentile`) {
 			number = (Math.round(Math.random() * 9) + 1) * 10;
 			final.setTitle(`__**${authorName} rolled percentile.**__`)
 				.setDescription(`They got ${number}`);
