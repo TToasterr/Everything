@@ -155,6 +155,11 @@ module.exports = {
 						// member.addRoles(roles[num].id);
 						arr.push(`**${member.user.username}:** ${roles[num].name}`);
 					}
+
+					check2048(arr);
+					final.setTitle(`__**All users in '${args[0]}' have now been assigned random roles!**__`);
+					channel.send(final);
+					return console.log(`[${time}] ${authorName} gave everyone in ${guildName} with the '${args[0]}' role a random role.`);
 				}
 			} else {
 				if (getByName(args[0])) {
