@@ -20,8 +20,7 @@ module.exports = {
 			serverwordcount = fs.readFileSync(`./servers/${guild.id} wordcounts.json`, (err) => {
 				if (err) throw err;
 			});
-		}
-		catch (err) {
+		} catch (err) {
 			serverwordcount = `{}`;
 		}
 		serverwordcount = JSON.parse(serverwordcount);
@@ -41,12 +40,11 @@ module.exports = {
 			for (var i = 0; i < 10; i++) {
 				finalarray.push(`**${wordarray[i][0]}** - ${wordarray[i][1]}`);
 			}
-		}
-		catch (err) {
+		} catch (err) {
 			finalarray = [`Whoops!`, `There arent even 10 different words used yet!`, `Talk some more, and then try again!`];
 		}
 
-		finalarray.push(`\n*Coming soon: Toggling specific random commands,\ninstead of all commands in the 'random' category collectively.*`)
+		finalarray.push(`\n*Coming soon: Toggling specific random commands,\ninstead of all commands in the 'random' category collectively.\n\nBasically, if you dont want this, you wont have to have it.*`)
 
 		final.setTitle(`__**Top 10 most used words on ${guildName}:**__`)
 			.setDescription(finalarray.join(`\n`));
