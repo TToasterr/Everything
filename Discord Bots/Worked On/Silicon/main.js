@@ -22,16 +22,18 @@ client.once(`ready`, () => {
 
 
 client.on(`guildCreate`, guild => {
-	let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
-		toaster.send(`[JOINED]\nay :b:ruh I just joined **${guild.name}**.\nIt has ${guild.memberCount} users.`);
-	});
+	let toaster = client.fetchUser(`184474965859368960`)
+		.then(toaster => {
+			toaster.send(`[JOINED]\nay :b:ruh I just joined **${guild.name}**.\nIt has ${guild.memberCount} users.`);
+		});
 	console.log(`\n${guild.name} HAS MADE CONTACT\nNEW USERS VISIBLE:  ${guild.memberCount}\n`);
 });
 
 client.on(`guildDelete`, guild => {
-	let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
-		toaster.send(`[LEFT]\nay :b:ruh I just left **${guild.name}**.\nIt had ${guild.memberCount} users.`);
-	});
+	let toaster = client.fetchUser(`184474965859368960`)
+		.then(toaster => {
+			toaster.send(`[LEFT]\nay :b:ruh I just left **${guild.name}**.\nIt had ${guild.memberCount} users.`);
+		});
 	console.log(`\nLOST CONTACT WITH ${guild.name}\nUSERS LOST: ${guild.memberCount}\n`);
 })
 
@@ -47,7 +49,8 @@ client.on(`message`, message => {
 	let content = message.content;
 	let splitMessage = content.split(` `);
 	let commandName = splitMessage[0];
-	let args = content.slice(commandName.length).split(`, `);
+	let args = content.slice(commandName.length)
+		.split(`, `);
 	let pic = `https://cdn.discordapp.com/attachments/203685947097874433/568563045249450047/Silicon.png`;
 	let invite = `https://discordapp.com/api/oauth2/authorize?client_id=568569358004256769&permissions=8&scope=bot`;
 
@@ -56,11 +59,17 @@ client.on(`message`, message => {
 	let channel = message.channel;
 	let channelName = channel.name;
 	let channelID = channel.id;
-	let guild = message.guild;
-	let guildName = guild.name;
+	let guild;
+	let guildName;
+
+	if (channel.type == 'text') {
+		guild = message.guild;
+		guildName = guild.name;
+	}
 
 	let date = new Date();
-	let time = date.toString().substring(16, 24);
+	let time = date.toString()
+		.substring(16, 24);
 
 	let serverSettings;
 	let serverPrefix;
@@ -79,7 +88,8 @@ client.on(`message`, message => {
 
 
 	client.commands = new discord.Collection();
-	const commandFiles = fs.readdirSync(`./commands`).filter(file => file.endsWith(`.js`));
+	const commandFiles = fs.readdirSync(`./commands`)
+		.filter(file => file.endsWith(`.js`));
 	for (let file of commandFiles) {
 		let command = require(`./commands/${file}`);
 		client.commands.set(command.name, command);
@@ -98,12 +108,12 @@ client.on(`message`, message => {
 		autoResponses = JSON.parse(autoResponses);
 		let keys = Object.keys(autoResponses);
 		for (let key of keys) {
-			if (content.toLowerCase().includes(key.toLowerCase())) {
+			if (content.toLowerCase()
+				.includes(key.toLowerCase())) {
 				message.channel.send(autoResponses[key]);
 			}
 		}
-	}
-	catch (err) {
+	} catch (err) {
 		fs.writeFileSync(`./autoresponders/${guild.id}.json`, `{}`, (err) => {
 			if (err) console.log(`Error writing to '${guildName}'s autoresponses file:\n${err}\n`);
 		});
@@ -119,33 +129,28 @@ client.on(`message`, message => {
 
 		try {
 			serverPrefix = serverSettings[`prefix`];
-		}
-		catch (err) {
+		} catch (err) {
 			serverPrefix = `si.`;
 		}
 
 		try {
 			serverRandom = serverSettings[`random`];
-		}
-		catch (err) {
+		} catch (err) {
 			serverRandom = false;
 		}
 
 		try {
 			serverMarv = serverSettings[`marv`];
-		}
-		catch (err) {
+		} catch (err) {
 			serverMarv = false;
 		}
 
 		try {
 			serverDNDChannels = serverSettings[`DNDChannels`];
-		}
-		catch (err) {
+		} catch (err) {
 			serverDNDChannels = [];
 		}
-	}
-	catch (err) {
+	} catch (err) {
 		serverPrefix = `si.`;
 		serverRandom = false;
 		serverMarv = false;
@@ -268,17 +273,17 @@ client.on(`message`, message => {
 
 	try {
 		command.execute(message, content, args, author, authorName, channel, channelName, channelID, guild, guildName, serverPrefix, time, serverSettings, final, client);
-	}
-	catch (err) {
+	} catch (err) {
 		final.setTitle(`__**Whoops!**__`)
 			.setDescription(`There was an error executing that command!\nThe bot owner has been notified.`);
 
 		channel.send(final);
 
 		let client = message.channel.client;
-		let toaster = client.fetchUser(`184474965859368960`).then(toaster => {
-			toaster.send(`${message.author.username} got an error using the ${commandName} command. \nCheck console my guy!`);
-		});
+		let toaster = client.fetchUser(`184474965859368960`)
+			.then(toaster => {
+				toaster.send(`${message.author.username} got an error using the ${commandName} command. \nCheck console my guy!`);
+			});
 		throw err;
 	}
 

@@ -21,8 +21,7 @@ module.exports = {
 			});
 
 			object = JSON.parse(object);
-		}
-		catch (err) {
+		} catch (err) {
 			final.setTitle(`__**Whoops!**__`)
 				.setDescription(`This server doesnt have any autoresponders!`);
 
@@ -54,15 +53,13 @@ module.exports = {
 
 			if (half2.length > 1024) {
 				let half2half1 = half2.slice(0, 1023);
-				let half2half2 = half2.slice(1024);
+				let half2half2 = half2.slice(1023);
 				final.addField('*(2048 character limit break)*', half2half1)
 					.addField('*(2048 character limit break)*', half2half2);
-			}
-			else {
+			} else {
 				final.addField('*(2048 character limit break)*', half2);
 			}
-		}
-		else {
+		} else {
 			final.setDescription(array);
 		}
 
