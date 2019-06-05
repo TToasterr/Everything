@@ -4,7 +4,7 @@ const fs = require('fs');
 module.exports = {
 	name: 'arandomrole',
 	description: 'Assign either everyone, or everyone already in a role, a random role\neither picked using arguments, or out of every role.\n\nTo exclude a role, add it in the arguments with a \'!\' in front of it.\n\n*This command is currently in progress, and doesn\'t actually assign any roles yet.*',
-	usage: '[e (everyone) or role name], <role 1 name>, <role 2 name>..',
+	usage: '[e, role name, or user name (not nickname)], <role 1 name>, <role 2 name>..',
 	category: 'management',
 	passThrough: false,
 	autoExec: false,
@@ -53,7 +53,7 @@ module.exports = {
 		}
 
 		function getByName(role) {
-			return message.guild.roles.find('name', role);
+			return message.guild.roles.find(role => role.name == role);
 		}
 
 		function getRandom(length) {
@@ -94,8 +94,8 @@ module.exports = {
 						} else {
 							tempArg = args[num];
 						}
-						if (message.guild.roles.find('name', tempArg)) {
-							let role = message.guild.roles.find('name', tempArg);
+						if (message.guild.roles.find(role => role.name == tempArg)) {
+							let role = message.guild.roles.find(role => role.name == tempArg);
 							if (args[num].startsWith('!')) {
 								excludeCount++;
 								excludedRoles.push(role.name);
@@ -175,8 +175,8 @@ module.exports = {
 							} else {
 								tempArg = args[num];
 							}
-							if (message.guild.roles.find('name', tempArg)) {
-								let role = message.guild.roles.find('name', tempArg);
+							if (message.guild.roles.find(role => role.name == tempArg)) {
+								let role = message.guild.roles.find(role => role.name == tempArg);
 								if (args[num].startsWith('!')) {
 									excludeCount++;
 									excludedRoles.push(role.name);
@@ -226,6 +226,8 @@ module.exports = {
 						channel.send(final);
 						return console.log(`[${time}] ${authorName} gave everyone in ${guildName} with the '${args[0]}' role a random role, excluding a few and including a few.`);
 					}
+				} else if (message.guild.members.find('user.name', args[0])) {
+
 				} else {
 					final.setTitle(`__**Whoops!**__`)
 						.setDescription(`One of the roles you used doesnt exist in this server!\nPlease make sure you spelled everything right.`);
