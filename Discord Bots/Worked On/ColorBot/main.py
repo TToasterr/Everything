@@ -29,73 +29,55 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-	if message.author.bot:
-	    return()
+    if message.author.bot:
+        return()
 
 
 
-	msg = message.content
+    msg = message.content
 
 
 
-	if msg == "help pls":
-# 		await message.channel.send("""**color pls** - get one color to rate
-# **palette pls** - get six colors to rate how well they go together
-# **[number] colors pls** - get any amount of colors, 1-9, and rate how well they go together""")
+    if msg == "help pls":
+        print("Help sent!")
         await message.channel.send("""**color pls** - get one color to rate
 **palette pls** - get six colors to rate how well they go together""")
-		print("Help sent!")
-	elif msg == "color pls":
-		color = list(np.random.choice(range(256), size=3))
-		w, h = 100, 100
-		img = Image.new('RGB', (w, h), color=(color[0], color[1], color[2]))
-		img.save('images/color.png')
-		msgg = await message.channel.send(color, file=discord.File("images/color.png"))
-		await msgg.add_reaction("😍")
-		await msgg.add_reaction("😁")
-		await msgg.add_reaction("🙂")
-		await msgg.add_reaction("😕")
-		await msgg.add_reaction("😟")
-		await msgg.add_reaction("🤢")
-		print("Color sent!")
 
-	elif msg == "palette pls":
-		files = []
+
+    elif msg == "color pls":
+        print("Color sent!")
+        color = list(np.random.choice(range(256), size=3))
+        w, h = 100, 100
+        img = Image.new('RGB', (w, h), color=(color[0], color[1], color[2]))
+        img.save('images/color.png')
+        msgg = await message.channel.send(color, file=discord.File("images/color.png"))
+        await msgg.add_reaction("😍")
+        await msgg.add_reaction("😁")
+        await msgg.add_reaction("🙂")
+        await msgg.add_reaction("😕")
+        await msgg.add_reaction("😟")
+        await msgg.add_reaction("🤢")
+
+
+    elif msg == "palette pls":
+        print("Colors to compare sent!")
+        files = []
         text = []
-		for i in range(6):
-			color = list(np.random.choice(range(256), size=3))
-			w, h = 50, 50
-			img = Image.new('RGB', (w, h), color=(color[0], color[1], color[2]))
-			img.save('images/color%s.png' % i)
-			files.append(discord.File("images/color%s.png" % i))
+        for i in range(6):
+            color = list(np.random.choice(range(256), size=3))
+            w, h = 50, 50
+            img = Image.new('RGB', (w, h), color=(color[0], color[1], color[2]))
+            img.save('images/color%s.png' % i)
+            files.append(discord.File("images/color%s.png" % i))
             text.append(str(color))
 
-		msgg = await message.channel.send(",\n".join(text), files=files)
-		await msgg.add_reaction("😍")
-		await msgg.add_reaction("😁")
-		await msgg.add_reaction("🙂")
-		await msgg.add_reaction("😕")
-		await msgg.add_reaction("😟")
-		await msgg.add_reaction("🤢")
-		print("Colors to compare sent!")
-
-	# elif msg[2:] == "colors pls":
-	# 	files = []
-	# 	for i in range(int(msg[0])):
-	# 		color = list(np.random.choice(range(256), size=3))
-	# 		w, h = 50, 50
-	# 		img = Image.new('RGB', (w, h), color=(color[0], color[1], color[2]))
-	# 		img.save('images/color%s.png' % i)
-	# 		files.append(discord.File("images/color%s.png" % i))
-    #
-	# 	msgg = await message.channel.send(files=files)
-	# 	await msgg.add_reaction("😍")
-	# 	await msgg.add_reaction("😁")
-	# 	await msgg.add_reaction("🙂")
-	# 	await msgg.add_reaction("😕")
-	# 	await msgg.add_reaction("😟")
-	# 	await msgg.add_reaction("🤢")
-	# 	print("%s colors sent!" % msg[0])
+        msgg = await message.channel.send(",\n".join(text), files=files)
+        await msgg.add_reaction("😍")
+        await msgg.add_reaction("😁")
+        await msgg.add_reaction("🙂")
+        await msgg.add_reaction("😕")
+        await msgg.add_reaction("😟")
+        await msgg.add_reaction("🤢")
 
 
 
