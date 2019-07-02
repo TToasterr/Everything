@@ -23,8 +23,7 @@ module.exports = {
 					serverwordcount = fs.readFileSync(`./servers/${guild.id} wordcounts.json`, (err) => {
 						if (err) throw err;
 					});
-				}
-				catch (err) {
+				} catch (err) {
 					serverwordcount = `{}`;
 				}
 				serverwordcount = JSON.parse(serverwordcount);
@@ -41,19 +40,27 @@ module.exports = {
 				wordarray = array.reverse();
 
 				for (var i = 0; i < 10; i++) {
-					if (content.includes(` ${wordarray[i][0]} `) || content == wordarray[i][0] || content.startsWith(wordarray[i][0] + ' ') || content.endsWith(' ' + wordarray[i][0])) {
-						message.delete();
-						finalarray.push(wordarray[i][0]);
-						wordUsed = true;
+					try {
+						if (content.includes(` ${wordarray[i][0]} `) || content == wordarray[i][0] || content.startsWith(wordarray[i][0] + ' ') || content.endsWith(' ' + wordarray[i][0])) {
+							message.delete();
+							finalarray.push(wordarray[i][0]);
+							wordUsed = true;
+						}
+					} catch (err) {
+						final.setTitle(`__**Whoops!**__`)
+							.setDescription(`You have to have sent at least 10 messages (Not commands)\nin order to use this command (Though I don't know why you'd want to)`);
+						channel.send(final);
+						return console.log(`[${time}] ${authorName} tried to use top10words, but there havent been 10 words!`);
 					}
 				}
 
 				if (wordUsed) {
 					final.setTitle(`__**Whoops!**__`)
 						.setDescription(`${authorName} used the following words:\n${finalarray.join("\n")}`);
-					channel.send(final).then(m => {
-						m.delete(5000);
-					});
+					channel.send(final)
+						.then(m => {
+							m.delete(5000);
+						});
 				}
 			}
 		}
