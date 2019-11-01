@@ -4,7 +4,7 @@ from datetime import datetime
 import gspread
 import pprint
 
-scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
 client = gspread.authorize(creds)
 p = pprint.PrettyPrinter()
@@ -40,24 +40,24 @@ date[1] = str(date[1])
 date[2] = str(date[2])
 date = "/".join(date)
 
-row = temp1.index(date)+1
+row = temp1.index(date) + 1
 print("\nLast Week:")
-print(sheet.cell(row-1, 5).value)
+print(sheet.cell(row - 1, 5).value)
 print("\nCurrent:")
 print(sheet.cell(row, 5).value)
 print("\nNext Week:")
-print(sheet.cell(row+1, 5).value + "\n")
+print(sheet.cell(row + 1, 5).value + "\n")
 
 for i in range(5):
-    print(sheet.cell(row+(i+2), 5).value)
+    print(sheet.cell(row + (i + 2), 5).value)
 
 print("\n----------------------------\n\nIncome this week:")
-print("$" + str(float(sheet.cell(row+1, 5).value[1:].replace(",", "")) - float(sheet.cell(row, 5).value[1:].replace(",", ""))))
+print("$" + str(float(sheet.cell(row + 1, 5).value[1:].replace(",", "")) - float(sheet.cell(row, 5).value[1:].replace(",", ""))))
 print("\nIncome next week:")
-print("$" + str(float(sheet.cell(row+2, 5).value[1:].replace(",", "")) - float(sheet.cell(row+1, 5).value[1:].replace(",", ""))) + "\n")
+print("$" + str(float(sheet.cell(row + 2, 5).value[1:].replace(",", "")) - float(sheet.cell(row + 1, 5).value[1:].replace(",", ""))) + "\n")
 
 for i in range(5):
-    print("$" + str(float(sheet.cell(row+(i+3), 5).value[1:].replace(",", "")) - float(sheet.cell(row+(i+2), 5).value[1:].replace(",", ""))))
+    print("$" + str(float(sheet.cell(row + (i + 3), 5).value[1:].replace(",", "")) - float(sheet.cell(row + (i + 2), 5).value[1:].replace(",", ""))))
 
 # money = []
 # numbe = []
